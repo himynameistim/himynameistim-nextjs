@@ -4,13 +4,11 @@ import Link from "next/link"
 export default function Layout({children}) {
     return (
         <div>
-        <header>
-            <div className="container">
-                <div className="row">
+        <header className="">
+            <div className="container mx-auto">
                 Hi My Name Is Tim
-                </div>
             </div>
-            <nav>
+            <nav className="container mx-auto ">
                 <ul>
                     <Link href="/">Home</Link>
                     <Link href="/sitecore">Sitecore</Link>

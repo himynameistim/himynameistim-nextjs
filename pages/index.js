@@ -7,16 +7,14 @@ import CategoryHeading from "../components/category-heading"
 
 export default function Home() {
   return (
-    <div>
-    <Head>
+  <Layout>
+  <Head>
     <title>Create Next App</title>
     <link rel="icon" href="/favicon.ico" />
   </Head>
-  <Layout>
     <CategoryHeading name="About"></CategoryHeading>
-<div className={styles.main}></div>
+    <div className={styles.main}></div>
   </Layout>
-  </div>
   )
 }
 
