@@ -23,6 +23,10 @@ a {
   box-sizing: border-box;
 }
 
+.header-top {
+  border-bottom: 1px solid #e8edf1;
+}
+
 
 /* Start purging... */
 @tailwind utilities;
