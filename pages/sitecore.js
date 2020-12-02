@@ -19,7 +19,6 @@ export default function Home() {
   </Head>
     <CategoryHeading name="Sitecore"></CategoryHeading>
     <FeaturedRow1></FeaturedRow1>
-    <SectionHeading heading="Sitecore"></SectionHeading>
   
     <div className={styles.main}></div>
   </Layout>

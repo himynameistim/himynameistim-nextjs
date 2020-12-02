@@ -23,15 +23,18 @@ a {
   box-sizing: border-box;
 }
 
-h2 {
-  font-size: 36px;
+h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: 0.025em; line-height: 1.625; margin-top: 15px; margin-bottom: 20px;
 }
-h2::after {
+h2 { font-size: 1.25rem; font-weight: 600; letter-spacing: 0.025em; line-height: 1.625; margin-bottom: 20px;
 }
+
+p { margin-bottom: 20px; color: #797979;line-height: 1.625;}
 
 .header-top {
   border-bottom: 1px solid #e8edf1;
 }
+
+$primary: rgb(255, 122, 127);
 
 
 /* Start purging... */
