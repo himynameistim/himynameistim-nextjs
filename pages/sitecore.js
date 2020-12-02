@@ -17,10 +17,10 @@ export default function Home() {
     <title>Create Next App</title>
     <link rel="icon" href="/favicon.ico" />
   </Head>
+    <CategoryHeading name="Sitecore"></CategoryHeading>
     <FeaturedRow1></FeaturedRow1>
     <SectionHeading heading="Sitecore"></SectionHeading>
-    <FeaturedRow1></FeaturedRow1>
-    
+  
     <div className={styles.main}></div>
   </Layout>
   )

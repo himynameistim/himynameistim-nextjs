@@ -4,7 +4,7 @@ import linkStyles from "../styles/featured-row-1.module.scss"
 
 export default function FeaturedRow1({  }) {
     return (
-  <div class="container mx-auto">
+  <div class="container mx-auto mb-10">
   <div className={[ linkStyles.row, "grid grid-cols-1 sm:grid-cols-2 md:grid-rows-2 md:grid-cols-12 grid-flow-row md:grid-flow-col gap-4"].join(" ")}>
     <Link href="/sitecore">
     <a className={[ linkStyles.mainBlock, "md:col-span-5 md:row-span-2 pt-8 rounded-md flex justify-center items-center grid place-items-end place-content-end"].join(" ")} style={{ backgroundImage: "url(https://preview.colorlib.com/theme/eden/img/magazine/1.jpg)" }}>
