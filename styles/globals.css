@@ -23,6 +23,12 @@ a {
   box-sizing: border-box;
 }
 
+h2 {
+  font-size: 36px;
+}
+h2::after {
+}
+
 .header-top {
   border-bottom: 1px solid #e8edf1;
 }

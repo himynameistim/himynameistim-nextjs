@@ -1,0 +1,12 @@
+.row { min-height: 400px; }
+
+@media (max-width: 639px) {
+    .mainBlock { min-height: 400px;}
+    .secondBlock { min-height: 400px; }
+    .finalBlocks { min-height: 300px; }
+}
+@media (max-width: 768px) {
+    .mainBlock { min-height: 300px;}
+    .secondBlock { min-height: 300px; }
+    .finalBlocks { min-height: 200px; }
+}

@@ -1,0 +1,16 @@
+.sectionHeading {
+    position: relative;
+
+    h2 {
+        &:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 2px;
+            left: 50%;
+            transform: translate(-50%);
+            bottom: -10px;
+            background-color: #ff7a7f;
+        }
+    }
+}
