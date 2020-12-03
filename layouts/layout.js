@@ -1,7 +1,12 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Link from "next/link"
+import Prism from "prismjs"
 
 export default function Layout({children}) {
+    useEffect(() => {
+        Prism.highlightAll();
+    }, []);
+    
     const [isMenuOpen, setMenuOpen] = useState(false)
     return (
         <div>

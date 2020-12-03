@@ -25,6 +25,13 @@ export default function Home() {
         <h2>INTRODUCING THE SAME SITE COOKIE POLICY</h2>
         <p>In 2020 a change made to how cookies function in browsers to defend against cross site scripting. Troy Hunt has a brilliant explanation of the issue with how cookies used to work and how this has changed here. I’m going to try a much shorter explanation;</p>
         <p>When a request is made from a browser, as part of the request all the cookie values for that domain are sent with the request. This will include one for the Session ID. The theory here is that because the cookies are only being sent to the domain which set them in the first place, then information is only being shared back with the place that set it to begin with, which is therefor safe.</p>
+        <figure class="figure-code">
+<pre>
+<code class="language-html">
+      &lt;div&gt;The code I want to style&lt;/div&gt;
+</code>
+</pre>
+</figure>
         </div>
       </div>
       <div class="col-span-2">Right</div>

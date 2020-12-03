@@ -6,10 +6,12 @@ import { queryRepeatableDocuments } from 'utils/queries'
 
 // Project components
 import Layout from "layouts/layout"
-import { BackButton, SliceZone } from "components/post";
+import { SliceZone } from "components/post"
+import SectionHeading from 'components/section-heading'
 
 // Project functions & styles
 import { Client } from "utils/prismicHelpers";
+import styles from "styles/layout-styles.module.scss"
 
 /**
  * Post page component
@@ -24,12 +26,22 @@ const Post = ({ post }) => {
         <Head>
           <title>{title}</title>
         </Head>
-        <div className="main">
-          <div className="outer-container">
-            <BackButton />
+        <hr className={[styles.horizonalLine, "mb-10"].join(" ")} />
+  
+
+        <SectionHeading heading="Devops"></SectionHeading>
+
+        <div class="container mx-auto mb-10">
+        <div class="grid grid-cols-7 gap-4">
+          <div class="col-span-5">
+            <img class="rounded-md" src="https://himynameistim.files.wordpress.com/2020/04/toys-4502721_1920.jpg?w=820&h=312&crop=1" />
+            <div className={styles.post}>
             <h1>{title}</h1>
+            <SliceZone sliceZone={post.data.body} />
+            </div>
           </div>
-          <SliceZone sliceZone={post.data.body} />
+          <div class="col-span-2">Right</div>
+        </div>
         </div>
       </Layout>
     );
