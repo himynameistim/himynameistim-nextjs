@@ -1,11 +1,28 @@
 import Prismic from 'prismic-javascript'
 import Link from 'next/link'
+import { PrismicLink } from 'apollo-link-prismic';
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
+import ApolloClient from 'apollo-client';
 import {
   apiEndpoint,
+  graphApiEndpoint,
   accessToken,
   linkResolver,
   hrefResolver
 } from 'prismic-configuration'
+import fragmentTypes from './fragmentTypes.json';
+
+const fragmentMatcher = new IntrospectionFragmentMatcher(
+  { introspectionQueryResultData: fragmentTypes },
+);
+
+export const ApolClient = new ApolloClient({
+  link: PrismicLink({ 
+    uri: graphApiEndpoint,
+    repositoryName: "HiMyNameIsTim"
+   }),
+  cache: new InMemoryCache({ fragmentMatcher })
+})
 
 // Helper function to convert Prismic Rich Text links to Next/Link components
 export const customLink = (type, element, content, children, index) => (
@@ -33,3 +50,4 @@ const createClientOptions = (req = null, prismicAccessToken = null) => {
 }
 
 export default Client
+
