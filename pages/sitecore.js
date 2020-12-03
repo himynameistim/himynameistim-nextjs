@@ -18,7 +18,6 @@ export default function Home() {
     <link rel="icon" href="/favicon.ico" />
   </Head>
     <CategoryHeading name="Sitecore"></CategoryHeading>
-    <FeaturedRow1></FeaturedRow1>
   
     <div className={styles.main}></div>
   </Layout>
