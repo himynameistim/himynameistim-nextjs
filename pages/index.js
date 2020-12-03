@@ -13,7 +13,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-client";
 import gql from "graphql-tag";
 
-export default function Home() {
+export default function Home({webDevelopmentPosts, sitecorePosts, devOpsPosts}) {
   return (
   <Layout>
   <Head>
@@ -21,11 +21,11 @@ export default function Home() {
     <link rel="icon" href="/favicon.ico" />
   </Head>
     <SectionHeading heading="Web Development"></SectionHeading>
-    <FeaturedRow1></FeaturedRow1>
+    <FeaturedRow1 posts={webDevelopmentPosts}></FeaturedRow1>
     <SectionHeading heading="Sitecore"></SectionHeading>
-    <FeaturedRow1></FeaturedRow1>
+    <FeaturedRow1 posts={sitecorePosts}></FeaturedRow1>
     <SectionHeading heading="Devops"></SectionHeading>
-    <FeaturedRow1></FeaturedRow1>
+    <FeaturedRow1 posts={devOpsPosts}></FeaturedRow1>
 
 
     <div className={styles.main}></div>
@@ -35,14 +35,17 @@ export default function Home() {
 
 export async function getStaticProps() {
 
-  const latestPosts = await queryLatestPosts("X8kFlRIAACkAn9pa");
+  const devOpsPosts = await queryLatestPosts("X8kFlRIAACkAn9pa");
+  const sitecorePosts = await queryLatestPosts("X8kFeBIAACkAn9nV");
+  const webDevelopmentPosts = await queryLatestPosts("X8kFhxIAACcAn9oY");
 
   
 
   return {
     props: {
-      latestPosts: latestPosts
+      devOpsPosts: devOpsPosts,
+      sitecorePosts: sitecorePosts,
+      webDevelopmentPosts: webDevelopmentPosts
     }
-   // latestPosts: latestPosts
   }
 }

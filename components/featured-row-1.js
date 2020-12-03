@@ -1,16 +1,17 @@
 import React from "react"
 import Link from "next/link"
 import linkStyles from "../styles/featured-row-1.module.scss"
+import { linkResolver } from 'prismic-configuration';
 
-export default function FeaturedRow1({  }) {
+export default function FeaturedRow1({ posts }) {
     return (
   <div class="container mx-auto mb-10">
   <div className={[ linkStyles.row, "grid grid-cols-1 sm:grid-cols-2 md:grid-rows-2 md:grid-cols-12 grid-flow-row md:grid-flow-col gap-4"].join(" ")}>
-    <Link href="/post">
+    <Link href={linkResolver(posts[0])}>
     <a className={[ linkStyles.mainBlock, "md:col-span-5 md:row-span-2 pt-8 rounded-md flex justify-center items-center grid place-items-end place-content-end bg-cover"].join(" ")} style={{ backgroundImage: "url(https://himynameistim.files.wordpress.com/2020/04/toys-4502721_1920.jpg?w=820&h=312&crop=1)" }}>
       <div class="bg-white w-5/6 p-8">
         <div className="text-highlight mb-1">Sitecore</div>
-        <div className="text-2xl font-semibold mb-2">HOW TO CREATE A CUSTOM DROPLIST IN SITECORE</div>
+    <div className="text-2xl font-semibold mb-2">{ posts[0].title}</div>
         <div className="text-xs">October 4, 2020</div>
       </div>    
     </a>

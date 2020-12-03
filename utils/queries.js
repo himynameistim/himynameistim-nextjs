@@ -49,7 +49,7 @@ export const queryLatestPosts = async (category) => {
     var posts = [];
     response.data.allPosts.edges.map((edge, key) => {
       posts.push({
-        title: edge.node.title,
+        title: edge.node.title[0].text,
         image: edge.node.image,
         uid: edge.node._meta.uid
       })
