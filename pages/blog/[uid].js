@@ -18,9 +18,13 @@ import styles from "styles/layout-styles.module.scss"
  */
 const Post = ({ post }) => {
   if (post && post.data) {
+
+    const cropString = "&fit=crop&max-w=1093&max-h=400"
+
     const hasTitle = RichText.asText(post.data.title).length !== 0;
     const title = hasTitle ? RichText.asText(post.data.title) : "Untitled";
-
+    const hasImage = post.data.image !== "undefined";    
+    const image = hasImage ? post.data.image.url + cropString : "";
     return (
       <Layout>
         <Head>
@@ -34,7 +38,9 @@ const Post = ({ post }) => {
         <div class="container mx-auto mb-10">
         <div class="grid grid-cols-7 gap-4">
           <div class="col-span-5">
-            <img class="rounded-md" src="https://himynameistim.files.wordpress.com/2020/04/toys-4502721_1920.jpg?w=820&h=312&crop=1" />
+            { hasImage &&
+            <img class="rounded-md" src={image} />
+            }
             <div className={styles.post}>
             <h1>{title}</h1>
             <SliceZone sliceZone={post.data.body} />
