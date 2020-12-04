@@ -75,7 +75,6 @@ export default function Layout({children}) {
                     </div>
                 </div>
         </footer>
-        <div className="hidden w-6 h-6"></div>
         </div>
     )
 }
