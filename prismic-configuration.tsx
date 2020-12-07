@@ -10,7 +10,7 @@ export const accessToken = 'MC5YOGk0elJJQUFDWUFub1FR.77-977-9d0oEIe-_vREOAe-_vTn
 
 // -- Link resolution rules
 // Manages the url links to internal Prismic documents
-export const linkResolver = (doc) => {
+export const linkResolver = (doc: { type: string, uid: string}) => {
   //if (doc.type === 'post') {
     return `/blog/${doc.uid}`
   //}
@@ -18,7 +18,7 @@ export const linkResolver = (doc) => {
 }
 
 // Additional helper function for Next/Link components
-export const hrefResolver = (doc) => {
+export const hrefResolver = (doc: { type: string, uid: string}) => {
   if (doc.type === 'post') {
     return '/blog/[uid]'
   }

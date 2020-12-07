@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import Prism from "prismjs"
 
-export default function Layout({children}) {
+export default function Layout({children}: {
+    children: React.ReactNode
+}) {
     const [isMenuOpen, setMenuOpen] = useState(false)
 
     useEffect(() => {
@@ -11,18 +13,18 @@ export default function Layout({children}) {
     
     return (
         <div>
-        <header className="">
+        <header>
             <div className="header-top flex justify-center items-center p-5">
                 Hi My Name Is Tim
             </div>
 
-            <nav class="">
-            <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-                <div class="relative flex items-center justify-between h-20">
-                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <nav>
+            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+                <div className="relative flex items-center justify-between h-20">
+                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     {/* Mobile menu button*/}
-                    <button onClick={() => setMenuOpen(!isMenuOpen)} class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
+                    <button onClick={() => setMenuOpen(!isMenuOpen)} className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
+                    <span className="sr-only">Open main menu</span>
                     {/* Icon when menu is closed. 
                         Heroicon name: menu
 
@@ -41,12 +43,12 @@ export default function Layout({children}) {
                     </svg>
                     </button>
                 </div>
-                <div class="flex-1 flex items-center justify-center">
-                    <div class="hidden sm:block sm:ml-6">
-                    <div class="flex items-center justify-center space-x-4">
-                        <Link href="/"><a class="px-3 py-2 text-base font-medium">Home</a></Link>
-                        <Link href="/sitecore"><a class="px-3 py-2 text-base font-medium">Sitecore</a></Link>
-                        <Link href="/about"><a class="px-3 py-2 text-base font-medium">About</a></Link>
+                <div className="flex-1 flex items-center justify-center">
+                    <div className="hidden sm:block sm:ml-6">
+                    <div className="flex items-center justify-center space-x-4">
+                        <Link href="/"><a className="px-3 py-2 text-base font-medium">Home</a></Link>
+                        <Link href="/sitecore"><a className="px-3 py-2 text-base font-medium">Sitecore</a></Link>
+                        <Link href="/about"><a className="px-3 py-2 text-base font-medium">About</a></Link>
                     </div>
                     </div>
                 </div>
@@ -57,11 +59,11 @@ export default function Layout({children}) {
 
             Menu open: "block", Menu closed: "hidden"
             */}
-            <div class={`${isMenuOpen ? 'block' : 'hidden'} sm:hidden`}>
-                <div class="px-2 pt-2 pb-3 space-y-1">
-                <Link href="/"><a class="block px-3 py-2 text-base font-medium">Home</a></Link>
-                <Link href="/sitecore"><a class="block px-3 py-2 text-base font-medium">Sitecore</a></Link>
-                <Link href="/about"><a class="block px-3 py-2 text-base font-medium">About</a></Link>
+            <div className={`${isMenuOpen ? 'block' : 'hidden'} sm:hidden`}>
+                <div className="px-2 pt-2 pb-3 space-y-1">
+                <Link href="/"><a className="block px-3 py-2 text-base font-medium">Home</a></Link>
+                <Link href="/sitecore"><a className="block px-3 py-2 text-base font-medium">Sitecore</a></Link>
+                <Link href="/about"><a className="block px-3 py-2 text-base font-medium">About</a></Link>
                 </div>
             </div>
             </nav>

@@ -13,14 +13,14 @@ async function fetchDocs(page = 1, routes = []) {
 /** Fetches all Prismic documents and filters them (eg. by document type).
  *  In production, you would probably query documents by type instead of filtering them.
 **/
-export const queryRepeatableDocuments = async (filter) => {
+
+interface Route {
+  type: string,
+  uid: string 
+}
+export const queryRepeatableDocuments = async (filter: (s: Route) => boolean): Promise<Route[]> => {
   const allRoutes = await fetchDocs()
   return allRoutes.filter(filter)
-}
-
-export const homePageQuery = async () => {
-  const allRoutes = await fetchDocs()
-  return allRoutes.filter(doc => doc.type === 'post').slice(0, 5)
 }
 
 const latestPostsQuery = gql`
@@ -39,15 +39,24 @@ query latestPosts($category: String) {
 }
 `;
 
-export const queryLatestPosts = async (category) => {
+interface Post {
+  uid: string,
+  type?: string,
+  title: string,
+  postDate?: Date,
+  category?: string,
+  image: string
+}
+
+export const queryLatestPosts = async (category: String) : Promise<Post[]> => {
   const queryOptions = {
     query: latestPostsQuery,
     variables: { category },
   };
 
   return new Promise((resolve, reject) => { ApolClient.query(queryOptions).then(response => {
-    var posts = [];
-    response.data.allPosts.edges.map((edge, key) => {
+    var posts: Array<Post> = [];
+    response.data.allPosts.edges.map((edge: { node: { title: { text: any; }[]; image: any; _meta: { uid: any; }; }; }, key: any) => {
       posts.push({
         title: edge.node.title[0].text,
         image: edge.node.image,

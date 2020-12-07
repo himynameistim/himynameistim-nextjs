@@ -2,18 +2,18 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 import React, { useState } from "react"
+import { GetStaticProps } from 'next'
 import Layout from "../layouts/layout"
-import FeaturedRow1 from "../components/featured-row-1"
+import { FeaturedRow1, FeaturedRow1Data } from "../components/featured-row-1"
 import SectionHeading from '../components/section-heading'
-import { queryLatestPosts } from 'utils/queries'
+import { queryLatestPosts } from '../utils/queries'
 
 
-import { PrismicLink } from "apollo-link-prismic";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import ApolloClient from "apollo-client";
-import gql from "graphql-tag";
-
-export default function Home({webDevelopmentPosts, sitecorePosts, devOpsPosts}) {
+export default function Home({webDevelopmentPosts, sitecorePosts, devOpsPosts} :{
+  webDevelopmentPosts: FeaturedRow1Data,
+  sitecorePosts: FeaturedRow1Data,
+  devOpsPosts: FeaturedRow1Data
+}) {
   return (
   <Layout>
   <Head>
@@ -33,13 +33,11 @@ export default function Home({webDevelopmentPosts, sitecorePosts, devOpsPosts}) 
   )
 };
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 
   const devOpsPosts = await queryLatestPosts("X8kFlRIAACkAn9pa");
   const sitecorePosts = await queryLatestPosts("X8kFeBIAACkAn9nV");
   const webDevelopmentPosts = await queryLatestPosts("X8kFhxIAACcAn9oY");
-
-  
 
   return {
     props: {

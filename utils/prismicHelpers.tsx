@@ -1,6 +1,7 @@
 import Prismic from 'prismic-javascript'
 import Link from 'next/link'
-import { PrismicLink } from 'apollo-link-prismic';
+const PrismicLink = require ('apollo-link-prismic')
+//import { PrismicLink } from 'apollo-link-prismic';
 import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 import ApolloClient from 'apollo-client';
 import {
@@ -9,8 +10,9 @@ import {
   accessToken,
   linkResolver,
   hrefResolver
-} from 'prismic-configuration'
+} from '../prismic-configuration'
 import fragmentTypes from './fragmentTypes.json';
+import { ApiOptions } from 'prismic-javascript/types/Api';
 
 const fragmentMatcher = new IntrospectionFragmentMatcher(
   { introspectionQueryResultData: fragmentTypes },
@@ -25,7 +27,7 @@ export const ApolClient = new ApolloClient({
 })
 
 // Helper function to convert Prismic Rich Text links to Next/Link components
-export const customLink = (type, element, content, children, index) => (
+export const customLink = (type: string, element, content: string, children: React.ReactNode, index: number) => (
   <Link
     key={index}
     href={hrefResolver(element.data)}
@@ -40,7 +42,7 @@ export const Client = (req = null) => (
   Prismic.client(apiEndpoint, createClientOptions(req, accessToken))
 )
 
-const createClientOptions = (req = null, prismicAccessToken = null) => {
+const createClientOptions = (req = null, prismicAccessToken: string) : ApiOptions => {
   const reqOption = req ? { req } : {}
   const accessTokenOption = prismicAccessToken ? { accessToken: prismicAccessToken } : {}
   return {
