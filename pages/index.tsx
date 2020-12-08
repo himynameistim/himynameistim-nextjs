@@ -6,7 +6,7 @@ import { GetStaticProps } from 'next'
 import Layout from "../layouts/layout"
 import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1"
 import SectionHeading from '../components/section-heading'
-import { queryLatestPosts } from '../utils/queries'
+import { queryLatestPosts, getCategories } from '../utils/queries'
 
 
 export default function Home({webDevelopmentPosts, sitecorePosts, devOpsPosts} :{
@@ -38,6 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const devOpsPosts = await queryLatestPosts("X8kFlRIAACkAn9pa");
   const sitecorePosts = await queryLatestPosts("X8kFeBIAACkAn9nV");
   const webDevelopmentPosts = await queryLatestPosts("X8kFhxIAACcAn9oY");
+  const categories = await getCategories();
 
   return {
     props: {

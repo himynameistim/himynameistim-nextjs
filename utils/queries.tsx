@@ -1,6 +1,9 @@
 import { Client, ApolClient } from './prismicHelpers'
 import gql from 'graphql-tag';
 
+// Models
+import { CategoriesModel, CategoryModel } from "../Models/Categories"
+
 async function fetchDocs(page = 1, routes = []) {
   const response = await Client().query('', { pageSize: 100, lang: '*', page });
   const allRoutes = routes.concat(response.results);
@@ -75,3 +78,42 @@ export const queryLatestPosts = async (category: String) : Promise<Post[]> => {
   });
 });
 };
+
+
+const getCategoriesQuery = gql`
+query getCategories {
+  allCategoriess (first : 20, sortBy: name_ASC){
+    edges {
+      node {
+        _meta {
+          id
+        },
+        name        
+      }
+    }
+  }
+}
+`;
+
+export const getCategories = async () : Promise<Array<CategoryModel>> => {
+  const queryOptions = {
+    query: getCategoriesQuery,
+  };
+
+  return new Promise((resolve, reject) => { ApolClient.query(queryOptions).then(response => {
+    var categories: Array<CategoryModel> = [];
+
+    response.data.allCategoriess.edges.map((edge: { node: { name: string; _meta: { id: any; }; }; }, key: any) => {
+      categories.push({
+        id: edge.node._meta.id,
+        name: edge.node.name,
+        postCount: 1
+      })
+    })
+    
+    resolve(categories);
+  }).catch(error => {
+    reject(error);
+  });
+  })
+}
