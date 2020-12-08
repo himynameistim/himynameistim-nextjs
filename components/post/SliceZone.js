@@ -8,7 +8,7 @@ const SliceZone = ({ sliceZone }) => (
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       /* Add code block slice */
-      case ('image_with_caption'):
+      case ('full_width_image'):
         return <ImageWithCaption slice={slice} key={`slice-${index}`} />
       case ('quote'):
         return <Quote slice={slice} key={`slice-${index}`} />
