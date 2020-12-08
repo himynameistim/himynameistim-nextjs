@@ -1,0 +1,48 @@
+@import './variables.scss';
+
+$articleSidePaddingBase: 2rem;
+$articleSidePaddingSm: 30px;
+$articleSidePaddingMd: 30px;
+$articleSidePaddingLg: 80px;
+$articleSidePaddingXl: 50px;
+$articleSidePaddingXXl: 60px;
+
+.listing {
+
+  padding: $pagePaddingBase;
+  @media (min-width: $sm) {
+    padding: $pagePaddingSm;
+  }
+
+  article {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: $elementSpacing;
+    @media (min-width: $sm) {
+      box-shadow: 0px 10px 20px 0px rgba(221, 221, 221, 0.3);
+    }
+
+    header {
+      img { min-width: 100%; }
+      h1 {
+        padding: 0 $articleSidePaddingBase 0 $articleSidePaddingBase;
+        @media (min-width: $sm) { 
+          padding: 0 $articleSidePaddingSm 0 $articleSidePaddingSm;
+        }
+        @media (min-width: $lg) { 
+          padding: 0 $articleSidePaddingLg 0 $articleSidePaddingLg;
+        }
+      }
+    }
+
+    & > div {
+      padding: 0 $articleSidePaddingBase 40px $articleSidePaddingBase;
+      @media (min-width: $sm) { 
+        padding: 0 $articleSidePaddingSm 40px $articleSidePaddingSm;
+      }
+      @media (min-width: $lg) { 
+        padding: 0 $articleSidePaddingLg 40px $articleSidePaddingLg;
+      }
+    }
+  }
+}

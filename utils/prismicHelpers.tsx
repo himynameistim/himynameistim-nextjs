@@ -1,7 +1,6 @@
 import Prismic from 'prismic-javascript'
 import Link from 'next/link'
-const PrismicLink = require ('apollo-link-prismic')
-//import { PrismicLink } from 'apollo-link-prismic';
+import { PrismicLink } from 'apollo-link-prismic';
 import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 import ApolloClient from 'apollo-client';
 import {
@@ -27,7 +26,7 @@ export const ApolClient = new ApolloClient({
 })
 
 // Helper function to convert Prismic Rich Text links to Next/Link components
-export const customLink = (type: string, element, content: string, children: React.ReactNode, index: number) => (
+export const customLink = (type: string, element: any, content: string, children: React.ReactNode, index: number) => (
   <Link
     key={index}
     href={hrefResolver(element.data)}

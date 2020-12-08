@@ -12,6 +12,7 @@ import SectionHeading from '../../components/section-heading'
 import { queryRepeatableDocuments } from '../../utils/queries'
 import { Client } from "../../utils/prismicHelpers";
 import styles from "styles/layout-styles.module.scss"
+import { QueryOptions } from "prismic-javascript/types/ResolvedApi";
 
 /**
  * Post page component
@@ -33,7 +34,7 @@ const Post = ({ post }: {
 
     const hasTitle = RichText.asText(post.data.title).length !== 0;
     const title = hasTitle ? RichText.asText(post.data.title) : "Untitled";
-    const hasImage = post.data.image == null;    
+    const hasImage = post.data.image != null;    
     const image = hasImage ? post.data.image.url + cropString : "";
     return (
       <Layout>
@@ -66,13 +67,13 @@ const Post = ({ post }: {
   return null;
 };
 
-
-export const getStaticProps: GetStaticProps = async ({ params, preview = null, previewData = {} }: { params : { uid: string}, preview: any, previewData: any}) => {
-  const { ref } = previewData
-  const post = await Client().getByUID("post", params.uid, ref ? { ref } : null) || {}
+export const getStaticProps: GetStaticProps = async ({ params, preview = null, previewData = {} }: { params : { uid: string}, preview: any, previewData: QueryOptions}) => {
+//const { ref } = previewData
+  //const post = await Client().getByUID("post", params.uid, ref ? { ref } : null) || {}
+  const post = await Client().getByUID("post", params.uid, previewData) || {}
   return {
     props: {
-      preview,
+      //preview,
       post
     }
   }
