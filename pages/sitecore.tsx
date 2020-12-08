@@ -2,10 +2,13 @@ import Head from 'next/head'
 import styles from '../styles/listing.module.scss'
 
 import React, { useState } from "react"
+import { GetStaticProps } from 'next'
 import Layout from "../layouts/layout"
 import CategoryHeading from "../components/category-heading"
+import { Article, ArticleModel, DisplayMode } from "../components/article"
+import { Client } from "../utils/prismicHelpers";
 
-export default function Home() {
+export default function Home({post} : { post: ArticleModel }) {
   return (
   <Layout>
   <Head>
@@ -15,31 +18,18 @@ export default function Home() {
     <CategoryHeading name="Sitecore"></CategoryHeading>
 
     <div className={[styles.listing].join(" ")}>
-      <article className="container">
-        <header>
-          <picture>
-            <img src="https://images.prismic.io/himynameistim/f747f400-b8e0-4ff3-9edd-40386adb95c9_wood-green-color-blue-door-padlock-958956-pxhere.com_.jpg?auto=compress,format&fit=crop&max-w=1093&max-h=400" />
-          </picture>
-          <h1>How to create a custom droplist in Sitecore</h1>
-        </header>
-        <div>
-          <p>If you have a website where you are implementing 3D Secure payments, you may find that you have an issue where on receipt of the payment setup confirmation the users Session ID has changed with no apparent cause.</p><p>Lets have a quick run through of the payment process in this scenario (this is roughly how SagePay and WorldPay both work):</p><ol><li>User completes payment details on your site (some wizardry normally happens at this point with an iFrame for the card number to maintain PCI compliance) and the form is submitted to your server</li><li>You server call's an API from the payment gateway to setup a 3D Secure payment. It passes the users Session ID along with all the payment details.</li><li>Payment gateway responds with a URL for you to redirect the user too by posting a form to it. You do this, likely in an iFrame so that the page still looks like your website (otherwise it's a very ugly page).</li><li>User may or may not get prompted by some sort of authentication by the bank. This could be something like receiving a text message with a code to enter.</li><li>When authenticated the user is sent back to your website (in the iFrame) with a post request.</li><li>Your server picks out the form details from the request and then calls an API to complete the transaction. In this API call you send the Session ID so that the payment gateway can validate it is the same as the one at the start of the process.</li><li>Confirmation shown to the user.</li></ol><h2>Introducing the Same Site Cookie Policy</h2><p>In 2020 a change made to how cookies function in browsers to defend against cross site scripting. <a href="https://www.troyhunt.com/promiscuous-cookies-and-their-impending-death-via-the-samesite-policy/" target="_blank" rel="noopener">Troy Hunt has a brilliant explanation of the issue with how cookies used to work and how this has changed here</a>. I'm going to try a much shorter explanation;</p><p>When a request is made from a browser, as part of the request all the cookie values for that domain are sent with the request. This will include one for the Session ID. The theory here is that because the cookies are only being sent to the domain which set them in the first place, then information is only being shared back with the place that set it to begin with, which is therefor safe.</p><p>However the workings of the internet and what domain a button click might call isn't overly obvious to most people. So what if clicking a link on one site causes the user to be redirected to another site? Answer: all the cookies are still sent. The same thing happens if a form is posted from one site to another site. The problem here is that if you are authenticated on the other website, then its possible for a cross site scripting attack to be using your session via your browser without you even realising you were on the site again. This is why it's always a good idea to log out of websites!</p><p>The introduction of the same site policy changes how cookies work with three options:</p><ol><li>None: which is what the browsers used to do. i.e. send all the cookies with cross-origin request</li><li>Lax: some limits on sending cookies with cross-origin request</li><li>Strict: tight limits on sending cookies with cross-origin request</li></ol><p>None is sending everything and a strict policy will basically stop cookies from being sent when they have a cross-origin request.</p><p>A Lax policy is slightly more interesting though, because it depends if the request is a GET or a POST. If it is a GET then the cookies will still be sent, which means that if you follow a link from another site or a search engine your cookies will still be sent to the site. However a POST (like what the 3D Secure page is doing) will no longer send the cookies.</p><p>If the policy isn't set, then Lax is used as the default.</p><h2>So why is my Session ID changing?</h2><p>The problem is that post request back to your site, unless the Session ID had a cookie policy of None then the Session ID cookie won't be sent. The server will then see that there is no Session ID and treat the users as if they are new on the site and as a result start a new session. From this point on the user has lost the old session and you can't complete the payment. Worse still they've probably just been logged out and anything else using session data has also been lost.</p><p>In .Net 4.7.2 and up, Microsoft has implemented the ability to set the cookie policy of the session ID. You can do this in your web.config file like this:</p>
-        </div>
-      </article>
-
-      <article className="container">
-        <header>
-          <picture>
-            <img src="https://images.prismic.io/himynameistim/f747f400-b8e0-4ff3-9edd-40386adb95c9_wood-green-color-blue-door-padlock-958956-pxhere.com_.jpg?auto=compress,format&fit=crop&max-w=1093&max-h=400" />
-          </picture>
-          <h1>How to create a custom droplist in Sitecore</h1>
-        </header>
-        <div>
-          <p>If you have a website where you are implementing 3D Secure payments, you may find that you have an issue where on receipt of the payment setup confirmation the users Session ID has changed with no apparent cause.</p><p>Lets have a quick run through of the payment process in this scenario (this is roughly how SagePay and WorldPay both work):</p><ol><li>User completes payment details on your site (some wizardry normally happens at this point with an iFrame for the card number to maintain PCI compliance) and the form is submitted to your server</li><li>You server call's an API from the payment gateway to setup a 3D Secure payment. It passes the users Session ID along with all the payment details.</li><li>Payment gateway responds with a URL for you to redirect the user too by posting a form to it. You do this, likely in an iFrame so that the page still looks like your website (otherwise it's a very ugly page).</li><li>User may or may not get prompted by some sort of authentication by the bank. This could be something like receiving a text message with a code to enter.</li><li>When authenticated the user is sent back to your website (in the iFrame) with a post request.</li><li>Your server picks out the form details from the request and then calls an API to complete the transaction. In this API call you send the Session ID so that the payment gateway can validate it is the same as the one at the start of the process.</li><li>Confirmation shown to the user.</li></ol><h2>Introducing the Same Site Cookie Policy</h2><p>In 2020 a change made to how cookies function in browsers to defend against cross site scripting. <a href="https://www.troyhunt.com/promiscuous-cookies-and-their-impending-death-via-the-samesite-policy/" target="_blank" rel="noopener">Troy Hunt has a brilliant explanation of the issue with how cookies used to work and how this has changed here</a>. I'm going to try a much shorter explanation;</p><p>When a request is made from a browser, as part of the request all the cookie values for that domain are sent with the request. This will include one for the Session ID. The theory here is that because the cookies are only being sent to the domain which set them in the first place, then information is only being shared back with the place that set it to begin with, which is therefor safe.</p><p>However the workings of the internet and what domain a button click might call isn't overly obvious to most people. So what if clicking a link on one site causes the user to be redirected to another site? Answer: all the cookies are still sent. The same thing happens if a form is posted from one site to another site. The problem here is that if you are authenticated on the other website, then its possible for a cross site scripting attack to be using your session via your browser without you even realising you were on the site again. This is why it's always a good idea to log out of websites!</p><p>The introduction of the same site policy changes how cookies work with three options:</p><ol><li>None: which is what the browsers used to do. i.e. send all the cookies with cross-origin request</li><li>Lax: some limits on sending cookies with cross-origin request</li><li>Strict: tight limits on sending cookies with cross-origin request</li></ol><p>None is sending everything and a strict policy will basically stop cookies from being sent when they have a cross-origin request.</p><p>A Lax policy is slightly more interesting though, because it depends if the request is a GET or a POST. If it is a GET then the cookies will still be sent, which means that if you follow a link from another site or a search engine your cookies will still be sent to the site. However a POST (like what the 3D Secure page is doing) will no longer send the cookies.</p><p>If the policy isn't set, then Lax is used as the default.</p><h2>So why is my Session ID changing?</h2><p>The problem is that post request back to your site, unless the Session ID had a cookie policy of None then the Session ID cookie won't be sent. The server will then see that there is no Session ID and treat the users as if they are new on the site and as a result start a new session. From this point on the user has lost the old session and you can't complete the payment. Worse still they've probably just been logged out and anything else using session data has also been lost.</p><p>In .Net 4.7.2 and up, Microsoft has implemented the ability to set the cookie policy of the session ID. You can do this in your web.config file like this:</p>
-        </div>
-      </article>
+      <Article article={post} displayMode={DisplayMode.Listing}></Article>
     </div>
   </Layout>
   )
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const post = await Client().getByUID("post", 'why-is-my-session-id-changing-on-3d-secure-payments', {});
+  return {
+    props: {
+      post
+    }
+  }
 }
 

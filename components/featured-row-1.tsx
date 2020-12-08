@@ -11,11 +11,11 @@ interface Post {
   category: string
 }
 
-export interface FeaturedRow1Data {
+export interface FeaturedRow1Model {
   [index: number]: Post;
 }
 
-export function FeaturedRow1({ posts }: {posts: FeaturedRow1Data}) {
+export function FeaturedRow1({ posts }: {posts: FeaturedRow1Model}) {
     return (
   <div className="container mx-auto mb-10">
   <div className={[ linkStyles.row, "grid grid-cols-1 sm:grid-cols-2 md:grid-rows-2 md:grid-cols-12 grid-flow-row md:grid-flow-col gap-4"].join(" ")}>

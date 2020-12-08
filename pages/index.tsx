@@ -4,15 +4,15 @@ import styles from '../styles/Home.module.css'
 import React, { useState } from "react"
 import { GetStaticProps } from 'next'
 import Layout from "../layouts/layout"
-import { FeaturedRow1, FeaturedRow1Data } from "../components/featured-row-1"
+import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1"
 import SectionHeading from '../components/section-heading'
 import { queryLatestPosts } from '../utils/queries'
 
 
 export default function Home({webDevelopmentPosts, sitecorePosts, devOpsPosts} :{
-  webDevelopmentPosts: FeaturedRow1Data,
-  sitecorePosts: FeaturedRow1Data,
-  devOpsPosts: FeaturedRow1Data
+  webDevelopmentPosts: FeaturedRow1Model,
+  sitecorePosts: FeaturedRow1Model,
+  devOpsPosts: FeaturedRow1Model
 }) {
   return (
   <Layout>
