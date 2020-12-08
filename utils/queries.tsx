@@ -95,25 +95,54 @@ query getCategories {
 }
 `;
 
+
+
 export const getCategories = async () : Promise<Array<CategoryModel>> => {
   const queryOptions = {
     query: getCategoriesQuery,
   };
 
-  return new Promise((resolve, reject) => { ApolClient.query(queryOptions).then(response => {
-    var categories: Array<CategoryModel> = [];
+  return new Promise((resolve, reject) => { 
+    ApolClient.query(queryOptions).then(async response => {
+      var categories: Array<CategoryModel> = [];
 
-    response.data.allCategoriess.edges.map((edge: { node: { name: string; _meta: { id: any; }; }; }, key: any) => {
-      categories.push({
-        id: edge.node._meta.id,
-        name: edge.node.name,
-        postCount: 1
-      })
-    })
-    
-    resolve(categories);
-  }).catch(error => {
-    reject(error);
-  });
+      for (var i = 0; i < response.data.allCategoriess.edges.length; i++)
+      {
+        const count = await getPostCount(response.data.allCategoriess.edges[i].node._meta.id);
+
+        categories.push({
+          id: response.data.allCategoriess.edges[i].node._meta.id,
+          name: response.data.allCategoriess.edges[i].node.name,
+          postCount: count
+        })
+      }
+      
+      resolve(categories);
+    }).catch(error => {
+      reject(error);
+    });
   })
+}
+
+
+const getCategoryPostCountQuery = gql`
+query getCategoryPostCount($category: String) {
+  allPosts (where : {category: $category} ) {
+    totalCount
+  }
+}`;
+
+const getPostCount = async (categoryId : string) : Promise<number> => {
+  const queryOptions = {
+    query: getCategoryPostCountQuery,
+    variables: { category: categoryId },
+  };  
+
+  return new Promise((resolve, reject) => {  
+    ApolClient.query(queryOptions).then(postCount =>
+      resolve(postCount.data.allPosts.totalCount)
+    ).catch(error => {
+      reject(error);
+    });
+  });
 }
