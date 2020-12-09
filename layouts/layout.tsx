@@ -14,8 +14,8 @@ export default function Layout({children}: {
     return (
         <div>
         <header>
-            <div className="header-top flex justify-center items-center p-5">
-                Hi My Name Is Tim
+            <div className="logo">
+                hi my name is&nbsp;<span>Tim</span>
             </div>
 
             <nav>
@@ -48,6 +48,8 @@ export default function Layout({children}: {
                     <div className="flex items-center justify-center space-x-4">
                         <Link href="/"><a className="px-3 py-2 text-base font-medium">Home</a></Link>
                         <Link href="/sitecore"><a className="px-3 py-2 text-base font-medium">Sitecore</a></Link>
+                        <Link href="/devops"><a className="px-3 py-2 text-base font-medium">Devops</a></Link>
+                        <Link href="/web-development"><a className="px-3 py-2 text-base font-medium">Web Development</a></Link>
                         <Link href="/about"><a className="px-3 py-2 text-base font-medium">About</a></Link>
                     </div>
                     </div>

@@ -35,10 +35,19 @@ ol, ul { color: $main-text-color; list-style-position: outside; margin-left: 20p
 ol { list-style-type: decimal;}
 ul { list-style-type: disc;}
 
-.header-top {
+.logo {
+  padding: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  font-size: xx-large;
   border-bottom: 1px solid #e8edf1;
-}
 
+  span {
+    color: $heading-color;
+  }
+}
 
 /* Start purging... */
 @tailwind utilities;
