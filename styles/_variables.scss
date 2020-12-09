@@ -11,5 +11,7 @@ $pagePaddingBase: 0;
 $pagePaddingSm: 0 2rem;
 
 // Colours
-$heading-color: rgb(255, 122, 127);
+$site-color: rgb(255, 122, 127);
+$text-on-site-color: #fff;
+$heading-color: $site-color;
 $main-text-color: #797979;

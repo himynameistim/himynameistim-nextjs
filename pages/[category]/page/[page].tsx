@@ -5,12 +5,15 @@ import React, { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Layout from "../../../layouts/layout"
 import CategoryHeading from "../../../components/category-heading"
+import { CategoryPagination } from "../../../components/categoryPagination"
 import { Article, DisplayMode } from "../../../components/article"
 import { PostModel } from "../../../Models/Post"
 import { Client } from "../../../utils/prismicHelpers";
-import { getCategories, getCategoryPosts } from "../../../utils/queries"
+import { getCategories, getCategoryIdByUid, getCategoryPosts } from "../../../utils/queries"
 
-const Category = ({categoryName, posts} : { categoryName: string, posts: Array<PostModel> }) => {
+const pageSize = 3;
+
+const Category = ({page, totalPages, path, categoryName, posts} : { page: number, totalPages: number, path: string, categoryName: string, posts: Array<PostModel> }) => {
   return (
   <Layout>
   <Head>
@@ -22,6 +25,8 @@ const Category = ({categoryName, posts} : { categoryName: string, posts: Array<P
     {posts.map((post) => (
     <Article article={post} displayMode={DisplayMode.Listing}></Article>
     ))}
+
+    <CategoryPagination page={page} totalPages={totalPages} path={path}></CategoryPagination>
     </div>
   </Layout>
   )
@@ -29,22 +34,25 @@ const Category = ({categoryName, posts} : { categoryName: string, posts: Array<P
 
 export const getStaticProps: GetStaticProps = async ({ params } : { params : { category: string, page: number} }) => {
   const category : CategoryModel = await getCategoryIdByUid(params.category);
-  const posts = await getCategoryPosts(category.id, params.page);
+  const posts = await getCategoryPosts(category.id, params.page, pageSize);
   return {
     props: {
-      posts,
+      page: params.page,
+      totalPages: posts?.totalPages,
+      path: params.category,
+      posts: posts?.posts,
       categoryName: category.name
     }
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async () => { 
+export const getStaticPaths: GetStaticPaths = async () => {   
   const categories = await getCategories();
 
   var routes = [];
   // add pages for category
   for (var i = 0; i < categories.length; i++) {
-    var pages = categories[i].postCount / 1;
+    var pages = Math.ceil(categories[i].postCount / pageSize);
     for (var x = 0; x < pages; x++) {
       routes.push(`/${categories[i].uid}/page/${x+1}`)
     }

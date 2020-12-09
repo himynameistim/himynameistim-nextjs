@@ -4,7 +4,12 @@ import { Client, ApolClient } from '../prismicHelpers'
 // Models
 import { PostModel } from "../../Models/Post"
 
-export const getCategoryPosts = async (categoryId : string, page: number) => {
+export interface getCategoryPostsResult {
+  totalPages: number,
+  posts: Array<PostModel>
+}
+
+export const getCategoryPosts = async (categoryId : string, page: number, pageSize: number) => {
   if (categoryId == null)
   {
     return null
@@ -14,16 +19,19 @@ export const getCategoryPosts = async (categoryId : string, page: number) => {
     Prismic.Predicates.at("document.type", "post"), 
     Prismic.Predicates.at('my.post.category', categoryId)],
     {
-      pageSize: 2,
+      pageSize: pageSize,
       page: page,
       orderings: "[my.post.post_date desc]"
     },
   )
 
-  var result: Array<PostModel> = [];
+  var result: getCategoryPostsResult = {
+    posts: [],
+    totalPages: posts.total_pages
+  };
   
   posts.results.map((x: { uid: any; type: any; data: any; }) => {
-    result.push(
+    result.posts.push(
       {
         uid: x.uid,
         type: x.type,

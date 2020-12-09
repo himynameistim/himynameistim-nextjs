@@ -55,4 +55,22 @@ $articleSidePaddingXXl: 60px;
       }
     }
   }
+
+  nav {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: $elementSpacing;
+    display: block;
+
+    a {
+      background-color: $site-color;
+      color: $text-on-site-color;
+      padding: 10px 15px;
+      display: inline-block;
+
+      &:nth-child(2) {
+        float: right;
+      }
+    }
+  }
 }
