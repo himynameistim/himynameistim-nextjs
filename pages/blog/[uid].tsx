@@ -5,20 +5,21 @@ import Head from "next/head";
 // Project components
 import Layout from "../../layouts/layout"
 import SectionHeading from '../../components/section-heading'
-import { Article, ArticleModel, DisplayMode } from "../../components/article"
-import { RichText, RichTextBlock } from "prismic-reactjs";
+import { Article, DisplayMode } from "../../components/article"
+import { PostModel } from "../../Models/Post"
+import { RichText, RichTextBlock } from "prismic-reactjs"
 
 // Project functions & styles
 import { queryRepeatableDocuments } from '../../utils/queries'
-import { Client } from "../../utils/prismicHelpers";
-import { QueryOptions } from "prismic-javascript/types/ResolvedApi";
+import { Client } from "../../utils/prismicHelpers"
+import { QueryOptions } from "prismic-javascript/types/ResolvedApi"
 import layoutStyles from "styles/layout-styles.module.scss"
 import postStyles from "styles/post.module.scss"
 
 /**
  * Post page component
  */
-const Post = ({post} : { post: ArticleModel }) => {
+const Post = ({post} : { post: PostModel }) => {
   if (post && post.data) {
     
   const hasTitle = RichText.asText(post.data.title).length !== 0;

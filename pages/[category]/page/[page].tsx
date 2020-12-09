@@ -43,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   for (var i = 0; i < categories.length; i++) {
     var pages = categories[i].postCount / 1;
     for (var x = 0; x < pages; x++) {
-      routes.push(`/${categories[i].name.toLowerCase()}/page/${x+1}`)
+      routes.push(`/${categories[i].uid}/page/${x+1}`)
     }
   }
 

@@ -1,8 +1,10 @@
 import { Client, ApolClient } from './prismicHelpers'
+import Prismic from 'prismic-javascript'
 import gql from 'graphql-tag';
 
 // Models
 import { CategoriesModel, CategoryModel } from "../Models/Categories"
+import { PostModel } from "../Models/Post"
 
 async function fetchDocs(page = 1, routes = []) {
   const response = await Client().query('', { pageSize: 100, lang: '*', page });
@@ -86,7 +88,7 @@ query getCategories {
     edges {
       node {
         _meta {
-          id
+          uid
         },
         name        
       }
@@ -111,7 +113,7 @@ export const getCategories = async () : Promise<Array<CategoryModel>> => {
         const count = await getPostCount(response.data.allCategoriess.edges[i].node._meta.id);
 
         categories.push({
-          id: response.data.allCategoriess.edges[i].node._meta.id,
+          uid: response.data.allCategoriess.edges[i].node._meta.uid,
           name: response.data.allCategoriess.edges[i].node.name,
           postCount: count
         })
@@ -145,4 +147,52 @@ const getPostCount = async (categoryId : string) : Promise<number> => {
       reject(error);
     });
   });
+}
+
+const getCategoryIdByName = async (categoryName: string) => {
+  const category = await Client().query([
+    Prismic.Predicates.at("document.type", "categories"),
+    Prismic.Predicates.at("my.categories.uid", categoryName)],
+    {
+      pageSize: 1,
+      page: 1
+    }
+  )
+
+  if (category.results.length > 0)
+  {
+    return category.results[0].id;
+  } else {
+    return null;
+  }
+}
+
+export const getCategoryPosts = async (categoryName : string) => {
+  const categoryId = await getCategoryIdByName(categoryName);
+  if (categoryId == null)
+  {
+    return null
+  }
+  const posts : any = await Client().query([
+    Prismic.Predicates.at("document.type", "post"), 
+    Prismic.Predicates.at('my.post.category', categoryId)],
+    {
+      pageSize: 2,
+      page: 1,
+      orderings: "[my.post.post_date desc]"
+    },
+  )
+
+  var result: Array<PostModel> = [];
+  
+  posts.results.map((x: { uid: any; type: any; data: any; }) => {
+    result.push(
+      {
+        uid: x.uid,
+        type: x.type,
+        data: x.data
+      }
+    )
+  })
+  return result;
 }

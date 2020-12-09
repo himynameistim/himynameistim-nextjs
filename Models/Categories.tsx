@@ -1,5 +1,5 @@
 export interface CategoryModel {
-  id: number,
+  uid: string,
   name: string,
   postCount: number
 }

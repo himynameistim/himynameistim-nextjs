@@ -3,25 +3,14 @@ import Link from "next/link"
 import { RichText, RichTextBlock } from "prismic-reactjs";
 import { SliceZone } from "../components/post"
 import { linkResolver } from "../prismic-configuration";
-
-export interface ArticleModel {
-  uid: string,
-  type: string,
-  data: {
-    title: RichTextBlock[],
-    image: {
-      url: string
-    },
-    body: string
-  }
-}
+import { PostModel } from "../Models/Post";
 
 export enum DisplayMode {
   Article,
   Listing
 }
 
-export function Article({ article, displayMode  }: {article: ArticleModel, displayMode: DisplayMode}) {
+export function Article({ article, displayMode  }: {article: PostModel, displayMode: DisplayMode}) {
 
   const cropString = "&fit=crop&max-w=1093&max-h=400"
   const hasTitle = RichText.asText(article.data.title).length !== 0;
