@@ -3,19 +3,10 @@ import Link from "next/link"
 import linkStyles from "../styles/featured-row-1.module.scss"
 import { linkResolver } from '../prismic-configuration';
 
-interface Post {
-  uid: string,
-  type: string,
-  title: string,
-  postDate?: Date,
-  category: string,
-  image: {
-    url: string
-  }
-}
+import { FeaturedPost } from "../Models/FeaturedPost"
 
 export interface FeaturedRow1Model {
-  [index: number]: Post;
+  [index: number]: FeaturedPost;
 }
 
 export function FeaturedRow1({ posts }: {posts: FeaturedRow1Model}) {
