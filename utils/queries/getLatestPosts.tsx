@@ -35,6 +35,7 @@ export const getLatestPosts = async (category: String) : Promise<FeaturedPost[]>
     var posts: Array<FeaturedPost> = [];
     response.data.allPosts.edges.map((edge: { node: { title: { text: any; }[]; category: any; image: any; _meta: { uid: any; }; }; }, key: any) => {
       posts.push({
+        type: "post",
         title: edge.node.title[0].text,
         image: edge.node.image,
         uid: edge.node._meta.uid,

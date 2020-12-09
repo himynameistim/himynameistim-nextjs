@@ -9,6 +9,7 @@ import { CategoryPagination } from "../../../components/categoryPagination"
 import { Article, DisplayMode } from "../../../components/article"
 import { PostModel } from "../../../Models/Post"
 import { Client } from "../../../utils/prismicHelpers";
+import { CategoryModel } from "../../../Models/Category"
 import { getCategories, getCategoryIdByUid, getCategoryPosts } from "../../../utils/queries"
 
 const pageSize = 3;
@@ -32,12 +33,12 @@ const Category = ({page, totalPages, path, categoryName, posts} : { page: number
   )
 };
 
-export const getStaticProps: GetStaticProps = async ({ params } : { params : { category: string, page: number} }) => {
+export const getStaticProps: GetStaticProps = async ({ params } : { params : { category: string, page: string} }) => {
   const category : CategoryModel = await getCategoryIdByUid(params.category);
-  const posts = await getCategoryPosts(category.id, params.page, pageSize);
+  const posts = await getCategoryPosts(category.id, parseInt(params.page), pageSize);
   return {
     props: {
-      page: params.page,
+      page: parseInt(params.page),
       totalPages: posts?.totalPages,
       path: params.category,
       posts: posts?.posts,
