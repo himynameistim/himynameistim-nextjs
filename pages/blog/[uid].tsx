@@ -15,6 +15,7 @@ import { Client } from "../../utils/prismicHelpers"
 import { QueryOptions } from "prismic-javascript/types/ResolvedApi"
 import layoutStyles from "styles/layout-styles.module.scss"
 import postStyles from "styles/post.module.scss"
+import { getPostByUid } from "../../utils/queries"
 
 /**
  * Post page component
@@ -25,6 +26,8 @@ const Post = ({post} : { post: PostModel }) => {
   const hasTitle = RichText.asText(post.data.title).length !== 0;
   const title = hasTitle ? RichText.asText(post.data.title) : "Untitled";
 
+  const category = post.data.category ? post.data.category.name : "Blog";
+
     return (
       <Layout>
         <Head>
@@ -32,7 +35,7 @@ const Post = ({post} : { post: PostModel }) => {
         </Head>
 
         <hr className={[layoutStyles.horizonalLine, "mb-10"].join(" ")} />
-        <SectionHeading heading="Devops"></SectionHeading>
+        <SectionHeading heading={category}></SectionHeading>
         <div className={postStyles.post}>
         {/*<div className="container mx-auto mb-10">
         <div className="grid grid-cols-7 gap-4">
@@ -53,7 +56,9 @@ const Post = ({post} : { post: PostModel }) => {
 export const getStaticProps: GetStaticProps = async ({ params, preview = null, previewData = {} }: { params : { uid: string}, preview: any, previewData: QueryOptions}) => {
 //const { ref } = previewData
   //const post = await Client().getByUID("post", params.uid, ref ? { ref } : null) || {}
-  const post = await Client().getByUID("post", params.uid, previewData) || {}
+  //const post = await Client().getByUID("post", params.uid, previewData) || {}
+  const post = await getPostByUid(params.uid);
+
   return {
     props: {
       //preview,

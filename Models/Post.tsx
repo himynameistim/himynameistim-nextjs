@@ -8,6 +8,9 @@ export interface PostModel {
     image: {
       url: string
     },
-    body: string
+    body: string,
+    category? : {
+      name: string
+    }
   }
 }
