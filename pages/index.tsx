@@ -20,11 +20,11 @@ export default function Home({webDevelopmentPosts, sitecorePosts, devOpsPosts} :
     <title>Create Next App</title>
     <link rel="icon" href="/favicon.ico" />
   </Head>
-    <SectionHeading heading="Web Development"></SectionHeading>
+    <SectionHeading heading="Web Development" link="web-development"></SectionHeading>
     <FeaturedRow1 posts={webDevelopmentPosts}></FeaturedRow1>
-    <SectionHeading heading="Sitecore"></SectionHeading>
+    <SectionHeading heading="Sitecore" link="sitecore"></SectionHeading>
     <FeaturedRow1 posts={sitecorePosts}></FeaturedRow1>
-    <SectionHeading heading="Devops"></SectionHeading>
+    <SectionHeading heading="Devops" link="devops"></SectionHeading>
     <FeaturedRow1 posts={devOpsPosts}></FeaturedRow1>
 
 

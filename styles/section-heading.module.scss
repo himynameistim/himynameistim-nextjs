@@ -1,8 +1,15 @@
+@import './variables.scss';
+
 .sectionHeading {
     position: relative;
 
     h2 {
+      font-size: 30px;
+      @media (min-width: $sm) { 
         font-size: 36px;
+      }
+      margin-bottom: $elementSpacing;
+      text-align: center;
         
         &:after {
             content: '';
@@ -12,7 +19,7 @@
             left: 50%;
             transform: translate(-50%);
             bottom: -10px;
-            background-color: #ff7a7f;
+            background-color: $site-color;
         }
     }
 }
