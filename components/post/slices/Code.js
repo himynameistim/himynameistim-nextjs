@@ -9,7 +9,7 @@ const Code = ({ slice }) => {
   const rawMarkdown = RichText.asText(slice.primary.code)
 return (
    <>
-   <pre><code class="language-html">
+   <pre><code className="language-html">
      <Markdown source={rawMarkdown} />
      </code></pre>
      </>
