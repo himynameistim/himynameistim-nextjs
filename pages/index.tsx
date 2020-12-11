@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 
 import React, { useState } from "react"
 import { GetStaticProps } from 'next'
@@ -17,8 +16,7 @@ export default function Home({webDevelopmentPosts, sitecorePosts, devOpsPosts} :
   return (
   <Layout>
   <Head>
-    <title>Create Next App</title>
-    <link rel="icon" href="/favicon.ico" />
+    <title>Hi My Name Is Tim</title>
   </Head>
     <SectionHeading heading="Web Development" link="web-development"></SectionHeading>
     <FeaturedRow1 posts={webDevelopmentPosts}></FeaturedRow1>
@@ -26,9 +24,6 @@ export default function Home({webDevelopmentPosts, sitecorePosts, devOpsPosts} :
     <FeaturedRow1 posts={sitecorePosts}></FeaturedRow1>
     <SectionHeading heading="Devops" link="devops"></SectionHeading>
     <FeaturedRow1 posts={devOpsPosts}></FeaturedRow1>
-
-
-    <div className={styles.main}></div>
   </Layout>
   )
 };
