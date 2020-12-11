@@ -13,8 +13,8 @@ import { RichText, RichTextBlock } from "prismic-reactjs"
 import { queryRepeatableDocuments } from '../../utils/queries'
 import { Client } from "../../utils/prismicHelpers"
 import { QueryOptions } from "prismic-javascript/types/ResolvedApi"
-import layoutStyles from "styles/layout-styles.module.scss"
-import postStyles from "styles/post.module.scss"
+import layoutStyles from "../../styles/layout-styles.module.scss"
+import postStyles from "../../styles/post.module.scss"
 import { getPostByUid } from "../../utils/queries"
 
 /**
