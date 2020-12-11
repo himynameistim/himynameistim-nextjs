@@ -32,6 +32,11 @@ query getPost($uid: String!) {
         image
       }
     }
+    ... on PostBodyAside {
+      primary {
+        aside
+      }
+    }
     slice_type: __typename
   }
   }
