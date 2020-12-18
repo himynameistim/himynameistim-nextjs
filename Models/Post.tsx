@@ -5,6 +5,7 @@ export interface PostModel {
   type: string,
   data: {
     title: RichTextBlock[],
+    post_date: Date,
     image: {
       url: string
     },
