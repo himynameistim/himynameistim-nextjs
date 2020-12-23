@@ -53,11 +53,13 @@ const Post = ({post} : { post: PostModel }) => {
   return null;
 };
 
-export const getStaticProps: GetStaticProps = async ({ params, preview = null, previewData = {} }: { params : { uid: string}, preview: any, previewData: QueryOptions}) => {
+export const getStaticProps: GetStaticProps = async (context) => {
 //const { ref } = previewData
   //const post = await Client().getByUID("post", params.uid, ref ? { ref } : null) || {}
   //const post = await Client().getByUID("post", params.uid, previewData) || {}
-  const post = await getPostByUid(params.uid);
+
+  const uid:string = context.params?.uid ? context.params.uid.toString() : '';
+  const post = await getPostByUid(uid);
 
   return {
     props: {

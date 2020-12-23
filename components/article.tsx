@@ -34,7 +34,7 @@ export function Article({ article, displayMode  }: {article: PostModel, displayM
         { displayMode == DisplayMode.Article && 
           <h1>{title}</h1>
         }
-        <p><time dateTime={article.data.post_date}>{article.data.post_date}</time></p>
+        <p><time dateTime={article.data.post_date.toString()}>{article.data.post_date}</time></p>
       </header>
       <div>
       <SliceZone sliceZone={article.data.body} />

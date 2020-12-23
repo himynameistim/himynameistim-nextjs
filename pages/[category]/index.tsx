@@ -34,14 +34,15 @@ const Category = ({page, totalPages, path, categoryName, posts} : { page: number
   )
 };
 
-export const getStaticProps: GetStaticProps = async ({ params } : { params : { category: string} }) => {
-  const category : CategoryModel = await getCategoryIdByUid(params.category);
+export const getStaticProps: GetStaticProps = async (context) => {
+  const cat:string = context.params?.category ? context.params.category.toString() : '';
+  const category : CategoryModel = await getCategoryIdByUid(cat);
   const posts = await getCategoryPosts(category.id, 1, pageSize);
   return {
     props: {
       page: 1,
       totalPages: posts?.totalPages,
-      path: params.category,
+      path: cat,
       posts: posts?.posts,
       categoryName: category.name
     }
