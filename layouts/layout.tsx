@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import Link from "next/link"
 import Prism from "prismjs"
 
@@ -6,10 +6,23 @@ export default function Layout({children}: {
     children: React.ReactNode
 }) {
     const [isMenuOpen, setMenuOpen] = useState(false)
+    const [isSearchOpen, setSearchOpen] = useState(false)
+
+    
 
     useEffect(() => {
         Prism.highlightAll();
     }, []);
+
+    const searchInput = useRef<HTMLInputElement>(null)
+
+    const setSearch = () => {
+      setSearchOpen(!isSearchOpen)
+      if (searchInput.current != null)
+      {
+        searchInput?.current?.focus();
+      }
+    };
     
     return (
         <div>
@@ -38,8 +51,19 @@ export default function Layout({children}: {
                   </button>
                 </div>
               <Link href="/"><a>hi my name is&nbsp;<span>Tim</span></a></Link>
+              
+              <svg onClick={setSearch} className="searchButton" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"/></svg>
             </div>
-
+            <div className={`search ${isSearchOpen ? 'active' : ''}`}>
+              <div className="container">
+                <form action="/search" method="get">
+                  <input type="search" placeholder="Search..." name="s" ref={searchInput}></input>
+                  <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"/></svg>
+                  </button>
+                </form>
+              </div>
+            </div>
             <nav>
             <div className="hidden sm:block max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                 <div className="relative flex items-center justify-between h-20">
