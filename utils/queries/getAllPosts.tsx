@@ -15,7 +15,8 @@ query latestPosts {
           }          
         },
         title,
-        image
+        image,
+        post_date,
         _meta {
           uid,
           tags
@@ -33,14 +34,15 @@ export const getAllPosts = async () : Promise<AlgoliaModel[]> => {
 
   return new Promise((resolve, reject) => { ApolClient.query(queryOptions).then(response => {
     var posts: Array<AlgoliaModel> = [];
-    response.data.allPosts.edges.map((edge: { node: { title: { text: any; }[]; category: any; image: any; _meta: { uid: any; tags: any; }; }; }, key: any) => {
+    response.data.allPosts.edges.map((edge: { node: { title: { text: any; }[]; category: any; post_date: any; image: any; _meta: { uid: any; tags: any; }; }; }, key: any) => {
       posts.push({
         type: "post",
         title: edge.node.title[0].text,
         imageUrl: edge.node.image?.url,
         objectID: edge.node._meta.uid,
         category: edge.node.category?.name,
-        tags: edge.node._meta.tags
+        tags: edge.node._meta.tags,
+        postDate: edge.node.post_date,
       })
     })
     resolve( posts);

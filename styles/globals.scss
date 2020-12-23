@@ -78,6 +78,61 @@ ul { list-style-type: disc;}
   }
 }
 
+.searchButton {
+  position: absolute;
+  right: 50px;
+  top:26px;
+
+  @media (min-width: $sm) {
+    top:auto;
+  }
+}
+
+.search {
+  background-color: black;
+  transition: all .3s ease-in-out;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+
+  padding-left:1.25rem;
+  padding-right:1.25rem;
+
+  &.active {
+    opacity: 1;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  div {
+    margin-left: auto;
+    margin-right: auto;
+    form {
+      display: flex;
+      input {
+        width: 100%;
+        background-color: transparent;
+        color: white;
+        &:focus { border-width: 0; outline: none;}
+      }
+
+      button {
+        padding: 5px;
+        svg {
+          fill: white;
+        }
+      }
+    }
+
+    
+  }
+
+  
+
+  
+}
+
 footer {
   border-top: 1px solid $border;
   margin-left: auto;

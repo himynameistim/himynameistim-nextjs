@@ -38,7 +38,7 @@ export const customLink = (type: string, element: any, content: string, children
 
 // Client method to query documents from the Prismic repo
 export const Client = (req = null) => (
-  Prismic.client(apiEndpoint, createClientOptions(req, accessToken))
+    Prismic.client(apiEndpoint!, createClientOptions(req, accessToken!))
 )
 
 const createClientOptions = (req = null, prismicAccessToken: string) : ApiOptions => {
