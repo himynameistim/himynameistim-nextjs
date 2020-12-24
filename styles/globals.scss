@@ -46,6 +46,25 @@ ol, ul { color: $main-text-color; list-style-position: outside; margin-left: 20p
 ol { list-style-type: decimal;}
 ul { list-style-type: disc;}
 
+.container { 
+  width: 100%;
+  @media (min-width: $sm) { 
+    max-width: 640px;
+  }
+  @media (min-width: $md) { 
+    max-width: 768px;
+  }
+  @media (min-width: $lg) { 
+    max-width: 1024px;
+  }
+  @media (min-width: $xl) { 
+    max-width: 1280px;
+  }
+  @media (min-width: $xxl) { 
+    max-width: 1536px;
+  }
+}
+
 .logo {
   padding: 1.25rem;
   justify-content: left;
@@ -75,8 +94,35 @@ ul { list-style-type: disc;}
     @media (min-width: $sm) { 
       display: none;
     }
+
+    button {
+      padding: 0.5rem;
+      justify-content: center;
+      align-items: center;
+      display: inline-flex;
+      border-radius: 0.375rem;
+      &:focus { border-width: 0; outline: none;}
+
+      span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
   }
 }
+
 
 .searchButton {
   position: absolute;
@@ -123,14 +169,35 @@ ul { list-style-type: disc;}
           fill: white;
         }
       }
+    } 
+  }
+}
+
+nav {
+  div:nth-child(1) {
+    display: none;    
+    @media (min-width: $sm) {
+      display: block;
+      height: 5rem;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      a { padding: 0.5rem 0.75rem; font-size: 1rem; line-height: 1.5rem; font-weight: 500;
+        --tw-space-x-reverse: 0;
+        margin-right: calc(1rem * var(--tw-space-x-reverse));
+        margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+      }
+    }
+  }
+  div:nth-child(2) {
+    @media (min-width: $sm) {
+      display: none;
     }
 
-    
+    padding: 0.5rem 0.5rem 0.75rem 0.5rem;
+
+    a { display: block; padding: 0.5rem 0.75rem; font-size: 1rem; line-height: 1.5rem; font-weight: 500;}
   }
-
-  
-
-  
 }
 
 footer {
