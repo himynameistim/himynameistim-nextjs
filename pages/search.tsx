@@ -1,10 +1,14 @@
 import Head from 'next/head'
+import Link from "next/link"
 
 import React from "react"
 import Layout from "../layouts/layout"
 import CategoryHeading from "../components/category-heading"
 import algoliasearch from 'algoliasearch';
 import { GetServerSideProps} from 'next'
+import { linkResolver } from "../prismic-configuration";
+import { parseISO, format } from 'date-fns'
+import styles from "../styles/search-results.module.scss"
 
 
 export default function Search({ data }: { data: AlgoliaHits }) {
@@ -14,9 +18,16 @@ export default function Search({ data }: { data: AlgoliaHits }) {
     <title>Hi My Name Is Tim</title>
   </Head>
   <CategoryHeading name="Search"></CategoryHeading>
+  <div className={[styles.searchResults, "container"].join(" ")}>
   {data.hits.map((hit) => (
+    <>
+    <Link href={linkResolver({ uid: hit.objectID, type: "post"})}><a>
     <h2>{hit.title}</h2>
+    </a></Link>
+    <p><Link href={`/` + hit.category.toLowerCase()}><a>{hit.category}</a></Link>  - <time dateTime={hit.postDate?.toString()}>{format(parseISO(hit.postDate.toString()), 'd LLLL yyyy')}</time> - {hit.tags.join(", ")}</p>
+    </>
   ))}
+  </div>
   </Layout>
   )
 };
@@ -29,6 +40,9 @@ export type AlgoliaHit = {
   identifier: string;
   title: string;
   objectID: string;
+  postDate: Date;
+  category: string
+  tags: []
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

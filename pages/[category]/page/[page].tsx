@@ -38,6 +38,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const pageNo:number = parseInt(context.params?.page ? context.params.page.toString() : '1');
   const category : CategoryModel = await getCategoryIdByUid(cat);
   const posts = await getCategoryPosts(category.id, pageNo, pageSize);
+  
+  const categories = await getCategories();
+  
   return {
     props: {
       page: pageNo,

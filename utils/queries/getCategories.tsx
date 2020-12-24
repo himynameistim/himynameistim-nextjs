@@ -10,7 +10,8 @@ query getCategories {
     edges {
       node {
         _meta {
-          uid
+          uid,
+          id
         },
         name        
       }
