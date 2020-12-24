@@ -11,14 +11,14 @@ export interface FeaturedRow1Model {
 
 export function FeaturedRow1({ posts }: {posts: FeaturedRow1Model}) {
     return (
-  <div className={[ "container",linkStyles.featuredRow].join(" ")}>
-  <div className={[ linkStyles.row, "grid grid-cols-1 sm:grid-cols-2 md:grid-rows-2 md:grid-cols-12 grid-flow-row md:grid-flow-col gap-4"].join(" ")}>
+  <div className={[ linkStyles.featuredRow, "container"].join(" ")}>
+  <div className={linkStyles.row}>
     <Link href={linkResolver(posts[0])}>
-    <a className={[ linkStyles.mainBlock, "md:col-span-5 md:row-span-2 pt-8 flex justify-center items-center grid place-items-end place-content-end bg-cover"].join(" ")} style={{ backgroundImage: "url(" + posts[0].image.url + "&fit=crop&max-w=630&max-h=400)" }}>
-      <div className="bg-white w-5/6 p-8">
-        <div className="text-highlight mb-1">{ posts[0].category}</div>
-    <div className="text-2xl font-semibold mb-2">{ posts[0].title}</div>
-        <div className="text-xs">October 4, 2020</div>
+    <a className={linkStyles.mainBlock} style={{ backgroundImage: "url(" + posts[0].image.url + "&fit=crop&max-w=630&max-h=400)" }}>
+      <div>
+        <div>{ posts[0].category}</div>
+        <div>{ posts[0].title}</div>
+        <div>October 4, 2020</div>
       </div>    
     </a>
     </Link>
