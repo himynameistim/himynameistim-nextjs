@@ -31,7 +31,7 @@ $articleSidePaddingXXl: 60px;
           padding: 0 $articleSidePaddingSm 0 $articleSidePaddingSm;
         }
         @media (min-width: $lg) { 
-          padding: 0 $articleSidePaddingLg 0 $articleSidePaddingLg;
+          padding: 25px $articleSidePaddingLg 0 $articleSidePaddingLg;
         }
         margin-bottom: 0;
       }
@@ -50,13 +50,25 @@ $articleSidePaddingXXl: 60px;
     }
 
     & > div {
-      padding: 0 $articleSidePaddingBase 40px $articleSidePaddingBase;
+      padding: 0 $articleSidePaddingBase $elementSpacing/2 $articleSidePaddingBase;
       @media (min-width: $sm) { 
-        padding: 0 $articleSidePaddingSm 40px $articleSidePaddingSm;
+        padding: 0 $articleSidePaddingSm $elementSpacing/2 $articleSidePaddingSm;
       }
       @media (min-width: $lg) { 
-        padding: 0 $articleSidePaddingLg 40px $articleSidePaddingLg;
+        padding: 0 $articleSidePaddingLg $elementSpacing/2 $articleSidePaddingLg;
       }
+    }
+
+    footer {
+      color: $main-text-color;
+      padding: 15px 0 30px;
+      margin: 0 $articleSidePaddingBase $elementSpacing $articleSidePaddingBase;
+        @media (min-width: $sm) { 
+          margin: 0 $articleSidePaddingSm $elementSpacing $articleSidePaddingSm;
+        }
+        @media (min-width: $lg) { 
+          margin: 0 $articleSidePaddingLg $elementSpacing $articleSidePaddingLg;
+        }
     }
   }
 }

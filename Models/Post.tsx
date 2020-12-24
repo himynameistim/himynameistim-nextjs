@@ -13,5 +13,8 @@ export interface PostModel {
     category? : {
       name: string
     }
+    _meta: {
+      tags: []
+    }
   }
 }

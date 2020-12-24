@@ -14,6 +14,9 @@ query getPost($uid: String!) {
     },
     title,
     post_date,
+    _meta {
+      tags
+    }
     image,
    body {
     ... on PostBodyText_block {

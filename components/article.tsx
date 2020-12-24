@@ -41,6 +41,9 @@ export function Article({ article, displayMode  }: {article: PostModel, displayM
       <div>
       <SliceZone sliceZone={article.data.body} />
       </div>
+      <footer>
+        Tagged: {article.data._meta.tags.join(", ")}
+      </footer>
     </article>
   )
 }

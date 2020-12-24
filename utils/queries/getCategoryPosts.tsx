@@ -30,12 +30,21 @@ export const getCategoryPosts = async (categoryId : string, page: number, pageSi
     totalPages: posts.total_pages
   };
   
-  posts.results.map((x: { uid: any; type: any; data: any; }) => {
+  posts.results.map((x: { uid: any; type: any; data: any; tags: [] }) => {
     result.posts.push(
       {
         uid: x.uid,
         type: x.type,
-        data: x.data
+        data: {
+          title: x.data.title,
+          post_date: x.data.post_date,
+          image: x.data.image,
+          body: x.data.body,
+          category: x.data.category,
+          _meta: {
+            tags: x.tags
+          }
+         }
       }
     )
   })
