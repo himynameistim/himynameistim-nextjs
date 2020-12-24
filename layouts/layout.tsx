@@ -1,6 +1,16 @@
 import React, { useEffect, useState, useRef } from "react"
 import Link from "next/link"
 import Prism from "prismjs"
+import "prismjs/components/prism-markup"
+import "prismjs/components/prism-css"
+import "prismjs/components/prism-csharp"
+import "prismjs/components/prism-git"
+import "prismjs/components/prism-powershell"
+import "prismjs/components/prism-jsx"
+import "prismjs/components/prism-tsx"
+import "prismjs/components/prism-regex"
+import "prismjs/components/prism-sql"
+import "prismjs/components/prism-typescript"
 
 export default function Layout({children}: {
     children: React.ReactNode
