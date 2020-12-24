@@ -34,17 +34,10 @@ const Post = ({post} : { post: PostModel }) => {
           <title>{title}</title>
         </Head>
 
-        <hr className={[layoutStyles.horizonalLine, "mb-10"].join(" ")} />
+        <hr className={layoutStyles.horizonalLine} />
         <SectionHeading heading={category}></SectionHeading>
         <div className={postStyles.post}>
-        {/*<div className="container mx-auto mb-10">
-        <div className="grid grid-cols-7 gap-4">
-    <div className="col-span-5">*/}
             <Article article={post} displayMode={DisplayMode.Article}></Article>
-          {/*</div>
-          <div className="col-span-2">Right</div>
-        </div>
-          </div>*/}
         </div>
       </Layout>
     );

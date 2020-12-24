@@ -1,4 +1,4 @@
 @import './variables.scss';
 
-.horizonalLine { background-color: $heading-color; height: 10px; border: 0;  }
+.horizonalLine { background-color: $heading-color; height: 10px; border: 0; margin-bottom: $elementSpacing;  }
 .post { margin-left: 0px; }
