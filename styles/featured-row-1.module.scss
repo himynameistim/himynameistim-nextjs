@@ -1,3 +1,9 @@
+@import './variables.scss';
+
+.featuredRow {
+  margin-bottom: $elementSpacing;
+}
+
 .row { min-height: 400px; }
 
 @media (max-width: 639px) {
@@ -9,4 +15,79 @@
     .mainBlock { min-height: 300px;}
     .secondBlock { min-height: 300px; }
     .finalBlocks { min-height: 200px; }
+}
+
+.secondBlock {
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-size: cover;
+  @media (min-width: $md) {
+    grid-row: span 2 / span 2;
+    grid-column: span 4 / span 4;
+  }
+
+  div {
+    color: white;
+    text-align: center;
+
+    div:nth-child(1) {
+      margin-bottom: 0.25rem;
+      max-width: 65ch;
+    }
+    div:nth-child(2) {
+      max-width: min-content;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      font-weight: 600;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    div:nth-child(3) {
+      max-width: 65ch;
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+  }
+}
+
+
+.finalBlocks {
+  padding-top: 2rem;
+  place-content: end;
+  justify-content: center;
+  align-items: center;  
+  display: grid;
+  background-size: cover;
+  @media (min-width: $md) {
+    grid-row: span 1 / span 1;
+    grid-column: span 3 / span 3;
+  }
+
+  div {
+    background-color: white; 
+    margin-left: auto; 
+    margin-right: auto;
+    width: 83.333333%;
+    padding: 1rem;
+    text-align: center;
+
+    div {
+      padding: 0;
+      width: auto;
+    }
+
+    div:nth-child(1) {
+      color: $site-color;
+      font-size: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+    div:nth-child(2) {
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+  }
 }
