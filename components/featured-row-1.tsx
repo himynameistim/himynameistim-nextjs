@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 import linkStyles from "../styles/featured-row-1.module.scss"
 import { linkResolver } from '../prismic-configuration';
+import { parseISO, format } from 'date-fns'
 
 import { FeaturedPost } from "../Models/FeaturedPost"
 
@@ -18,7 +19,8 @@ export function FeaturedRow1({ posts }: {posts: FeaturedRow1Model}) {
       <div>
         <div>{ posts[0].category}</div>
         <div>{ posts[0].title}</div>
-        <div>October 4, 2020</div>
+        {posts[0].postDate &&
+        <div>{format(parseISO(posts[0].postDate.toString()), 'd LLLL yyyy')}</div>}
       </div>    
     </a>
     </Link>
@@ -28,7 +30,8 @@ export function FeaturedRow1({ posts }: {posts: FeaturedRow1Model}) {
       <div>
         <div>{ posts[1].category}</div>
         <div>{ posts[1].title}</div>
-        <div>October 8, 2020</div>
+        {posts[1].postDate &&
+        <div>{format(parseISO(posts[1].postDate.toString()), 'd LLLL yyyy')}</div>}
       </div>
     </a>
     </Link>

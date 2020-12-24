@@ -4,6 +4,7 @@ import { RichText, RichTextBlock } from "prismic-reactjs";
 import { SliceZone } from "../components/post"
 import { linkResolver } from "../prismic-configuration";
 import { PostModel } from "../Models/Post";
+import { parseISO, format } from 'date-fns'
 
 export enum DisplayMode {
   Article,
@@ -17,6 +18,7 @@ export function Article({ article, displayMode  }: {article: PostModel, displayM
   const title = hasTitle ? RichText.asText(article.data.title) : "Untitled";
   const hasImage = article.data.image != null;    
   const image = hasImage ? article.data.image.url + cropString : "";
+  const date = parseISO(article.data.post_date.toString())
 
   return (
     <article className="container">
@@ -34,7 +36,7 @@ export function Article({ article, displayMode  }: {article: PostModel, displayM
         { displayMode == DisplayMode.Article && 
           <h1>{title}</h1>
         }
-        <p><time dateTime={article.data.post_date.toString()}>{article.data.post_date}</time></p>
+        <p><time dateTime={date.toString()}>{format(date, 'd LLLL yyyy')}</time></p>
       </header>
       <div>
       <SliceZone sliceZone={article.data.body} />

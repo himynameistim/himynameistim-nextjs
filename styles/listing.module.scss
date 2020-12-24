@@ -33,9 +33,13 @@ $articleSidePaddingXXl: 60px;
         @media (min-width: $lg) { 
           padding: 0 $articleSidePaddingLg 0 $articleSidePaddingLg;
         }
+        margin-bottom: 0;
       }
       p {
         font-style: italic;
+        font-style: italic;
+        font-size: 14px;
+        margin: 0;
         padding: 0 $articleSidePaddingBase 0 $articleSidePaddingBase;
         @media (min-width: $sm) { 
           padding: 0 $articleSidePaddingSm 0 $articleSidePaddingSm;
