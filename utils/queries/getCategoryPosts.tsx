@@ -1,5 +1,6 @@
 import Prismic from 'prismic-javascript'
 import { Client, ApolClient } from '../prismicHelpers'
+import markdownToHtml from "../../utils/prism"
 
 // Models
 import { PostModel } from "../../Models/Post"
@@ -48,6 +49,14 @@ export const getCategoryPosts = async (categoryId : string, page: number, pageSi
       }
     )
   })
+
+  for (var i = 0; i < result.posts.length; i++) {
+    for (var x = 0; x < result.posts[i].data.body.length; x++) {
+      if (result.posts[i].data.body[x].slice_type == 'code_block' ||result.posts[i].data.body[x].slice_type == 'PostBodyCode_block') {
+        result.posts[i].data.body[x].primary.html = await markdownToHtml(result.posts[i].data.body[x].primary.code, result.posts[i].data.body[x].primary.language)
+      }
+    }
+  }
   
   return result;
 }

@@ -60,7 +60,7 @@ export const getPostByUid = async (uid: string) : Promise<PostModel> => {
         type: "post",
         uid: uid
       }
-  
+
       resolve(post);
     } else {
       reject();
