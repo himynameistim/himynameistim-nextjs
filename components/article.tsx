@@ -16,7 +16,7 @@ export function Article({ article, displayMode  }: {article: PostModel, displayM
   const cropString = "&fit=crop&max-w=1093&max-h=400"
   const hasTitle = RichText.asText(article.data.title).length !== 0;
   const title = hasTitle ? RichText.asText(article.data.title) : "Untitled";
-  const hasImage = article.data.image != null;    
+  const hasImage = (article.data.image != null && article.data.image.url != null);    
   const image = hasImage ? article.data.image.url + cropString : "";
   const date = parseISO(article.data.post_date.toString())
 
