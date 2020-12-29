@@ -1,12 +1,24 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Markdown from "react-markdown"
 import { RichText } from 'prismic-reactjs'
+
+/*import Prism from "prismjs"
+import "prismjs/components/prism-markup"
+import "prismjs/components/prism-css"
+import "prismjs/components/prism-csharp"
+import "prismjs/components/prism-git"
+import "prismjs/components/prism-powershell"
+import "prismjs/components/prism-jsx"
+import "prismjs/components/prism-tsx"
+import "prismjs/components/prism-regex"
+import "prismjs/components/prism-sql"
+import "prismjs/components/prism-typescript"*/
 
 /**
  * Code slice component
  */
 const Code = ({ slice }: {slice: any}) => {
-  const rawMarkdown = RichText.asText(slice.primary.code)
+  const code = RichText.asText(slice.primary.code)
   var language: string;
   switch (slice.primary.language) {
     case "HTML / XHTML / XML":
@@ -47,12 +59,21 @@ const Code = ({ slice }: {slice: any}) => {
       break;
   }
 
+  /*useEffect(() => {
+    Prism.highlightAll();
+}, []);*/
+
+
 return (
    <>
-   <pre><code className="language-csharp">
-     <Markdown source={rawMarkdown} />
-     </code></pre>
-     </>
+   {/*<pre><code className="language-html">
+     <Markdown source={code} />
+     </code></pre>*/}
+     <pre>
+     <code dangerouslySetInnerHTML={{__html: slice.primary.html}}></code>
+     </pre>
+</>
+
 )}
 
 export default Code
