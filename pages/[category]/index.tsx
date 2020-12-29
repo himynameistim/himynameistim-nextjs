@@ -13,6 +13,7 @@ import { CategoryModel } from "../../Models/Category"
 import { Client } from "../../utils/prismicHelpers";
 import { getCategories, getCategoryIdByUid, getCategoryPosts } from "../../utils/queries"
 
+
 const pageSize = 3;
 
 const Category = ({page, totalPages, path, categoryName, posts} : { page: number, totalPages: number, path: string, categoryName: string, posts: Array<PostModel> }) => {
@@ -38,6 +39,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const cat:string = context.params?.category ? context.params.category.toString() : '';
   const category : CategoryModel = await getCategoryIdByUid(cat);
   const posts = await getCategoryPosts(category.id, 1, pageSize);
+
   return {
     props: {
       page: 1,

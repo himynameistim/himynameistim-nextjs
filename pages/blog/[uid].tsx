@@ -8,6 +8,7 @@ import SectionHeading from '../../components/section-heading'
 import { Article, DisplayMode } from "../../components/article"
 import { PostModel } from "../../Models/Post"
 import { RichText, RichTextBlock } from "prismic-reactjs"
+import markdownToHtml from "../../utils/prism"
 
 // Project functions & styles
 import { queryRepeatableDocuments } from '../../utils/queries'
@@ -53,6 +54,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const uid:string = context.params?.uid ? context.params.uid.toString() : '';
   const post = await getPostByUid(uid);
+
+  for (var x = 0; x < post.data.body.length; x++) {
+    if (post.data.body[x].slice_type == 'code_block' ||post.data.body[x].slice_type == 'PostBodyCode_block') {
+      post.data.body[x].primary.html = await markdownToHtml(post.data.body[x].primary.code, post.data.body[x].primary.language)
+    }
+  }
 
   return {
     props: {

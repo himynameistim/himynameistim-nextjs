@@ -1,5 +1,15 @@
 import { RichTextBlock } from "prismic-reactjs";
 
+/*export interface SliceModel {
+  slice_type: string,
+  primary: {
+    code?: string,
+    language?: string,
+    html?: string
+  }
+}*/
+
+
 export interface PostModel {
   uid: string,
   type: string,
@@ -9,7 +19,7 @@ export interface PostModel {
     image: {
       url: string
     },
-    body: string,
+    body: any,
     category? : {
       name: string
     }
