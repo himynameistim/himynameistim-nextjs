@@ -3,7 +3,7 @@ import html from 'remark-html';
 import prism from 'remark-prism';
 import { RichText } from 'prismic-reactjs'
 
-export default async function markdownToHtml(markdown, language_name) {
+export default async function markdownToHtml(markdown: any, language_name: string) {
 
   var language: string;
   switch (language_name) {
