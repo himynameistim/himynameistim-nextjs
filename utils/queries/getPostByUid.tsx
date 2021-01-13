@@ -46,8 +46,8 @@ query getPost($uid: String!) {
 }
 `;
 
-export const getPostByUid = async (uid: string) : Promise<PostModel> => {
-  const queryOptions = {
+export const getPostByUid = async (uid: string, previewData: any ) : Promise<PostModel> => {
+  /*const queryOptions = {
     query: getPostQuery,
     variables: { uid },
   };
@@ -59,6 +59,32 @@ export const getPostByUid = async (uid: string) : Promise<PostModel> => {
         data: response.data.post,
         type: "post",
         uid: uid
+      }
+
+      resolve(post);
+    } else {
+      reject();
+    }
+  }).catch(error => {
+    reject(error);
+  });
+});*/
+
+  const { ref } = previewData;
+
+  const client = Client()
+
+  return new Promise((resolve, reject) => { client.getByUID('post', uid, ref ? {ref } : null).then(response => {
+    if (response.data)
+    {
+      var post: PostModel = {
+        data: response.data,
+        type: "post",
+        uid: uid
+      }
+
+      post.data._meta = {
+        tags: response.tags
       }
 
       resolve(post);

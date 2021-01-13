@@ -33,6 +33,7 @@ const Post = ({post} : { post: PostModel }) => {
       <Layout>
         <Head>
           <title>{title}</title>
+          <script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=himynameistim"></script>
         </Head>
 
         <hr className={layoutStyles.horizonalLine} />
@@ -53,7 +54,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   //const post = await Client().getByUID("post", params.uid, previewData) || {}
 
   const uid:string = context.params?.uid ? context.params.uid.toString() : '';
-  const post = await getPostByUid(uid);
+  const post = await getPostByUid(uid, context.previewData);
 
   for (var x = 0; x < post.data.body.length; x++) {
     if (post.data.body[x].slice_type == 'code_block' ||post.data.body[x].slice_type == 'PostBodyCode_block') {
