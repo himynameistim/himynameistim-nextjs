@@ -24,7 +24,7 @@ export interface PostModel {
       name: string
     }
     _meta: {
-      tags: []
+      tags: string[]
     }
   }
 }
