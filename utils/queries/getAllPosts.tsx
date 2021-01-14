@@ -34,7 +34,7 @@ query latestPosts ($after: String) {
 }
 `;
 
-export const getAllPosts = async (posts: AlgoliaModel[] = [], after: string) : Promise<AlgoliaModel[]> => {
+export const getAllPosts = async (posts: AlgoliaModel[] = [], after?: string) : Promise<AlgoliaModel[]> => {
   const queryOptions = {
     query: allPostsQuery,
     variables: { after },
