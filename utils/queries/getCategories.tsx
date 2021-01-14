@@ -55,7 +55,7 @@ query getCategoryPostCount($category: String) {
   }
 }`;
 
-const getPostCount = async (categoryId : string) : Promise<number> => {
+export const getPostCount = async (categoryId? : string) : Promise<number> => {
   const queryOptions = {
     query: getCategoryPostCountQuery,
     variables: { category: categoryId },

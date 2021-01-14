@@ -26,7 +26,7 @@ query latestPosts($category: String) {
 }
 `;
 
-export const getLatestPosts = async (category: String) : Promise<FeaturedPost[]> => {
+export const getLatestPosts = async (category?: String) : Promise<FeaturedPost[]> => {
   const queryOptions = {
     query: latestPostsQuery,
     variables: { category },

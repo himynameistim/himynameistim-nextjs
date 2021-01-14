@@ -63,6 +63,7 @@ export default function Layout({children}: {
                   <Link href="/sitecore"><a>Sitecore</a></Link>
                   <Link href="/devops"><a>Devops</a></Link>
                   <Link href="/web-development"><a>Web Development</a></Link>
+                  <Link href="/blog"><a>Blog</a></Link>
                   <Link href="/about"><a>About</a></Link>
               </div>
             {/*
@@ -75,6 +76,7 @@ export default function Layout({children}: {
               <Link href="/sitecore"><a>Sitecore</a></Link>
               <Link href="/devops"><a>Devops</a></Link>
               <Link href="/web-development"><a>Web Development</a></Link>
+              <Link href="/blog"><a>Blog</a></Link>
               <Link href="/about"><a>About</a></Link>
             </div>
           </nav>

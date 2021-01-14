@@ -16,9 +16,15 @@ export const getCategoryPosts = async (categoryId : string, page: number, pageSi
     return null
   }
 
-  const posts : any = await Client().query([
-    Prismic.Predicates.at("document.type", "post"), 
-    Prismic.Predicates.at('my.post.category', categoryId)],
+  var queryParams = [
+    Prismic.Predicates.at("document.type", "post")]
+
+  if (categoryId != "")
+  {
+    queryParams.push(Prismic.Predicates.at('my.post.category', categoryId));
+  }
+
+  const posts : any = await Client().query(queryParams,
     {
       pageSize: pageSize,
       page: page,

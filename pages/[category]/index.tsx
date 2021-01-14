@@ -37,8 +37,20 @@ const Category = ({page, totalPages, path, categoryName, posts} : { page: number
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const cat:string = context.params?.category ? context.params.category.toString() : '';
-  const category : CategoryModel = await getCategoryIdByUid(cat);
-  const posts = await getCategoryPosts(category.id, 1, pageSize);
+  
+  var categoryId: string;
+  var categoryName: any;
+  if (cat == "blog")
+  {
+    categoryId = ""
+    categoryName = "Blog"
+  } else {
+    const category : CategoryModel = await getCategoryIdByUid(cat);
+    categoryId = category.id;
+    categoryName = category.name;
+  }
+  
+  const posts = await getCategoryPosts(categoryId, 1, pageSize);
 
   return {
     props: {
@@ -46,7 +58,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       totalPages: posts?.totalPages,
       path: cat,
       posts: posts?.posts,
-      categoryName: category.name
+      categoryName: categoryName
     }
   }
 }
@@ -55,6 +67,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const categories = await getCategories();
 
   var routes = categories.map(doc => `/${doc.uid}`)
+  routes.push(`/blog`)
 
   return {
     paths: routes,
