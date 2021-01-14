@@ -20,7 +20,7 @@ const createSitemap = (posts: AlgoliaModel[]) => `<?xml version="1.0" encoding="
 `;
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const posts = await getAllPosts();
+  const posts = await getAllPosts([]);
 
   res.status(200).json(createSitemap(posts))
 }
