@@ -69,12 +69,11 @@ export const getPostByUid = async (uid: string, previewData: any ) : Promise<Pos
     reject(error);
   });
 });*/
-
-  const { ref } = previewData;
+  const ref = previewData?.ref
 
   const client = Client()
 
-  return new Promise((resolve, reject) => { client.getByUID('post', uid, ref ? {ref } : null).then(response => {
+  return new Promise((resolve, reject) => { client.getByUID('post', uid, previewData ? {ref } : null).then(response => {
     if (response.data)
     {
       var post: PostModel = {
