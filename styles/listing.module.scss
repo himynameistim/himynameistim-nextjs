@@ -71,6 +71,17 @@ $articleSidePaddingXXl: 60px;
       @media (min-width: $lg) { 
         margin: 0 $articleSidePaddingLg $elementSpacing $articleSidePaddingLg;
       }
+
+    a {
+      &:after {
+        content: ", ";
+      }
+      &:last-child { 
+        &:after {
+          content: "";
+        }
+      }
+    }
   }
 
   nav {

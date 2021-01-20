@@ -42,11 +42,9 @@ export function Article({ article, displayMode  }: {article: PostModel, displayM
       <SliceZone sliceZone={article.data.body} />
       </div>
       <footer>
-        Tagged: 
+        Tagged:&nbsp; 
         {article.data._meta.tags.map((tag) => (
-          <Link href={'/tag/' + tag.toLowerCase()}><a>
-          <h1>{tag}</h1>
-          </a></Link>
+          <Link href={'/tag/' + tag.toLowerCase()}><a>{tag}</a></Link>
         ))}
       </footer>
     </article>
