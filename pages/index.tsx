@@ -39,9 +39,9 @@ export const getStaticProps: GetStaticProps = async () => {
   //const posts = await getCategoryPosts("Sitecore")
   //const categories = await getCategories();
 
-  const tags = await getTags();
+ // const tags = await getTags();
 
-  var routes = tags.map(tag => `/tag/${tag.toLowerCase()}`)
+  //var routes = tags.map(tag => `/tag/${tag.toLowerCase()}`)
 
 
   return {

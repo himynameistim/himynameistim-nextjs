@@ -10,8 +10,8 @@ export interface getTagPostsResult {
   posts: Array<PostModel>
 }
 
-export const getTagPosts = async (categoryId : string, page: number, pageSize: number) => {
-  if (categoryId == null)
+export const getTagPosts = async (tag : string, page: number, pageSize: number) => {
+  if (tag == null)
   {
     return null
   }
@@ -19,9 +19,9 @@ export const getTagPosts = async (categoryId : string, page: number, pageSize: n
   var queryParams = [
     Prismic.Predicates.at("document.type", "post")]
 
-  if (categoryId != "")
+  if (tag != "")
   {
-    queryParams.push(Prismic.Predicates.at('document.tags', [categoryId]));
+    queryParams.push(Prismic.Predicates.at('document.tags', [tag]));
   }
 
 

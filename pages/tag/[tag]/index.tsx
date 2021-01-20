@@ -36,23 +36,19 @@ const Category = ({page, totalPages, path, tagName, posts} : { page: number, tot
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const cat:string = context.params?.tag ? context.params.tag.toString() : '';
-  
-  var categoryId: string;
-  var categoryName: any;
-    const category : CategoryModel = await getCategoryIdByUid(cat);
-    categoryId = category.id;
-    categoryName = category.name;
-  
-  const posts = await getTagPosts(categoryId, 1, pageSize);
+  const tag:string = context.params?.tag ? context.params.tag.toString() : '';
+  const allTags = await getTags();
+
+  const tagName = allTags.find(x => x.toLowerCase() == tag);
+  const posts = await getTagPosts(tagName, 1, pageSize);
 
   return {
     props: {
       page: 1,
       totalPages: posts?.totalPages,
-      path: cat,
+      path: tag,
       posts: posts?.posts,
-      tagName: "Tag: " + categoryName
+      tagName: "Tag: " + tagName
     }
   }
 }
