@@ -36,8 +36,8 @@ const Tag = ({page, totalPages, path, tagName, posts} : { page: number, totalPag
 export const getStaticProps: GetStaticProps = async (context) => {
   const tag:string = context.params?.tag ? context.params.tag.toString() : '';
   const pageNo:number = parseInt(context.params?.page ? context.params.page.toString() : '1');
-  const allTags = await getTags();
-  const tagName:string = allTags.find(x => x.tag.toLowerCase() == tag)?.tag || '';
+  const allTags = await getTags(false);
+  const tagName:string = allTags.find(x => x.tag.toLowerCase().replace(" ", "-") == tag)?.tag || '';
   const posts = await getTagPosts(tagName, pageNo, pageSize);
   
   
@@ -53,14 +53,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {   
-  const tags = await getTags();
+  const tags = await getTags(true);
 
   var routes = [];
   // add pages for category
   for (var i = 0; i < tags.length; i++) {
     var pages = Math.ceil(tags[i].postCount / pageSize);
     for (var x = 0; x < pages; x++) {
-      routes.push(`/tag/${tags[i].tag.toLowerCase()}/page/${x+1}`)
+      routes.push(`/tag/${tags[i].tag.toLowerCase().replace(" ", "-")}/page/${x+1}`)
     }
   }
 

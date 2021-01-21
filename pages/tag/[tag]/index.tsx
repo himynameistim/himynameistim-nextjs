@@ -37,8 +37,8 @@ const Tag = ({page, totalPages, path, tagName, posts} : { page: number, totalPag
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const tag:string = context.params?.tag ? context.params.tag.toString() : '';
-  const allTags = await getTags();
-  const tagName:string = allTags.find(x => x.tag.toLowerCase() == tag)?.tag || '';
+  const allTags = await getTags(false);
+  const tagName:string = allTags.find(x => x.tag.toLowerCase().replace(" ", "-") == tag)?.tag || '';
   const posts = await getTagPosts(tagName, 1, pageSize);
 
   return {
@@ -53,9 +53,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => { 
-  const tags = await getTags();
+  const tags = await getTags(false);
 
-  var routes = tags.map(tag => `/tag/${tag.tag.toLowerCase()}`)
+  var routes = tags.map(tag => `/tag/${tag.tag.toLowerCase().replace(" ", "-")}`)
 
   return {
     paths: routes,

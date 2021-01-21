@@ -5,12 +5,17 @@ import gql from 'graphql-tag';
 import { TagModel } from "../../Models/Tags"
 
 
-export const getTags = async () : Promise<Array<TagModel>> => {
+export const getTags = async (includeCount:boolean) : Promise<Array<TagModel>> => {
   var tags: Array<TagModel> = [];
   const res : any = await Client().getApi();
 
-  for (var i = 0; i < res.tags.length; i++) {
-    const count = await getTagPostCount(res.tags[i]);
+  
+  for (var i = 0; i < res.tags.length; i++) {    
+    var count = 0;
+    if (includeCount)
+    {
+      count = await getTagPostCount(res.tags[i]);
+    }
     tags.push({
       tag: res.tags[i],
       postCount: count
