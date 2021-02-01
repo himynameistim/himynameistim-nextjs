@@ -37,7 +37,6 @@ const Post = ({post} : { post: PostModel }) => {
         </Head>
 
         <hr className={layoutStyles.horizonalLine} />
-        <SectionHeading heading={category}></SectionHeading>
         <div className={postStyles.post}>
             <Article article={post} displayMode={DisplayMode.Article}></Article>
         </div>
