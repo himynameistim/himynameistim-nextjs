@@ -10,7 +10,7 @@ const createSitemap = (posts: AlgoliaModel[]) => `<?xml version="1.0" encoding="
       .map(post  => {
         return `
                 <url>
-                    <loc>${`https://www.himynameistim.com/blog/${post.objectID}`}</loc>
+                    <loc>${`https://himynameistim.com/blog/${post.objectID}`}</loc>
                     <lastmod>${post.postDate}</lastmod>
                 </url>
             `;
