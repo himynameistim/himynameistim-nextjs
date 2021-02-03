@@ -28,12 +28,20 @@ const Post = ({post} : { post: PostModel }) => {
   const title = hasTitle ? RichText.asText(post.data.title) : "Untitled";
 
   const category = post.data.category ? post.data.category.name : "Blog";
+  const cropString = "&fit=crop&max-w=1200&max-h=627"
+  const hasImage = (post.data.image != null && post.data.image.url != null);    
+  const image = hasImage ? post.data.image.url + cropString : "";
 
     return (
       <Layout>
         <Head>
           <title>{title}</title>
           <script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=himynameistim"></script>
+          <meta property="og:title" content={title} />
+          <meta property="og:type" content="article" />
+          <meta property="og:url" content={ "https://himynameistim.com/blog/" + post.uid} />
+          <meta property="og:image" content={post.data.image.url} />
+          <link rel="canonical" href={ "https://himynameistim.com/blog/" + post.uid} />
         </Head>
 
         <hr className={layoutStyles.horizonalLine} />
