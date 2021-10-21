@@ -17,6 +17,7 @@ import { QueryOptions } from "prismic-javascript/types/ResolvedApi"
 import layoutStyles from "../../styles/layout-styles.module.scss"
 import postStyles from "../../styles/post.module.scss"
 import { getPostByUid } from "../../utils/queries"
+import { getRelatedArticles } from "../../utils/queries/getRelatedArticles";
 
 /**
  * Post page component
@@ -67,6 +68,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
     if (post.data.body[x].slice_type == 'code_block' ||post.data.body[x].slice_type == 'PostBodyCode_block') {
       post.data.body[x].primary.html = await markdownToHtml(post.data.body[x].primary.code, post.data.body[x].primary.language)
     }
+  }
+
+  // Get Related Products
+  if (typeof(context.params?.uid) == 'string')
+  {
+    const relatedArticles = await getRelatedArticles(post.data._meta.tags);
+  
   }
 
   return {
