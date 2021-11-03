@@ -18,11 +18,12 @@ import layoutStyles from "../../styles/layout-styles.module.scss"
 import postStyles from "../../styles/post.module.scss"
 import { getPostByUid } from "../../utils/queries"
 import { getRelatedArticles } from "../../utils/queries/getRelatedArticles";
+import { AlgoliaHit } from "../../Models/Algolia";
 
 /**
  * Post page component
  */
-const Post = ({post} : { post: PostModel }) => {
+const Post = ({post, relatedArticles} : { post: PostModel, relatedArticles: AlgoliaHit[] }) => {
   if (post && post.data) {
     
   const hasTitle = RichText.asText(post.data.title).length !== 0;
@@ -48,6 +49,11 @@ const Post = ({post} : { post: PostModel }) => {
         <hr className={layoutStyles.horizonalLine} />
         <div className={postStyles.post}>
             <Article article={post} displayMode={DisplayMode.Article}></Article>
+            {
+              relatedArticles.map((article) => (
+                <h2>{article.title}</h2>
+              ))
+            }
         </div>
       </Layout>
     );
@@ -71,16 +77,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   // Get Related Products
+  let relatedArticles: AlgoliaHit[] | null;
   if (typeof(context.params?.uid) == 'string')
   {
-    const relatedArticles = await getRelatedArticles(post.data._meta.tags);
-  
+    relatedArticles = await getRelatedArticles(post.data._meta.tags, 2);
+  } else {
+    relatedArticles = null;
   }
 
   return {
     props: {
       //preview,
-      post
+      post,
+      relatedArticles
     }
   }
 }
