@@ -13,7 +13,9 @@ const DefaultImage = ({ slice }) => {
     <div className="post-part single container">
       <div className={`block-img ${slice.slice_label}`}>
         <img src={imageUrl} alt={imageAlt} />
+        { caption && caption != "" &&
         <Caption caption={caption} />
+        }
       </div>
     </div>
   )

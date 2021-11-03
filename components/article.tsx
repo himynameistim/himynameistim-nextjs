@@ -1,5 +1,6 @@
 import React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { RichText, RichTextBlock } from "prismic-reactjs";
 import { SliceZone } from "../components/post"
 import { linkResolver } from "../prismic-configuration";
@@ -14,19 +15,19 @@ export enum DisplayMode {
 export function Article({ article, displayMode  }: {article: PostModel, displayMode: DisplayMode}) {
 
   const cropString = "&fit=crop&max-w=1093&max-h=400"
+  const lowResString = "&blur=200&px=16&auto=format"
   const hasTitle = RichText.asText(article.data.title).length !== 0;
   const title = hasTitle ? RichText.asText(article.data.title) : "Untitled";
   const hasImage = (article.data.image != null && article.data.image.url != null);    
   const image = hasImage ? article.data.image.url + cropString : "";
+  const lowResImage = hasImage ? image + lowResString : "";
   const date = parseISO(article.data.post_date.toString())
 
   return (
     <article className="container">
       <header>
         { hasImage &&
-        <picture>
-          <img src={image} />
-        </picture>
+          <Image placeholder="blur" blurDataURL={lowResImage} src={image} height="400" width="1093" priority={true} />
         }
         { displayMode == DisplayMode.Listing && 
           <Link href={linkResolver(article)}><a>
