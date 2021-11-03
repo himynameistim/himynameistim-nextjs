@@ -1,4 +1,4 @@
-const { redirect } = require("next/dist/next-server/server/api-utils");
+//const { redirect } = require("next/dist/next-server/server/api-utils");
 const path = require("path");
 
 module.exports = {
@@ -6,10 +6,13 @@ module.exports = {
   webpack(config) {
     config.resolve.modules.push(path.resolve("./"));
     return config;
-  }
+  },
 };
 
 module.exports = {
+  images: {
+    domains: ['images.prismic.io'],
+  },
   async redirects() {
     return [
       {
