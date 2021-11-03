@@ -27,7 +27,7 @@ export function Article({ article, displayMode  }: {article: PostModel, displayM
     <article className="container">
       <header>
         { hasImage &&
-          <Image placeholder="blur" blurDataURL={lowResImage} src={image} height="400" width="1093" priority={true} />
+          <Image placeholder="blur" blurDataURL={lowResImage} src={image} height="400" width="1093" layout="responsive" priority={true} />
         }
         { displayMode == DisplayMode.Listing && 
           <Link href={linkResolver(article)}><a>
