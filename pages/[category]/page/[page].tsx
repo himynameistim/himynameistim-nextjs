@@ -24,7 +24,7 @@ const Category = ({page, totalPages, path, categoryName, posts} : { page: number
 
     <div className={styles.listing}>
     {posts.map((post) => (
-    <Article article={post} displayMode={DisplayMode.Listing}></Article>
+    <Article key={post.uid} article={post} displayMode={DisplayMode.Listing}></Article>
     ))}
 
     <CategoryPagination page={page} totalPages={totalPages} path={path}></CategoryPagination>
