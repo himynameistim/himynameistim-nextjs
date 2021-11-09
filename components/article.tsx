@@ -45,7 +45,7 @@ export function Article({ article, displayMode  }: {article: PostModel, displayM
       <footer>
         Tagged:&nbsp; 
         {article.data._meta.tags.map((tag) => (
-          <Link href={'/tag/' + tag.toLowerCase().replace(" ", "-")}><a>{tag}</a></Link>
+          <Link key={tag.toLowerCase().replace(" ", "-")} href={'/tag/' + tag.toLowerCase().replace(" ", "-")}><a>{tag}</a></Link>
         ))}
       </footer>
     </article>
