@@ -77,13 +77,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   // Get Related Products
-  let relatedArticles: AlgoliaHit[] | null;
-  if (typeof(context.params?.uid) == 'string')
-  {
-    relatedArticles = await getRelatedArticles(post.data._meta.tags, 2);
-  } else {
-    relatedArticles = null;
-  }
+  const relatedArticles = await getRelatedArticles(uid, post.data._meta.tags, 2);
 
   return {
     props: {
