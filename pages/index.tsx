@@ -1,3 +1,4 @@
+import { Container, Service } from 'typedi'
 import Head from 'next/head'
 
 import React, { useState } from "react"
@@ -7,6 +8,8 @@ import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1"
 import SectionHeading from '../components/section-heading'
 import { getLatestPosts, getCategories, getCategoryPosts, getTags } from '../utils/queries'
 
+
+import ExampleService from '../utils/exampleInjection'
 
 export default function Home({latestPosts, webDevelopmentPosts, sitecorePosts, devOpsPosts} :{
   latestPosts: FeaturedRow1Model,
@@ -32,6 +35,12 @@ export default function Home({latestPosts, webDevelopmentPosts, sitecorePosts, d
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+
+  const serviceInstance = Container.get(ExampleService);
+  // we request an instance of ExampleService from TypeDI
+  serviceInstance.injectedService.printMessage();
+  // logs "I am alive!" to the console
+
   const latestPosts = await getLatestPosts();
   const devOpsPosts = await getLatestPosts("X8kFlRIAACkAn9pa");
   const sitecorePosts = await getLatestPosts("X8kFeBIAACkAn9nV");

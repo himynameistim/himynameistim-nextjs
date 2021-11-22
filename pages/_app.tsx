@@ -1,5 +1,6 @@
 import '../styles/globals.scss'
 import "prismjs/themes/prism-tomorrow.css";
+import 'reflect-metadata'
 import { AppProps } from 'next/app'
 import { useEffect } from "react";
 import { useRouter } from "next/router";

@@ -7,9 +7,6 @@ module.exports = {
     config.resolve.modules.push(path.resolve("./"));
     return config;
   },
-};
-
-module.exports = {
   images: {
     domains: ['images.prismic.io'],
   },
