@@ -6,6 +6,23 @@ import Layout from "../layouts/layout"
 import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1"
 import SectionHeading from '../components/section-heading'
 import { getLatestPosts, getCategories, getCategoryPosts, getTags } from '../utils/queries'
+import { Container, Service } from 'typedi';
+@Service()
+class ExampleInjectedService {
+  printMessage() {
+    console.log('I am alive!');
+  }
+}
+@Service()
+class ExampleService {
+  constructor(
+    // because we annotated ExampleInjectedService with the @Service()
+    // decorator TypeDI will automatically inject an instance of
+    // ExampleInjectedService here when the ExampleService class is requested
+    // from TypeDI.
+    public injectedService: ExampleInjectedService
+  ) {}
+}
 
 
 export default function Home({latestPosts, webDevelopmentPosts, sitecorePosts, devOpsPosts} :{
