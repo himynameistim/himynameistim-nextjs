@@ -7,6 +7,18 @@ import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1"
 import SectionHeading from '../components/section-heading'
 import { getLatestPosts, getCategories, getCategoryPosts, getTags } from '../utils/queries'
 
+import {injectable} from "tsyringe";
+
+@injectable()
+class Foo {
+  constructor(private database: string) {}
+}
+
+// some other file
+import "reflect-metadata";
+import {container} from "tsyringe";
+
+
 
 export default function Home({latestPosts, webDevelopmentPosts, sitecorePosts, devOpsPosts} :{
   latestPosts: FeaturedRow1Model,
@@ -32,6 +44,9 @@ export default function Home({latestPosts, webDevelopmentPosts, sitecorePosts, d
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  
+const instance = container.resolve(Foo);
+
   const latestPosts = await getLatestPosts();
   const devOpsPosts = await getLatestPosts("X8kFlRIAACkAn9pa");
   const sitecorePosts = await getLatestPosts("X8kFeBIAACkAn9nV");
