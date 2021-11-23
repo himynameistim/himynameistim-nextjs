@@ -44,7 +44,7 @@ export class getLatestPosts implements iGetLatestPosts {
   ): Promise<FeaturedPost[]> => {
     return new Promise((resolve, reject) => {
       this.graphClient
-        .query(this.latestPostsQuery, category)
+        .query(this.latestPostsQuery, { category })
         .then((response: any) => {
           var posts: Array<FeaturedPost> = [];
           response.data.allPosts.edges.map(

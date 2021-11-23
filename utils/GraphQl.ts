@@ -12,13 +12,10 @@ export class apolloGraphClient implements graphClient {
     this.apolloClient = apolloClient;
   }
 
-  public query = async (
-    query: DocumentNode,
-    variables?: String
-  ): Promise<any> => {
+  public query = async (query: DocumentNode, variables?: {}): Promise<any> => {
     const queryOptions = {
       query: query,
-      variables: { variables },
+      variables: variables,
     };
 
     return new Promise((resolve, reject) => {

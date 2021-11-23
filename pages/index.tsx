@@ -43,7 +43,7 @@ export default function Home({
 export const getStaticProps: GetStaticProps = async () => {
   const instance = container.resolve<iGetLatestPosts>("iGetLatestPosts");
 
-  const latestPosts = await instance.getLatestPosts("X8kFhxIAACcAn9oY");
+  const latestPosts = await instance.getLatestPosts();
   const webDevelopmentPosts = await instance.getLatestPosts("X8kFhxIAACcAn9oY");
   const devOpsPosts = await instance.getLatestPosts("X8kFlRIAACkAn9pa");
   const sitecorePosts = await instance.getLatestPosts("X8kFeBIAACkAn9nV");

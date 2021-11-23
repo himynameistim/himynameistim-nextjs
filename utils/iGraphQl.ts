@@ -1,5 +1,5 @@
 import { DocumentNode } from "graphql";
 
 export interface graphClient {
-  query(query: DocumentNode, variables?: String): any;
+  query(query: DocumentNode, variables?: {}): any;
 }
