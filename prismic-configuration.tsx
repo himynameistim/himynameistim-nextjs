@@ -1,6 +1,7 @@
 // -- Prismic API endpoint
 // Determines which repository to query and fetch data from
 // Configure your site's access point here
+export const repoName = process.env.repoName;
 export const apiEndpoint = process.env.apiEndpoint;
 export const graphApiEndpoint = process.env.graphApiEndpoint;
 

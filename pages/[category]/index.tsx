@@ -13,6 +13,7 @@ import {
   getCategories,
   getCategoryIdByUid,
   getCategoryPosts,
+  getTags,
 } from "../../utils/queries";
 
 const pageSize = 3;
@@ -75,6 +76,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   const posts = await getCategoryPosts(categoryId, 1, pageSize);
+
+  const tags = await getTags(false);
+
+  var routes = tags.map(
+    (tag) => `/tag/${tag.tag.toLowerCase().replace(" ", "-")}`
+  );
 
   return {
     props: {

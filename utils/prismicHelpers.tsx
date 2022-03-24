@@ -1,4 +1,4 @@
-import Prismic from "prismic-javascript";
+import * as prismic from "@prismicio/client";
 import Link from "next/link";
 import { PrismicLink } from "apollo-link-prismic";
 import {
@@ -7,14 +7,12 @@ import {
 } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-client";
 import {
-  apiEndpoint,
+  repoName,
   graphApiEndpoint,
-  accessToken,
   linkResolver,
   hrefResolver,
 } from "../prismic-configuration";
 import fragmentTypes from "./fragmentTypes.json";
-import { ApiOptions } from "prismic-javascript/types/Api";
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: fragmentTypes,
@@ -46,7 +44,9 @@ export const customLink = (
 );
 
 // Client method to query documents from the Prismic repo
-export const Client = (req = null) =>
+const endpoint = prismic.getRepositoryEndpoint(repoName!);
+export const Client = prismic.createClient(endpoint);
+/*export const Client = (req = null) =>
   Prismic.client(apiEndpoint!, createClientOptions(accessToken!, req));
 
 const createClientOptions = (
@@ -61,6 +61,6 @@ const createClientOptions = (
     ...reqOption,
     ...accessTokenOption,
   };
-};
+};*/
 
 export default Client;

@@ -1,4 +1,4 @@
-import Prismic from "prismic-javascript";
+import Prismic from "@prismicio/client";
 import { Client } from "../prismicHelpers";
 import markdownToHtml from "../../utils/prism";
 
