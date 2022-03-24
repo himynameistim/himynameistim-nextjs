@@ -1,16 +1,14 @@
 import Head from "next/head";
 import styles from "../../styles/listing.module.scss";
 
-import React, { useState } from "react";
+import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
-import Link from "next/link";
 import Layout from "../../layouts/layout";
 import CategoryHeading from "../../components/category-heading";
 import { CategoryPagination } from "../../components/categoryPagination";
 import { Article, DisplayMode } from "../../components/article";
 import { PostModel } from "../../Models/Post";
 import { CategoryModel } from "../../Models/Category";
-import { Client } from "../../utils/prismicHelpers";
 import {
   getCategories,
   getCategoryIdByUid,

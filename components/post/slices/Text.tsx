@@ -1,20 +1,14 @@
-import React from 'react'
-import { RichText } from 'prismic-reactjs'
-import { linkResolver } from '../../../prismic-configuration'
-import { customLink } from '../../../utils/prismicHelpers'
+import React from "react";
+import { RichText } from "prismic-reactjs";
+import { linkResolver } from "../../../prismic-configuration";
 
 /**
  * Text slice component
  */
-const Text = ({ slice }: { slice: any}) => (
+const Text = ({ slice }: { slice: any }) => (
   <div className="post-part single container">
-    <RichText
-      render={slice.primary.body1}
-      linkResolver={linkResolver}
-      // Seems a bit odd to remove this
-      //serializeHyperlink={customLink}
-    />
+    <RichText render={slice.primary.body1} linkResolver={linkResolver} />
   </div>
-)
+);
 
-export default Text
+export default Text;

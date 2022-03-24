@@ -1,23 +1,11 @@
-@import './variables.scss';
+@import "./variables.scss";
 
 .featuredRow {
   margin-bottom: $elementSpacing;
 }
 
-.row { min-height: 400px; }
-
-@media (max-width: 639px) {
-    .mainBlock { min-height: 400px;}
-    .secondBlock { min-height: 400px; }
-    .finalBlocks { min-height: 300px; }
-}
-@media (max-width: 768px) {
-    .mainBlock { min-height: 300px;}
-    .secondBlock { min-height: 300px; }
-    .finalBlocks { min-height: 200px; }
-}
-
 .row {
+  min-height: 400px;
   gap: 1rem;
   display: grid;
 
@@ -32,7 +20,29 @@
     grid-template-columns: repeat(12, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, 1fr));
   }
+}
 
+@media (max-width: 639px) {
+  .mainBlock {
+    min-height: 400px;
+  }
+  .secondBlock {
+    min-height: 400px;
+  }
+  .finalBlocks {
+    min-height: 300px;
+  }
+}
+@media (max-width: 768px) {
+  .mainBlock {
+    min-height: 300px;
+  }
+  .secondBlock {
+    min-height: 300px;
+  }
+  .finalBlocks {
+    min-height: 200px;
+  }
 }
 
 .mainBlock {
@@ -111,12 +121,11 @@
   }
 }
 
-
 .finalBlocks {
   padding-top: 2rem;
   place-content: end;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   display: grid;
   background-size: cover;
   @media (min-width: $md) {
@@ -125,8 +134,8 @@
   }
 
   div {
-    background-color: white; 
-    margin-left: auto; 
+    background-color: white;
+    margin-left: auto;
     margin-right: auto;
     width: 83.333333%;
     padding: 1rem;

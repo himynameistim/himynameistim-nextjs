@@ -1,14 +1,13 @@
 import Head from "next/head";
 import styles from "../../../styles/listing.module.scss";
 
-import React, { useState } from "react";
+import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Layout from "../../../layouts/layout";
 import CategoryHeading from "../../../components/category-heading";
 import { CategoryPagination } from "../../../components/categoryPagination";
 import { Article, DisplayMode } from "../../../components/article";
 import { PostModel } from "../../../Models/Post";
-import { Client } from "../../../utils/prismicHelpers";
 import { CategoryModel } from "../../../Models/Category";
 import {
   getCategories,
@@ -81,8 +80,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const posts = await getCategoryPosts(categoryId, pageNo, pageSize);
 
-  const categories = await getCategories();
-
   return {
     props: {
       page: pageNo,
@@ -99,16 +96,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   var routes = [];
   // add pages for category
-  for (var i = 0; i < categories.length; i++) {
-    var pages = Math.ceil(categories[i].postCount / pageSize);
-    for (var x = 0; x < pages; x++) {
-      routes.push(`/${categories[i].uid}/page/${x + 1}`);
+  for (let category of categories) {
+    var pages = Math.ceil(category.postCount / pageSize);
+    for (let p = 0; p < pages; p++) {
+      routes.push(`/${category.uid}/page/${p + 1}`);
     }
   }
 
   var blogPages = Math.ceil((await getPostCount()) / pageSize);
-  for (var x = 0; x < blogPages; x++) {
-    routes.push(`/blog/page/${x + 1}`);
+  for (var bp = 0; bp < blogPages; bp++) {
+    routes.push(`/blog/page/${bp + 1}`);
   }
 
   return {

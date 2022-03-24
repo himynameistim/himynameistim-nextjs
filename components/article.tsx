@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { RichText, RichTextBlock } from "prismic-reactjs";
+import { RichText } from "prismic-reactjs";
 import { SliceZone } from "../components/post";
 import { linkResolver } from "../prismic-configuration";
 import { PostModel } from "../Models/Post";

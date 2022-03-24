@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import "./variables.scss";
 
 $articleSidePaddingBase: 2rem;
 $articleSidePaddingSm: 30px;
@@ -8,7 +8,6 @@ $articleSidePaddingXl: 50px;
 $articleSidePaddingXXl: 60px;
 
 .listing {
-
   padding: $pagePaddingBase;
   @media (min-width: $sm) {
     padding: $pagePaddingSm;
@@ -24,27 +23,28 @@ $articleSidePaddingXXl: 60px;
     }
 
     header {
-      img { min-width: 100%; }
+      img {
+        min-width: 100%;
+      }
       h1 {
         padding: 0 $articleSidePaddingBase 0 $articleSidePaddingBase;
-        @media (min-width: $sm) { 
+        @media (min-width: $sm) {
           padding: 0 $articleSidePaddingSm 0 $articleSidePaddingSm;
         }
-        @media (min-width: $lg) { 
+        @media (min-width: $lg) {
           padding: 25px $articleSidePaddingLg 0 $articleSidePaddingLg;
         }
         margin-bottom: 0;
       }
       p {
         font-style: italic;
-        font-style: italic;
         font-size: 14px;
         margin: 0;
         padding: 0 $articleSidePaddingBase 0 $articleSidePaddingBase;
-        @media (min-width: $sm) { 
+        @media (min-width: $sm) {
           padding: 0 $articleSidePaddingSm 0 $articleSidePaddingSm;
         }
-        @media (min-width: $lg) { 
+        @media (min-width: $lg) {
           padding: 0 $articleSidePaddingLg 0 $articleSidePaddingLg;
         }
       }
@@ -52,10 +52,10 @@ $articleSidePaddingXXl: 60px;
 
     & > div {
       padding: 0 $articleSidePaddingBase 40px $articleSidePaddingBase;
-      @media (min-width: $sm) { 
+      @media (min-width: $sm) {
         padding: 0 $articleSidePaddingSm 40px $articleSidePaddingSm;
       }
-      @media (min-width: $lg) { 
+      @media (min-width: $lg) {
         padding: 0 $articleSidePaddingLg 40px $articleSidePaddingLg;
       }
     }
@@ -65,18 +65,18 @@ $articleSidePaddingXXl: 60px;
     color: $main-text-color;
     padding: 15px 0 30px;
     margin: 0 $articleSidePaddingBase $elementSpacing $articleSidePaddingBase;
-      @media (min-width: $sm) { 
-        margin: 0 $articleSidePaddingSm $elementSpacing $articleSidePaddingSm;
-      }
-      @media (min-width: $lg) { 
-        margin: 0 $articleSidePaddingLg $elementSpacing $articleSidePaddingLg;
-      }
+    @media (min-width: $sm) {
+      margin: 0 $articleSidePaddingSm $elementSpacing $articleSidePaddingSm;
+    }
+    @media (min-width: $lg) {
+      margin: 0 $articleSidePaddingLg $elementSpacing $articleSidePaddingLg;
+    }
 
     a {
       &:after {
         content: ", ";
       }
-      &:last-child { 
+      &:last-child {
         &:after {
           content: "";
         }
