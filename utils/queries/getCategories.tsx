@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 import { ApolClient } from "../prismicHelpers";
+import { Client } from "../prismicHelpers";
 
 // Models
 import { CategoryModel } from "../../Models/Categories";
@@ -21,6 +22,23 @@ const getCategoriesQuery = gql`
 `;
 
 export const getCategories = async (): Promise<Array<CategoryModel>> => {
+const categoriesResults = Client.getAllByType('categories');
+let categories: Array<CategoryModel> = [];
+
+        for (let cat of await categoriesResults) {
+          const count = await getPostCount(cat.id);
+
+          categories.push({
+            uid: cat.uid!,
+            name: cat.data.name,
+            postCount: count,
+          });
+        }
+
+        return categories;
+}
+
+/*export const getCategories = async (): Promise<Array<CategoryModel>> => {
   const queryOptions = {
     query: getCategoriesQuery,
   };
@@ -46,7 +64,7 @@ export const getCategories = async (): Promise<Array<CategoryModel>> => {
         reject(error);
       });
   });
-};
+};*/
 
 const getCategoryPostCountQuery = gql`
   query getCategoryPostCount($category: String) {

@@ -7,7 +7,7 @@ export const getCategoryIdByUid = async (
   uid: string
 ): Promise<CategoryModel> => {
   const category = await Client.getByUID("categories", uid);
-  var result: CategoryModel = {
+  const result: CategoryModel = {
     id: category.id,
     uid: category.uid!,
     name: category.data.name,
