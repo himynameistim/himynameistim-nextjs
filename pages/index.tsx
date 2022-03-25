@@ -1,11 +1,12 @@
 import Head from "next/head";
 
 import React from "react";
+import { container } from "tsyringe";
 import { GetStaticProps } from "next";
 import Layout from "../layouts/layout";
 import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1";
 import SectionHeading from "../components/section-heading";
-import { getLatestPosts } from "../utils/queries";
+import { iGetLatestPosts } from "../utils/queries/iGetLatestPosts";
 
 export default function Home({
   latestPosts,
@@ -23,28 +24,28 @@ export default function Home({
       <Head>
         <title>Hi My Name Is Tim</title>
       </Head>
-      <main>
-        <SectionHeading heading="Latest Posts" link="blog"></SectionHeading>
-        <FeaturedRow1 posts={latestPosts}></FeaturedRow1>
-        <SectionHeading
-          heading="Web Development"
-          link="web-development"
-        ></SectionHeading>
-        <FeaturedRow1 posts={webDevelopmentPosts}></FeaturedRow1>
-        <SectionHeading heading="Sitecore" link="sitecore"></SectionHeading>
-        <FeaturedRow1 posts={sitecorePosts}></FeaturedRow1>
-        <SectionHeading heading="Devops" link="devops"></SectionHeading>
-        <FeaturedRow1 posts={devOpsPosts}></FeaturedRow1>
-      </main>
+      <SectionHeading heading="Latest Posts" link="blog"></SectionHeading>
+      <FeaturedRow1 posts={latestPosts}></FeaturedRow1>
+      <SectionHeading
+        heading="Web Development"
+        link="web-development"
+      ></SectionHeading>
+      <FeaturedRow1 posts={webDevelopmentPosts}></FeaturedRow1>
+      <SectionHeading heading="Sitecore" link="sitecore"></SectionHeading>
+      <FeaturedRow1 posts={sitecorePosts}></FeaturedRow1>
+      <SectionHeading heading="Devops" link="devops"></SectionHeading>
+      <FeaturedRow1 posts={devOpsPosts}></FeaturedRow1>
     </Layout>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const latestPosts = await getLatestPosts();
-  const devOpsPosts = await getLatestPosts("X8kFlRIAACkAn9pa");
-  const sitecorePosts = await getLatestPosts("X8kFeBIAACkAn9nV");
-  const webDevelopmentPosts = await getLatestPosts("X8kFhxIAACcAn9oY");
+  const instance = container.resolve<iGetLatestPosts>("iGetLatestPosts");
+
+  const latestPosts = await instance.getLatestPosts();
+  const webDevelopmentPosts = await instance.getLatestPosts("X8kFhxIAACcAn9oY");
+  const devOpsPosts = await instance.getLatestPosts("X8kFlRIAACkAn9pa");
+  const sitecorePosts = await instance.getLatestPosts("X8kFeBIAACkAn9nV");
 
   return {
     props: {
