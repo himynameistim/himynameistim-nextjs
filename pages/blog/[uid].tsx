@@ -13,6 +13,8 @@ import markdownToHtml from "../../utils/prism";
 import { queryRepeatableDocuments, getPostByUid } from "../../utils/queries";
 import layoutStyles from "../../styles/layout-styles.module.scss";
 import postStyles from "../../styles/post.module.scss";
+import { iGetPost } from "../../blogProviders/blog/queries";
+import { container } from "tsyringe";
 
 /**
  * Post page component
@@ -59,7 +61,8 @@ const Post = ({ post }: { post: PostModel }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const uid: string = context.params?.uid ? context.params.uid.toString() : "";
-  const post = await getPostByUid(uid, context.previewData);
+  const postQuery = container.resolve<iGetPost>("iGetPost");
+  const post = await postQuery.getPost(uid, context.previewData);
 
   for (let bodyPart of post.data.body) {
     if (
@@ -82,7 +85,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const documents = await queryRepeatableDocuments(
+  const queryRepeatableDocumentsQuery = container.resolve<iGetPost>("iGetPost");
+  const documents = await queryRepeatableDocumentsQuery.queryRepeatableDocuments(
     (doc) => doc.type === "post"
   );
   return {

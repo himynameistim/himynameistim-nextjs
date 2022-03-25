@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../../styles/listing.module.scss";
 
 import React from "react";
+import { container } from "tsyringe";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Layout from "../../layouts/layout";
 import CategoryHeading from "../../components/category-heading";
@@ -15,6 +16,7 @@ import {
   getCategoryPosts,
   getTags,
 } from "../../utils/queries";
+import { iGetCategories, iGetCategory, iGetCategoryPosts, iGetLatestPosts, iGetTags } from "../../blogProviders/blog/queries";
 
 const pageSize = 3;
 
@@ -60,6 +62,9 @@ const Category = ({
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  
+  
+  
   const cat: string = context.params?.category
     ? context.params.category.toString()
     : "";
@@ -70,14 +75,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
     categoryId = "";
     categoryName = "Blog";
   } else {
-    const category: CategoryModel = await getCategoryIdByUid(cat);
+    const categoryQuery = container.resolve<iGetCategory>("iGetCategory");
+    const category: CategoryModel = await categoryQuery.getCategory(cat);
     categoryId = category.id;
     categoryName = category.name;
   }
 
-  const posts = await getCategoryPosts(categoryId, 1, pageSize);
+  const categoryPostsQuery = container.resolve<iGetCategoryPosts>("iGetCategoryPosts");
+  const posts = await categoryPostsQuery.getCategoryPosts(categoryId, 1, pageSize);
 
-  const tags = await getTags(false);
+  const tagsQuery = container.resolve<iGetTags>("iGetTags");
+  const tags = await tagsQuery.getTags(false);
 
   var routes = tags.map(
     (tag) => `/tag/${tag.tag.toLowerCase().replace(" ", "-")}`
@@ -95,7 +103,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categories = await getCategories();
+  const categoryQuery = container.resolve<iGetCategories>("iGetCategories");
+  const categories = await categoryQuery.getAllCategories();
 
   var routes = categories.map((doc) => `/${doc.uid}`);
   routes.push(`/blog`);

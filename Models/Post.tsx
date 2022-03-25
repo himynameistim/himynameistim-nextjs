@@ -6,7 +6,7 @@ export interface PostModel {
   data: {
     heading?: string
     title?: RichTextBlock[];
-    post_date: Date;
+    postDate: string;
     image: {
       url: string;
     };
