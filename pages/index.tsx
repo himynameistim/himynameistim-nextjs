@@ -6,7 +6,6 @@ import { GetStaticProps } from "next";
 import Layout from "../layouts/layout";
 import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1";
 import SectionHeading from "../components/section-heading";
-//import { getLatestPosts, getCategories, getCategoryPosts, getTags } from '../utils/queries'
 import { iGetLatestPosts } from "../utils/queries/iGetLatestPosts";
 
 export default function Home({
@@ -47,13 +46,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const webDevelopmentPosts = await instance.getLatestPosts("X8kFhxIAACcAn9oY");
   const devOpsPosts = await instance.getLatestPosts("X8kFlRIAACkAn9pa");
   const sitecorePosts = await instance.getLatestPosts("X8kFeBIAACkAn9nV");
-
-  //const posts = await getCategoryPosts("Sitecore")
-  //const categories = await getCategories();
-
-  //const tags = await getTags();
-
-  //var routes = tags.map(tag => `/tag/${tag.tag.toLowerCase()}`)
 
   return {
     props: {

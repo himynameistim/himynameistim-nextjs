@@ -35,10 +35,7 @@ container.registerInstance(
 );
 
 container.register("graphClient", apolloGraphClient);
-
-container.register("iGetLatestPosts", {
-  useClass: getLatestPosts,
-});
+container.register("iGetLatestPosts", getLatestPosts);
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
