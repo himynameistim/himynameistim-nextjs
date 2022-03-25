@@ -8,7 +8,8 @@ import CategoryHeading from "../../../components/category-heading";
 import { CategoryPagination } from "../../../components/categoryPagination";
 import { Article, DisplayMode } from "../../../components/article";
 import { PostModel } from "../../../Models/Post";
-import { getTagPosts, getTags } from "../../../utils/queries";
+import { iGetTags, iGetTagPosts } from "../../../blogProviders/blog/queries";
+import { container } from "tsyringe";
 
 const pageSize = 3;
 
@@ -53,11 +54,15 @@ const Tag = ({
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const tag: string = context.params?.tag ? context.params.tag.toString() : "";
-  const allTags = await getTags(false);
+
+  const getTagsQuery = container.resolve<iGetTags>("iGetTags");
+  const allTags = await getTagsQuery.getTags(false);
   const tagName: string =
     allTags.find((x) => x.tag.toLowerCase().replace(" ", "-") == tag)?.tag ||
     "";
-  const posts = await getTagPosts(tagName, 1, pageSize);
+
+  const getTagPostsQuery = container.resolve<iGetTagPosts>("iGetTagPosts");
+  const posts = await getTagPostsQuery.getTagPosts(tagName, 1, pageSize);
 
   return {
     props: {
@@ -71,7 +76,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const tags = await getTags(false);
+  const getTagsQuery = container.resolve<iGetTags>("iGetTags");
+  const tags = await getTagsQuery.getTags(false);
 
   var routes = tags.map(
     (tag) => `/tag/${tag.tag.toLowerCase().replace(" ", "-")}`

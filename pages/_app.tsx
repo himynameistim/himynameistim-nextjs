@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import * as gtag from "../utils/gtag";
 import { container } from "tsyringe";
 import ApolloClient from "apollo-client";
-import { getLatestPosts } from "../blogProviders/local/getLatestPosts";
 import { PrismicLink } from "apollo-link-prismic";
 import { graphApiEndpoint } from "../prismic-configuration";
 import {
@@ -16,6 +15,7 @@ import {
 } from "apollo-cache-inmemory";
 import { apolloGraphClient } from "../utils/GraphQl";
 import fragmentTypes from "../utils/fragmentTypes.json";
+import { getTags, getLatestPosts, getTagPosts } from "../blogProviders/local/queries";
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: fragmentTypes,
@@ -35,6 +35,8 @@ container.registerInstance(
 
 container.register("graphClient", apolloGraphClient);
 container.register("iGetLatestPosts", getLatestPosts);
+container.register("iGetTags", getTags);
+container.register("iGetTagPosts", getTagPosts);
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
