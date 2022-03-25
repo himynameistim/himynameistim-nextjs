@@ -7,8 +7,7 @@ import { useRouter } from "next/router";
 import * as gtag from "../utils/gtag";
 import { container } from "tsyringe";
 import ApolloClient from "apollo-client";
-import { iGetLatestPosts } from "../utils/queries/iGetLatestPosts";
-import { getLatestPosts } from "../utils/queries/getLatestPosts";
+import { getLatestPosts } from "../blogProviders/local/getLatestPosts";
 import { PrismicLink } from "apollo-link-prismic";
 import { graphApiEndpoint } from "../prismic-configuration";
 import {

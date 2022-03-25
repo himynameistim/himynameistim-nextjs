@@ -6,7 +6,7 @@ import { GetStaticProps } from "next";
 import Layout from "../layouts/layout";
 import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1";
 import SectionHeading from "../components/section-heading";
-import { iGetLatestPosts } from "../utils/queries/iGetLatestPosts";
+import { iGetLatestPosts } from "../blogProviders/blog/getLatestPosts";
 
 export default function Home({
   latestPosts,
