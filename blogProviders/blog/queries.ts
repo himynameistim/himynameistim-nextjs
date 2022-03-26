@@ -1,4 +1,4 @@
-//export { getAllPosts } from "./getAllPosts"
+export type { iGetAllPosts } from "./getAllPosts";
 export type { iGetCategories } from "./getCategories";
 export type { iGetCategory } from "./getCategory";
 export type { iGetCategoryPosts } from "./getCategoryPosts";

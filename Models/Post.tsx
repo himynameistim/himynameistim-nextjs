@@ -10,7 +10,7 @@ export interface PostModel {
     image: {
       url: string;
     };
-    body: any;
+    body: Slices[];
     category?: {
       name: string;
     };
@@ -18,4 +18,16 @@ export interface PostModel {
       tags: string[];
     };
   };
+}
+
+export interface Slices {
+  sliceType: string
+}
+
+export interface TextBlock extends Slices {
+  text: string;
+}
+
+export interface CodeBlock extends Slices {
+  code: string;
 }

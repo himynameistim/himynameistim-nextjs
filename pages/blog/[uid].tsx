@@ -6,23 +6,21 @@ import Head from "next/head";
 import Layout from "../../layouts/layout";
 import { Article, DisplayMode } from "../../components/article";
 import { PostModel } from "../../Models/Post";
-import { RichText } from "prismic-reactjs";
 import markdownToHtml from "../../utils/prism";
 
 // Project functions & styles
-import { queryRepeatableDocuments, getPostByUid } from "../../utils/queries";
 import layoutStyles from "../../styles/layout-styles.module.scss";
 import postStyles from "../../styles/post.module.scss";
 import { iGetPost } from "../../blogProviders/blog/queries";
 import { container } from "tsyringe";
+import { iGetAllPosts } from "../../blogProviders/blog/getAllPosts";
 
 /**
  * Post page component
  */
 const Post = ({ post }: { post: PostModel }) => {
   if (post && post.data) {
-    const hasTitle = RichText.asText(post.data.title).length !== 0;
-    const title = hasTitle ? RichText.asText(post.data.title) : "Untitled";
+    const title = post.data.heading?.length !== 0 ? post.data.heading : "Untitled";
 
     return (
       <Layout>
@@ -85,9 +83,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const queryRepeatableDocumentsQuery = container.resolve<iGetPost>("iGetPost");
-  const documents = await queryRepeatableDocumentsQuery.queryRepeatableDocuments(
-    (doc) => doc.type === "post"
+  const getAllPostsQuery = container.resolve<iGetAllPosts>("iGetAllPosts");
+  const documents = await getAllPostsQuery.getAllPosts(
   );
   return {
     paths: documents.map((doc) => `/blog/${doc.uid}`),

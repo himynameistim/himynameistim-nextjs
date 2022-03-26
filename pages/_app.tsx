@@ -15,7 +15,7 @@ import {
 } from "apollo-cache-inmemory";
 import { apolloGraphClient } from "../utils/GraphQl";
 import fragmentTypes from "../utils/fragmentTypes.json";
-import { getTags, getLatestPosts, getTagPosts, getCategories, getCategory, getCategoryPosts, getPost } from "../blogProviders/local/queries";
+import { getTags, getLatestPosts, getTagPosts, getCategories, getCategory, getCategoryPosts, getPost, getAllPosts } from "../blogProviders/local/queries";
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: fragmentTypes,
@@ -41,6 +41,7 @@ container.register("iGetCategories",getCategories);
 container.register("iGetCategory",getCategory);
 container.register("iGetCategoryPosts",getCategoryPosts);
 container.register("iGetPost",getPost);
+container.register("iGetAllPosts", getAllPosts);
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

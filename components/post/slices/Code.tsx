@@ -1,14 +1,15 @@
 import React from 'react'
+import { CodeBlock } from '../../../Models/Post'
 
 /**
  * Code slice component
  */
-const Code = ({ slice }: {slice: any}) => {
+const Code = ({ slice }: {slice: CodeBlock}) => {
  
 return (
    <>
      <pre>
-     <code dangerouslySetInnerHTML={{__html: slice.primary.html}}></code>
+     <code dangerouslySetInnerHTML={{__html: slice.code}}></code>
      </pre>
 </>
 )}

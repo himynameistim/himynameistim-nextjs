@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { SliceZone } from "../components/post";
+import { SliceZone } from "../components/post/SliceZone";
 import { linkResolver } from "../prismic-configuration";
 import { PostModel } from "../Models/Post";
 import { format } from "date-fns";
@@ -54,7 +54,7 @@ export function Article({
         </p>
       </header>
       <div>
-        {/*<SliceZone sliceZone={article.data.body} />*/}
+        <SliceZone slices={article.data.body} />
       </div>
       <footer>
         Tagged:&nbsp;
