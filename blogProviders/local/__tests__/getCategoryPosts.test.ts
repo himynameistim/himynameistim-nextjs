@@ -1,5 +1,5 @@
-import { iGetCategoryPosts } from "../blog/queries";
-import { getCategoryPosts } from "./queries";
+import { iGetCategoryPosts } from "../../blog/queries";
+import { getCategoryPosts } from "../queries";
 
 test("getCategoryPosts returns more than 0 posts", async () => {
   const gcp: iGetCategoryPosts = new getCategoryPosts();

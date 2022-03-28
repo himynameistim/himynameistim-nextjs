@@ -1,5 +1,5 @@
-import { iGetTagPosts } from "../blog/queries";
-import { getTagPosts } from "./queries";
+import { iGetTagPosts } from "../../blog/queries";
+import { getTagPosts } from "../queries";
 
 test("getTagPosts returns more than 0 posts", async () => {
   const gtp: iGetTagPosts = new getTagPosts();

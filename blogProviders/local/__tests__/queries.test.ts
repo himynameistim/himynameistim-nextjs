@@ -7,7 +7,7 @@ import {
   getPost,
   getTags,
   getTagPosts,
-} from "./queries";
+} from "../queries";
 
 test("queries are all defined", async () => {
   expect(getAllPosts).toBeDefined();
