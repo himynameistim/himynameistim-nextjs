@@ -1,15 +1,15 @@
 import React from 'react'
-import { RichText } from 'prismic-reactjs'
+import { QuoteBlock } from '../../../Models/Post'
 
 /**
  * Quote slice component
  */
-const Quote = ({ slice }) => (
+const QuoteSlice = ({ slice }: {slice: QuoteBlock}) => (
   <div className="post-part single container">
     <blockquote className="block-quotation">
-      {RichText.asText(slice.primary.quote)}
+      {slice.quote}
     </blockquote>
   </div>
 )
 
-export default Quote
+export default QuoteSlice

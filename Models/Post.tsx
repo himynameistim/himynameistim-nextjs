@@ -31,3 +31,20 @@ export interface TextBlock extends Slices {
 export interface CodeBlock extends Slices {
   code: string;
 }
+
+export interface QuoteBlock extends Slices {
+  quote: string;
+}
+
+export interface ImageBlock extends Slices {
+  image: Image;
+}
+
+export interface Image {
+url: string;
+alt: string;
+dimensions: {
+  height: string;
+  width: string;
+}
+}

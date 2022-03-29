@@ -1,6 +1,6 @@
 export const posts = [
   {
-    uid: "Post1",
+    uid: "1",
     type: "Post",
     data: {
       _meta: {

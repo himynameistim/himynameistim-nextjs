@@ -6,10 +6,10 @@ import { TextBlock } from "../../../Models/Post";
 /**
  * Text slice component
  */
-const Text = ({ slice }: { slice: TextBlock }) => (
+const TextSlice = ({ slice }: { slice: TextBlock }) => (
   <div className="post-part single container" dangerouslySetInnerHTML={{__html: slice.text}}>
     {/*<RichText render={slice.primary.body1} linkResolver={linkResolver} />*/}
   </div>
 );
 
-export default Text;
+export default TextSlice;

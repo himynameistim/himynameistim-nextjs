@@ -4,7 +4,7 @@ import { CodeBlock } from '../../../Models/Post'
 /**
  * Code slice component
  */
-const Code = ({ slice }: {slice: CodeBlock}) => {
+const CodeSlice = ({ slice }: {slice: CodeBlock}) => {
  
 return (
    <>
@@ -14,4 +14,4 @@ return (
 </>
 )}
 
-export default Code
+export default CodeSlice
