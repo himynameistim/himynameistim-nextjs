@@ -17,18 +17,21 @@ export class getTags implements iGetTags {
   public getTags = async (includeCount: boolean): Promise<TagModel[]> => {
     const prismicTags = await this.prismicClient.client.getTags();
 
-    const tags: TagModel[];
+    let tags: TagModel[];
+    tags = [];
 
-    for (tag of tags) {
+    for (const tag of prismicTags) {
       tags.push({
         tag: tag,
+        postCount: await this.getPostCount(tag),
       });
     }
 
     return tags;
   };
 
-  private getPostCound = async (tag: string): Promise<number> => {
-    return 1;
+  private getPostCount = async (tag: string): Promise<number> => {
+    const posts = await this.prismicClient.client.getByTag(tag);
+    return posts.total_results_size;
   };
 }

@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { documentTypes } from "./documentTypes"
 
 // Models
 import { CategoryModel } from "../../Models/Categories";
@@ -31,7 +32,8 @@ let categories: Array<CategoryModel> = [];
   }
 
   private getPostCount = async (categoryId?: string): Promise<number> => {
-    
+   // const posts = this.prismicClient.client.getAllByType('Posts')
+   // (await posts).filter(x => x.)
   return 0;
   }
 }
