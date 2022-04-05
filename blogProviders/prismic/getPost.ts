@@ -1,7 +1,9 @@
+import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 import { PostModel } from "../../Models/Post";
 import { iGetPost } from "../blog/getPost";
 import { prismicClient } from "./prismicClient";
+import { PrismicDocumentBlogPost } from "./Models/prismicPost";
 
 @injectable()
 export class getPost implements iGetPost {
@@ -16,7 +18,12 @@ export class getPost implements iGetPost {
   public getPost = async (
     uid: string,
     previewData: any
-  ): Promise<PostModel> => {
-    const post = this.prismicClient.client.getByUID("Post", uid);
+  ): Promise<PostModel | null> => {
+    const post = this.prismicClient.client.getByUID<PrismicDocumentBlogPost>(
+      "Post",
+      uid
+    );
+
+    return null;
   };
 }

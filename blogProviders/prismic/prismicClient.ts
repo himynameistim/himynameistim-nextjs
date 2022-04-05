@@ -1,6 +1,7 @@
 import * as prismic from "@prismicio/client";
 import { autoInjectable } from "tsyringe";
 import { iPrismicClient } from "./iPrismicClient";
+import fetch from "node-fetch";
 
 @autoInjectable()
 export class prismicClient implements iPrismicClient {

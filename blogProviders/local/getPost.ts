@@ -6,7 +6,7 @@ export class getPost implements iGetPost {
   public getPost = async (
     uid: string,
     previewData: any
-  ): Promise<PostModel> => {
+  ): Promise<PostModel | null> => {
     return posts[0];
   };
 }
