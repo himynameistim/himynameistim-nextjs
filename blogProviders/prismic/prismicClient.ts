@@ -10,6 +10,6 @@ export class prismicClient implements iPrismicClient {
   constructor(repoName: string) {
     // Client method to query documents from the Prismic repo
     const endpoint = prismic.getRepositoryEndpoint(repoName!);
-    this.client = prismic.createClient(endpoint);
+    this.client = prismic.createClient(endpoint, { fetch: fetch });
   }
 }
