@@ -1,21 +1,19 @@
 import * as prismicT from "@prismicio/types";
 
-type PrismicSliceBlogPostBodyText = prismicT.Slice<
-  "text",
-  never,
+export type PrismicSliceBlogPostBodyText = prismicT.Slice<
+  "text_block",
   {
-    text: prismicT.RichTextField;
+    body1: prismicT.RichTextField;
   }
 >;
-type PrismicSliceBlogPostBodyImageGallery = prismicT.Slice<
-  "image_gallery",
-  never,
+export type PrismicSliceBlogPostBodyImageGallery = prismicT.Slice<
+  "full_width_image",
   {
     image: prismicT.ImageField;
     caption: prismicT.KeyTextField;
   }
 >;
-type PrismicSliceBlogPostBodyQuote = prismicT.Slice<
+export type PrismicSliceBlogPostBodyQuote = prismicT.Slice<
   "quote",
   {
     quote: prismicT.RichTextField;
@@ -26,7 +24,9 @@ type PrismicSliceBlogPostBodyQuote = prismicT.Slice<
 export type PrismicDocumentBlogPost = prismicT.PrismicDocument<
   {
     title: prismicT.KeyTextField;
-    description: prismicT.RichTextField;
+    post_date: prismicT.DateField;
+    image: prismicT.ImageField;
+    foo: prismicT.SliceZone<PrismicSliceBlogPostBodyText>;
     body: prismicT.SliceZone<
       | PrismicSliceBlogPostBodyText
       | PrismicSliceBlogPostBodyImageGallery

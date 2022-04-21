@@ -8,5 +8,12 @@ test("getPost returns post with the uid given", async () => {
   const pc = new prismicClient("himynameistim");
   const gp: iGetPost = new getPost(pc);
 
-  expect((await gp.getPost("Post1", false))?.uid).toBe("Post1");
+  expect(
+    (
+      await gp.getPost(
+        "fixing-unexpected-unknown-at-rule-tailwind-in-sonar",
+        false
+      )
+    )?.uid
+  ).toBe("fixing-unexpected-unknown-at-rule-tailwind-in-sonar");
 });

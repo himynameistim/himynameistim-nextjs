@@ -1,9 +1,19 @@
 import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
-import { PostModel } from "../../Models/Post";
+import { ImageBlock, PostModel, TextBlock } from "../../Models/Post";
 import { iGetPost } from "../blog/getPost";
 import { prismicClient } from "./prismicClient";
-import { PrismicDocumentBlogPost } from "./Models/prismicPost";
+import * as prismicT from "@prismicio/types";
+import {
+  PrismicDocumentBlogPost,
+  PrismicSliceBlogPostBodyText,
+  PrismicSliceBlogPostBodyImageGallery,
+} from "./Models/prismicPost";
+import { ca } from "date-fns/locale";
+import { Link, RichText, Date } from "prismic-reactjs";
+import { linkResolver } from "../../prismic-configuration";
+import * as prismicH from "@prismicio/helpers";
+import { prismicPostToPost } from "./mappers";
 
 @injectable()
 export class getPost implements iGetPost {
@@ -19,11 +29,11 @@ export class getPost implements iGetPost {
     uid: string,
     previewData: any
   ): Promise<PostModel | null> => {
-    const post = this.prismicClient.client.getByUID<PrismicDocumentBlogPost>(
-      "Post",
-      uid
+    return prismicPostToPost(
+      await this.prismicClient.client.getByUID<PrismicDocumentBlogPost>(
+        "post",
+        uid
+      )
     );
-
-    return null;
   };
 }
