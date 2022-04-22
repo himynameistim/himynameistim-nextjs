@@ -9,14 +9,20 @@ import CategoryHeading from "../../components/category-heading";
 import { CategoryPagination } from "../../components/categoryPagination";
 import { Article, DisplayMode } from "../../components/article";
 import { PostModel } from "../../Models/Post";
-import { CategoryModel } from "../../Models/Category";
+import { CategoryModel } from "../../Models/Categories";
 import {
   getCategories,
   getCategoryIdByUid,
   getCategoryPosts,
   getTags,
 } from "../../utils/queries";
-import { iGetCategories, iGetCategory, iGetCategoryPosts, iGetLatestPosts, iGetTags } from "../../blogProviders/blog/queries";
+import {
+  iGetCategories,
+  iGetCategory,
+  iGetCategoryPosts,
+  iGetLatestPosts,
+  iGetTags,
+} from "../../blogProviders/blog/queries";
 
 const pageSize = 3;
 
@@ -62,9 +68,6 @@ const Category = ({
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  
-  
-  
   const cat: string = context.params?.category
     ? context.params.category.toString()
     : "";
@@ -77,18 +80,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
   } else {
     const categoryQuery = container.resolve<iGetCategory>("iGetCategory");
     const category: CategoryModel = await categoryQuery.getCategory(cat);
-    categoryId = category.id;
+    categoryId = category.uid;
     categoryName = category.name;
   }
 
-  const categoryPostsQuery = container.resolve<iGetCategoryPosts>("iGetCategoryPosts");
-  const posts = await categoryPostsQuery.getCategoryPosts(categoryId, 1, pageSize);
-
-  const tagsQuery = container.resolve<iGetTags>("iGetTags");
-  const tags = await tagsQuery.getTags(false);
-
-  var routes = tags.map(
-    (tag) => `/tag/${tag.tag.toLowerCase().replace(" ", "-")}`
+  const categoryPostsQuery =
+    container.resolve<iGetCategoryPosts>("iGetCategoryPosts");
+  const posts = await categoryPostsQuery.getCategoryPosts(
+    categoryId,
+    1,
+    pageSize
   );
 
   return {

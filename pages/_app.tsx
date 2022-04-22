@@ -15,7 +15,8 @@ import {
 } from "apollo-cache-inmemory";
 import { apolloGraphClient } from "../utils/GraphQl";
 import fragmentTypes from "../utils/fragmentTypes.json";
-import { getTags, getLatestPosts, getTagPosts, getCategories, getCategory, getCategoryPosts, getPost, getAllPosts } from "../blogProviders/local/queries";
+import { registerMethods as registerLocalMethods } from "../blogProviders/local/registerMethods";
+import { registerMethods as registerPrismicMethods } from "../blogProviders/prismic/registerMethods";
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: fragmentTypes,
@@ -34,14 +35,15 @@ container.registerInstance(
 );
 
 container.register("graphClient", apolloGraphClient);
-container.register("iGetLatestPosts", getLatestPosts);
-container.register("iGetTags", getTags);
-container.register("iGetTagPosts", getTagPosts);
-container.register("iGetCategories",getCategories);
-container.register("iGetCategory",getCategory);
-container.register("iGetCategoryPosts",getCategoryPosts);
-container.register("iGetPost",getPost);
-container.register("iGetAllPosts", getAllPosts);
+
+switch (process.env.cmsprovider) {
+  case "local":
+    registerLocalMethods(container);
+    break;
+  case "prismic":
+    registerPrismicMethods(container);
+    break;
+}
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

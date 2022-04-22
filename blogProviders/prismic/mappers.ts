@@ -1,6 +1,8 @@
 import { ImageBlock, PostModel, TextBlock } from "../../Models/Post";
 import { PrismicDocumentBlogPost } from "./Models/prismicPost";
 import * as prismicH from "@prismicio/helpers";
+import { CategoryModel } from "../../Models/Categories";
+import { PrismicDocumentCategory } from "./Models/prismicCategory";
 
 export function prismicPostToPost(
   prismicPost: PrismicDocumentBlogPost
@@ -50,4 +52,15 @@ export function prismicPostToPost(
   }
 
   return post;
+}
+
+export function prismicCategoryToCategory(
+  prismicCategory: PrismicDocumentCategory,
+  postCount: number
+): CategoryModel {
+  return {
+    name: prismicCategory.data.name as string,
+    uid: prismicCategory.id,
+    postCount: postCount,
+  };
 }
