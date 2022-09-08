@@ -56,8 +56,22 @@ export default function Home() {
             <h2>Awards</h2>
             <p>
               I have been awarded the Sitecore Technologist MVP award 5 years
-              running from 2017 - 2021.
+              running from 2017 - 2021 and Sitecore Ambassador MVP in 2022.
             </p>
+            <img
+              src="/2022-Sitecore_MVP_Ambassador.jpg"
+              height="300"
+              width="300"
+              alt="Sitecore MVP Award 2022"
+              className={styles.award}
+            />
+            <img
+              src="/Sitecore_MVP_Technology_2021.jpg"
+              height="300"
+              width="300"
+              alt="Sitecore MVP Award 2021"
+              className={styles.award}
+            />
             <img
               src="/Sitecore_MVP_Technology_2021.jpg"
               height="300"
