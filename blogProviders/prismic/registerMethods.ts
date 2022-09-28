@@ -5,6 +5,7 @@ import {
   getCategoryPosts,
   getPost,
   getAllPosts,
+  GetLatestPosts,
 } from "./queries";
 import { DependencyContainer } from "tsyringe";
 import { prismicClient } from "./prismicClient";
@@ -14,7 +15,7 @@ export function registerMethods(container: DependencyContainer) {
     "prismicClient",
     new prismicClient("himynameistim")
   );
-  //container.register("iGetLatestPosts", getLatestPosts);
+  container.register("iGetLatestPosts", GetLatestPosts);
   container.register("iGetTags", getTags);
   //container.register("iGetTagPosts", getTagPosts);
   container.register("iGetCategories", getCategories);

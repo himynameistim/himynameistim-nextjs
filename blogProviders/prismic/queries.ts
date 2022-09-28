@@ -4,3 +4,4 @@ export { getCategory } from "./getCategory";
 export { getCategoryPosts } from "./getCategoryPosts";
 export { getPost } from "./getPost";
 export { getTags } from "./getTags";
+export { GetLatestPosts } from "./getLatestPosts";

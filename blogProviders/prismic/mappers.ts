@@ -3,6 +3,7 @@ import { PrismicDocumentBlogPost } from "./Models/prismicPost";
 import * as prismicH from "@prismicio/helpers";
 import { CategoryModel } from "../../Models/Categories";
 import { PrismicDocumentCategory } from "./Models/prismicCategory";
+import { FeaturedPost } from "../../Models/FeaturedPost";
 
 export function prismicPostToPost(
   prismicPost: PrismicDocumentBlogPost
@@ -50,6 +51,21 @@ export function prismicPostToPost(
         break;
     }
   }
+
+  return post;
+}
+
+export function prismicPostToFeaturedPost(
+  prismicPost: PrismicDocumentBlogPost
+): FeaturedPost {
+  let post: FeaturedPost = {
+    uid: prismicPost.uid as string,
+    type: prismicPost.type,
+    title: prismicPost.data.title[0].text as string,
+    postDate: prismicPost.data.post_date as string,
+    category: "",
+    image: { url: prismicPost.data.image.url as string },
+  };
 
   return post;
 }
