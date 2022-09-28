@@ -5,7 +5,7 @@ import Head from "next/head";
 // Project components
 import Layout from "../../layouts/layout";
 import { Article, DisplayMode } from "../../components/article";
-import { PostModel } from "../../Models/Post";
+import { CodeBlock, PostModel } from "../../Models/Post";
 import markdownToHtml from "../../utils/prism";
 
 // Project functions & styles
@@ -62,16 +62,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const postQuery = container.resolve<iGetPost>("iGetPost");
   const post = await postQuery.getPost(uid, context.previewData);
 
+  if (post) {
   for (let bodyPart of post.data.body) {
     if (
-      bodyPart.slice_type == "code_block" ||
-      bodyPart.slice_type == "PostBodyCode_block"
+      bodyPart.sliceType == "code_block" ||
+      bodyPart.sliceType == "PostBodyCode_block"
     ) {
-      bodyPart.primary.html = await markdownToHtml(
-        bodyPart.primary.code,
-        bodyPart.primary.language
+      (bodyPart as CodeBlock).html = await markdownToHtml(
+        (bodyPart as CodeBlock).code,
+        (bodyPart as CodeBlock).language,
       );
     }
+  }
   }
 
   return {

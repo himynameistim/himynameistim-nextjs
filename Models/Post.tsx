@@ -30,6 +30,8 @@ export interface TextBlock extends Slices {
 
 export interface CodeBlock extends Slices {
   code: string;
+  language: string;
+  html: string;
 }
 
 export interface QuoteBlock extends Slices {
