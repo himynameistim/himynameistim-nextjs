@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prismicio/client": "^6.4.2",
+    "@prismicio/helpers": "^2.3.5",
     "@types/gtag.js": "0.0.4",
     "@types/node-fetch": "^2.6.1",
     "@types/prismjs": "^1.16.2",

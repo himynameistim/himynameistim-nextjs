@@ -12,7 +12,7 @@ export function prismicPostToPost(
     uid: prismicPost.uid as string,
     type: prismicPost.type,
     data: {
-      heading: prismicPost.data.title as string,
+      heading: prismicH.asText(prismicPost.data.title),
       image: { url: prismicPost.data.image.url as string },
       postDate: prismicPost.data.post_date as string,
       _meta: {
@@ -61,7 +61,7 @@ export function prismicPostToFeaturedPost(
   let post: FeaturedPost = {
     uid: prismicPost.uid as string,
     type: prismicPost.type,
-    title: prismicPost.data.title[0].text as string,
+    title: prismicH.asText(prismicPost.data.title),
     postDate: prismicPost.data.post_date as string,
     category: "",
     image: { url: prismicPost.data.image.url as string },

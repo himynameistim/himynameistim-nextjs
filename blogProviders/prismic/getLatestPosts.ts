@@ -20,22 +20,42 @@ export class GetLatestPosts implements iGetLatestPosts {
   public getLatestPosts = async (
     categoryUid?: string
   ): Promise<FeaturedPost[]> => {
-    const posts =
-      await this.prismicClient.client.getByType<PrismicDocumentBlogPost>(
-        "post",
-        {
-          //predicates: [prismic.predicate.at("my.post.category", categoryId)],
-          pageSize: 4,
-          page: 1,
-          orderings: {
-            field: "my.post.post_date",
-            direction: "desc",
-          },
-        }
-      );
+    if (categoryUid) {
+      const posts =
+        await this.prismicClient.client.getByType<PrismicDocumentBlogPost>(
+          "post",
+          {
+            predicates: [prismic.predicate.at("my.post.category", categoryUid)],
+            pageSize: 4,
+            page: 1,
+            orderings: {
+              field: "my.post.post_date",
+              direction: "desc",
+            },
+          }
+        );
 
-    return posts.results.map((post) => {
-      return prismicPostToFeaturedPost(post);
-    });
+      return posts.results.map((post) => {
+        return prismicPostToFeaturedPost(post);
+      });
+    } else {
+      const posts =
+        await this.prismicClient.client.getByType<PrismicDocumentBlogPost>(
+          "post",
+          {
+            //predicates: [prismic.predicate.at("my.post.category", categoryId)],
+            pageSize: 4,
+            page: 1,
+            orderings: {
+              field: "my.post.post_date",
+              direction: "desc",
+            },
+          }
+        );
+
+      return posts.results.map((post) => {
+        return prismicPostToFeaturedPost(post);
+      });
+    }
   };
 }

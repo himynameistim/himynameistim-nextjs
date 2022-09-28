@@ -11,12 +11,6 @@ import { Article, DisplayMode } from "../../components/article";
 import { PostModel } from "../../Models/Post";
 import { CategoryModel } from "../../Models/Categories";
 import {
-  getCategories,
-  getCategoryIdByUid,
-  getCategoryPosts,
-  getTags,
-} from "../../utils/queries";
-import {
   iGetCategories,
   iGetCategory,
   iGetCategoryPosts,
