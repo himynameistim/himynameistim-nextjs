@@ -1,12 +1,12 @@
 import "reflect-metadata";
 import { container } from "tsyringe";
 import { iGetPost } from "../../blog/queries";
-import { getPost } from "../getPost";
-import { prismicClient } from "../prismicClient";
+import { GetPost } from "../getPost";
+import { PrismicClient } from "../prismicClient";
 
 test("getPost returns post with the uid given", async () => {
-  const pc = new prismicClient("himynameistim");
-  const gp: iGetPost = new getPost(pc);
+  const pc = new PrismicClient("himynameistim");
+  const gp: iGetPost = new GetPost(pc);
 
   expect(
     (

@@ -1,12 +1,14 @@
 import "reflect-metadata";
 import { container } from "tsyringe";
 import { iGetCategory } from "../../blog/queries";
-import { getCategory } from "../queries";
-import { prismicClient } from "../prismicClient";
+import { GetCategory } from "../queries";
+import { PrismicClient } from "../prismicClient";
 
 test("getCategory returns category with the uid given", async () => {
-  const pc = new prismicClient("himynameistim");
-  const gc: iGetCategory = new getCategory(pc);
+  const pc = new PrismicClient("himynameistim");
+  const gc: iGetCategory = new GetCategory(pc);
 
-  expect((await gc.getCategory("devops"))?.uid).toBe("devops");
+  expect((await gc.getCategory("X8kFlRIAACkAn9pa"))?.uid).toBe(
+    "X8kFlRIAACkAn9pa"
+  );
 });
