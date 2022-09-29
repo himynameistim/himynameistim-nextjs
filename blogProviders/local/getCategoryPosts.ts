@@ -10,7 +10,7 @@ export class getCategoryPosts implements iGetCategoryPosts {
   ): Promise<CategoryPosts> => {
     return {
       totalPages: 1,
-      posts: posts,
+      posts,
     };
   };
 }

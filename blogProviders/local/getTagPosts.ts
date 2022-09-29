@@ -10,7 +10,7 @@ export class getTagPosts implements iGetTagPosts {
   ): Promise<TagPostsModel> => {
     return {
       totalPages: 1,
-      posts: posts,
+      posts,
     };
   };
 }
