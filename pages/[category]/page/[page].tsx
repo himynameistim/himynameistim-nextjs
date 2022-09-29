@@ -2,19 +2,22 @@ import Head from "next/head";
 import styles from "../../../styles/listing.module.scss";
 
 import React from "react";
+import { container } from "tsyringe";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Layout from "../../../layouts/layout";
 import CategoryHeading from "../../../components/category-heading";
 import { CategoryPagination } from "../../../components/categoryPagination";
 import { Article, DisplayMode } from "../../../components/article";
 import { PostModel } from "../../../Models/Post";
-import { CategoryModel } from "../../../Models/Category";
+import { CategoryModel } from "../../../Models/Categories";
 import {
-  getCategories,
-  getCategoryIdByUid,
-  getCategoryPosts,
-  getPostCount,
-} from "../../../utils/queries";
+  iGetCategories,
+  iGetCategory,
+  iGetCategoryPosts,
+  iGetLatestPosts,
+  iGetTags,
+} from "../../../blogProviders/blog/queries";
+import { getPostCount } from "../../../utils/queries";
 
 const pageSize = 3;
 
@@ -73,12 +76,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
     categoryId = "";
     categoryName = "Blog";
   } else {
-    const category: CategoryModel = await getCategoryIdByUid(cat);
-    categoryId = category.id;
+    const categoryQuery = container.resolve<iGetCategory>("iGetCategory");
+    const category: CategoryModel = await categoryQuery.getCategory(cat);
+    categoryId = category.uid;
     categoryName = category.name;
   }
 
-  const posts = await getCategoryPosts(categoryId, pageNo, pageSize);
+  const categoryPostsQuery =
+    container.resolve<iGetCategoryPosts>("iGetCategoryPosts");
+  const posts = await categoryPostsQuery.getCategoryPosts(
+    categoryId,
+    pageNo,
+    pageSize
+  );
 
   return {
     props: {
@@ -92,7 +102,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categories = await getCategories();
+  const categoryQuery = container.resolve<iGetCategories>("iGetCategories");
+  const categories = await categoryQuery.getAllCategories();
 
   var routes = [];
   // add pages for category

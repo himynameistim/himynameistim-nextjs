@@ -3,16 +3,16 @@ import * as prismic from "@prismicio/client";
 // Models
 import { CategoryModel } from "../../Models/Categories";
 import { iGetCategory } from "../blog/getCategory";
-import { prismicClient } from "./prismicClient";
+import { PrismicClient } from "./prismicClient";
 import { PrismicDocumentCategory } from "./Models/prismicCategory";
 import { prismicCategoryToCategory } from "./mappers";
 
 @injectable()
-export class getCategory implements iGetCategory {
-  prismicClient: prismicClient;
+export class GetCategory implements iGetCategory {
+  prismicClient: PrismicClient;
 
   constructor(
-    @inject("prismicClient") private prismicClientParam: prismicClient
+    @inject("prismicClient") private prismicClientParam: PrismicClient
   ) {
     this.prismicClient = prismicClientParam;
   }

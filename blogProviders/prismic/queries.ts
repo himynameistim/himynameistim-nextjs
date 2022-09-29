@@ -1,7 +1,7 @@
-export { getAllPosts } from "./getAllPosts";
-export { getCategories } from "./getCategories";
-export { getCategory } from "./getCategory";
-export { getCategoryPosts } from "./getCategoryPosts";
-export { getPost } from "./getPost";
-export { getTags } from "./getTags";
+export { GetAllPosts } from "./getAllPosts";
+export { GetCategories } from "./getCategories";
+export { GetCategory } from "./getCategory";
+export { GetCategoryPosts } from "./getCategoryPosts";
+export { GetPost } from "./getPost";
+export { GetTags } from "./getTags";
 export { GetLatestPosts } from "./getLatestPosts";

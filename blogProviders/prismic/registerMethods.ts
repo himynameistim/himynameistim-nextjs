@@ -1,26 +1,26 @@
 import {
-  getTags,
-  getCategories,
-  getCategory,
-  getCategoryPosts,
-  getPost,
-  getAllPosts,
+  GetTags,
+  GetCategories,
+  GetCategory,
+  GetCategoryPosts,
+  GetPost,
+  GetAllPosts,
   GetLatestPosts,
 } from "./queries";
 import { DependencyContainer } from "tsyringe";
-import { prismicClient } from "./prismicClient";
+import { PrismicClient } from "./prismicClient";
 
 export function registerMethods(container: DependencyContainer) {
   container.registerInstance(
     "prismicClient",
-    new prismicClient("himynameistim")
+    new PrismicClient("himynameistim")
   );
   container.register("iGetLatestPosts", GetLatestPosts);
-  container.register("iGetTags", getTags);
+  container.register("iGetTags", GetTags);
   //container.register("iGetTagPosts", getTagPosts);
-  container.register("iGetCategories", getCategories);
-  container.register("iGetCategory", getCategory);
-  container.register("iGetCategoryPosts", getCategoryPosts);
-  container.register("iGetPost", getPost);
-  container.register("iGetAllPosts", getAllPosts);
+  container.register("iGetCategories", GetCategories);
+  container.register("iGetCategory", GetCategory);
+  container.register("iGetCategoryPosts", GetCategoryPosts);
+  container.register("iGetPost", GetPost);
+  container.register("iGetAllPosts", GetAllPosts);
 }

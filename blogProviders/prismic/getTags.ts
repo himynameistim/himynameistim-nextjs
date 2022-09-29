@@ -2,14 +2,14 @@ import { inject, injectable } from "tsyringe";
 import { TagModel } from "../../Models/Tags";
 import { getPostCount } from "../../utils/queries";
 import { iGetTags } from "../blog/getTags";
-import { prismicClient } from "./prismicClient";
+import { PrismicClient } from "./prismicClient";
 
 @injectable()
-export class getTags implements iGetTags {
-  prismicClient: prismicClient;
+export class GetTags implements iGetTags {
+  prismicClient: PrismicClient;
 
   constructor(
-    @inject("prismicClient") private prismicClientParam: prismicClient
+    @inject("prismicClient") private prismicClientParam: PrismicClient
   ) {
     this.prismicClient = prismicClientParam;
   }

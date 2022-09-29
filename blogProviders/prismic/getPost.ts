@@ -1,26 +1,17 @@
 import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
-import { ImageBlock, PostModel, TextBlock } from "../../Models/Post";
+import { PostModel } from "../../Models/Post";
 import { iGetPost } from "../blog/getPost";
-import { prismicClient } from "./prismicClient";
-import * as prismicT from "@prismicio/types";
-import {
-  PrismicDocumentBlogPost,
-  PrismicSliceBlogPostBodyText,
-  PrismicSliceBlogPostBodyImageGallery,
-} from "./Models/prismicPost";
-import { ca } from "date-fns/locale";
-import { Link, RichText, Date } from "prismic-reactjs";
-import { linkResolver } from "../../prismic-configuration";
-import * as prismicH from "@prismicio/helpers";
+import { PrismicClient } from "./prismicClient";
+import { PrismicDocumentBlogPost } from "./Models/prismicPost";
 import { prismicPostToPost } from "./mappers";
 
 @injectable()
-export class getPost implements iGetPost {
-  prismicClient: prismicClient;
+export class GetPost implements iGetPost {
+  prismicClient: PrismicClient;
 
   constructor(
-    @inject("prismicClient") private prismicClientParam: prismicClient
+    @inject("prismicClient") private prismicClientParam: PrismicClient
   ) {
     this.prismicClient = prismicClientParam;
   }

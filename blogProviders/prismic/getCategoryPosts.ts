@@ -1,19 +1,18 @@
 import { inject, injectable } from "tsyringe";
-import { documentTypes } from "./documentTypes";
 import * as prismic from "@prismicio/client";
 
 import { CategoryPosts } from "../../Models/CategoryPosts";
 import { iGetCategoryPosts } from "../blog/getCategoryPosts";
 import { PrismicDocumentBlogPost } from "./Models/prismicPost";
-import { prismicClient } from "./prismicClient";
+import { PrismicClient } from "./prismicClient";
 import { prismicPostToPost } from "./mappers";
 
 @injectable()
-export class getCategoryPosts implements iGetCategoryPosts {
-  prismicClient: prismicClient;
+export class GetCategoryPosts implements iGetCategoryPosts {
+  prismicClient: PrismicClient;
 
   constructor(
-    @inject("prismicClient") private prismicClientParam: prismicClient
+    @inject("prismicClient") private prismicClientParam: PrismicClient
   ) {
     this.prismicClient = prismicClientParam;
   }

@@ -1,5 +1,5 @@
 import * as prismic from "@prismicio/client";
 
-export interface iPrismicClient {
+export interface IPrismicClient {
   client: prismic.Client;
 }
