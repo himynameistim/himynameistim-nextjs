@@ -20,9 +20,10 @@ export class GetPost implements IGetPost {
     uid: string,
     previewData: any
   ): Promise<PostModel | null> => {
+    const documentType: string = "post";
     return prismicPostToPost(
       await this.prismicClient.client.getByUID<PrismicDocumentBlogPost>(
-        "post",
+        documentType,
         uid
       )
     );
