@@ -3,7 +3,7 @@ import { IGetCategories } from "../blog/getCategories";
 // Models
 import { CategoryModel } from "../../Models/Categories";
 
-export class getCategories implements IGetCategories {
+export class GetCategories implements IGetCategories {
   constructor() {}
 
   public getAllCategories = async (): Promise<CategoryModel[]> => {

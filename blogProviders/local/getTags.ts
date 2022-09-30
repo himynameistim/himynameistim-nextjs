@@ -1,7 +1,7 @@
 import { TagModel } from "../../Models/Tags";
 import { IGetTags } from "../blog/getTags";
 
-export class getTags implements IGetTags {
+export class GetTags implements IGetTags {
   public getTags = async (includeCount: boolean): Promise<TagModel[]> => {
     return [
       {

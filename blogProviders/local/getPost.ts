@@ -2,7 +2,7 @@ import { PostModel } from "../../Models/Post";
 import { IGetPost } from "../blog/getPost";
 import { posts } from "./data/posts";
 
-export class getPost implements IGetPost {
+export class GetPost implements IGetPost {
   public getPost = async (
     uid: string,
     previewData: any

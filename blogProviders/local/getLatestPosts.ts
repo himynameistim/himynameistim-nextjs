@@ -2,7 +2,7 @@
 import { FeaturedPost } from "../../Models/FeaturedPost";
 import { IGetLatestPosts } from "../blog/getLatestPosts";
 
-export class getLatestPosts implements IGetLatestPosts {
+export class GetLatestPosts implements IGetLatestPosts {
   public getLatestPosts = async (
     categoryUid?: string
   ): Promise<FeaturedPost[]> => {
