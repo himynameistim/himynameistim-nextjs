@@ -23,6 +23,8 @@ export class GetCategory implements IGetCategory {
         "categories",
         uid
       );
+    console.log(cat.id);
+
     return prismicCategoryToCategory(cat, await this.getPostCount(cat.id));
   };
 

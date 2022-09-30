@@ -76,7 +76,7 @@ export function prismicCategoryToCategory(
 ): CategoryModel {
   return {
     name: prismicCategory.data.name as string,
-    uid: prismicCategory.id,
+    uid: prismicCategory.uid as string,
     postCount: postCount,
   };
 }
