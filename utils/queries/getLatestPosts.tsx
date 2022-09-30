@@ -1,12 +1,12 @@
 import { inject, injectable } from "tsyringe";
-import { iGetLatestPosts } from "./iGetLatestPosts";
+import { IGetLatestPosts } from "./IGetLatestPosts";
 import gql from "graphql-tag";
 // Models
 import { FeaturedPost } from "../../Models/FeaturedPost";
 import { graphClient } from "../iGraphQl";
 
 @injectable()
-export class getLatestPosts implements iGetLatestPosts {
+export class getLatestPosts implements IGetLatestPosts {
   graphClient: graphClient;
 
   constructor(@inject("graphClient") private graphClientParam: graphClient) {

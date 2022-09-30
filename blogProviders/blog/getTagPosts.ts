@@ -1,7 +1,7 @@
 // Models
 import { TagPostsModel } from "../../Models/TagPosts";
 
-export interface iGetTagPosts {
+export interface IGetTagPosts {
   getTagPosts(
     tag: string,
     page: number,

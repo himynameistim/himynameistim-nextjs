@@ -1,13 +1,13 @@
 import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 import { PostModel } from "../../Models/Post";
-import { iGetPost } from "../blog/getPost";
+import { IGetPost } from "../blog/getPost";
 import { PrismicClient } from "./prismicClient";
 import { PrismicDocumentBlogPost } from "./Models/prismicPost";
 import { prismicPostToPost } from "./mappers";
 
 @injectable()
-export class GetPost implements iGetPost {
+export class GetPost implements IGetPost {
   prismicClient: PrismicClient;
 
   constructor(

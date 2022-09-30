@@ -1,6 +1,6 @@
 // Models
 import { FeaturedPost } from "../../Models/FeaturedPost";
 
-export interface iGetLatestPosts {
+export interface IGetLatestPosts {
   getLatestPosts(categoryUid?: string): Promise<FeaturedPost[]>;
 }

@@ -1,12 +1,12 @@
 import "reflect-metadata";
 import { container } from "tsyringe";
-import { iGetCategories } from "../../blog/queries";
+import { IGetCategories } from "../../blog/queries";
 import { GetCategories } from "../queries";
 import { PrismicClient } from "../prismicClient";
 
 test("getCategories returns more than one category with a post count", async () => {
   const pc = new PrismicClient("himynameistim");
-  const gc: iGetCategories = new GetCategories(pc);
+  const gc: IGetCategories = new GetCategories(pc);
 
   const categories = await gc.getAllCategories();
 

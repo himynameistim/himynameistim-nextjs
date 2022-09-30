@@ -1,8 +1,8 @@
 import { CategoryPosts } from "../../Models/CategoryPosts";
-import { iGetCategoryPosts } from "../blog/getCategoryPosts";
+import { IGetCategoryPosts } from "../blog/getCategoryPosts";
 import { posts } from "./data/posts";
 
-export class getCategoryPosts implements iGetCategoryPosts {
+export class getCategoryPosts implements IGetCategoryPosts {
   public getCategoryPosts = async (
     categoryId: string,
     page: number,

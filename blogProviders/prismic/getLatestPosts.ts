@@ -3,12 +3,12 @@ import * as prismic from "@prismicio/client";
 // Models
 import { PrismicClient } from "./prismicClient";
 import { prismicPostToFeaturedPost } from "./mappers";
-import { iGetLatestPosts } from "../blog/getLatestPosts";
+import { IGetLatestPosts } from "../blog/getLatestPosts";
 import { FeaturedPost } from "../../Models/FeaturedPost";
 import { PrismicDocumentBlogPost } from "./Models/prismicPost";
 
 @injectable()
-export class GetLatestPosts implements iGetLatestPosts {
+export class GetLatestPosts implements IGetLatestPosts {
   prismicClient: PrismicClient;
 
   constructor(

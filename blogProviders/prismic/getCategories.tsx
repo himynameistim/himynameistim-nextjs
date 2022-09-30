@@ -3,11 +3,11 @@ import * as prismic from "@prismicio/client";
 
 // Models
 import { CategoryModel } from "../../Models/Categories";
-import { iGetCategories } from "../blog/queries";
+import { IGetCategories } from "../blog/queries";
 import { PrismicClient } from "./prismicClient";
 
 @injectable()
-export class GetCategories implements iGetCategories {
+export class GetCategories implements IGetCategories {
   prismicClient: PrismicClient;
 
   constructor(

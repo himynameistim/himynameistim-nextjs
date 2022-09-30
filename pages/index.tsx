@@ -6,7 +6,7 @@ import { GetStaticProps } from "next";
 import Layout from "../layouts/layout";
 import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1";
 import SectionHeading from "../components/section-heading";
-import { iGetLatestPosts } from "../blogProviders/blog/getLatestPosts";
+import { IGetLatestPosts } from "../blogProviders/blog/getLatestPosts";
 
 export default function Home({
   latestPosts,
@@ -40,7 +40,7 @@ export default function Home({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const instance = container.resolve<iGetLatestPosts>("iGetLatestPosts");
+  const instance = container.resolve<IGetLatestPosts>("IGetLatestPosts");
 
   const latestPosts = await instance.getLatestPosts();
   const webDevelopmentPosts = await instance.getLatestPosts("X8kFhxIAACcAn9oY");

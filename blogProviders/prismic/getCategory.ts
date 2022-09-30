@@ -2,13 +2,13 @@ import { inject, injectable } from "tsyringe";
 import * as prismic from "@prismicio/client";
 // Models
 import { CategoryModel } from "../../Models/Categories";
-import { iGetCategory } from "../blog/getCategory";
+import { IGetCategory } from "../blog/getCategory";
 import { PrismicClient } from "./prismicClient";
 import { PrismicDocumentCategory } from "./Models/prismicCategory";
 import { prismicCategoryToCategory } from "./mappers";
 
 @injectable()
-export class GetCategory implements iGetCategory {
+export class GetCategory implements IGetCategory {
   prismicClient: PrismicClient;
 
   constructor(

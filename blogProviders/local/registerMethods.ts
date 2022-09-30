@@ -11,12 +11,12 @@ import {
 import { DependencyContainer } from "tsyringe";
 
 export function registerMethods(container: DependencyContainer) {
-  container.register("iGetLatestPosts", getLatestPosts);
-  container.register("iGetTags", getTags);
-  container.register("iGetTagPosts", getTagPosts);
-  container.register("iGetCategories", getCategories);
-  container.register("iGetCategory", getCategory);
-  container.register("iGetCategoryPosts", getCategoryPosts);
-  container.register("iGetPost", getPost);
-  container.register("iGetAllPosts", getAllPosts);
+  container.register("IGetLatestPosts", getLatestPosts);
+  container.register("IGetTags", getTags);
+  container.register("IGetTagPosts", getTagPosts);
+  container.register("IGetCategories", getCategories);
+  container.register("IGetCategory", getCategory);
+  container.register("IGetCategoryPosts", getCategoryPosts);
+  container.register("IGetPost", getPost);
+  container.register("IGetAllPosts", getAllPosts);
 }

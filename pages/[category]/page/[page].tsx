@@ -11,11 +11,11 @@ import { Article, DisplayMode } from "../../../components/article";
 import { PostModel } from "../../../Models/Post";
 import { CategoryModel } from "../../../Models/Categories";
 import {
-  iGetCategories,
-  iGetCategory,
-  iGetCategoryPosts,
-  iGetLatestPosts,
-  iGetTags,
+  IGetCategories,
+  IGetCategory,
+  IGetCategoryPosts,
+  IGetLatestPosts,
+  IGetTags,
 } from "../../../blogProviders/blog/queries";
 import { getPostCount } from "../../../utils/queries";
 
@@ -76,14 +76,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
     categoryId = "";
     categoryName = "Blog";
   } else {
-    const categoryQuery = container.resolve<iGetCategory>("iGetCategory");
+    const categoryQuery = container.resolve<IGetCategory>("IGetCategory");
     const category: CategoryModel = await categoryQuery.getCategory(cat);
     categoryId = category.uid;
     categoryName = category.name;
   }
 
   const categoryPostsQuery =
-    container.resolve<iGetCategoryPosts>("iGetCategoryPosts");
+    container.resolve<IGetCategoryPosts>("IGetCategoryPosts");
   const posts = await categoryPostsQuery.getCategoryPosts(
     categoryId,
     pageNo,
@@ -102,7 +102,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categoryQuery = container.resolve<iGetCategories>("iGetCategories");
+  const categoryQuery = container.resolve<IGetCategories>("IGetCategories");
   const categories = await categoryQuery.getAllCategories();
 
   var routes = [];
