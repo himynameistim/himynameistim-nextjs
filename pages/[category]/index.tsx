@@ -14,7 +14,6 @@ import {
   IGetCategories,
   IGetCategory,
   IGetCategoryPosts,
-  IGetLatestPosts,
   IGetTags,
 } from "../../blogProviders/blog/queries";
 
@@ -66,8 +65,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     ? context.params.category.toString()
     : "";
 
-  var categoryId: string;
-  var categoryName: any;
+  let categoryId: string;
+  let categoryName: any;
   if (cat == "blog") {
     categoryId = "";
     categoryName = "Blog";
@@ -101,7 +100,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const categoryQuery = container.resolve<IGetCategories>("IGetCategories");
   const categories = await categoryQuery.getAllCategories();
 
-  var routes = categories.map((doc) => `/${doc.uid}`);
+  let routes = categories.map((doc) => `/${doc.uid}`);
   routes.push(`/blog`);
 
   return {

@@ -76,11 +76,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const tags = await getTags(true);
 
-  var routes = [];
+  let routes = [];
   // add pages for category
   for (let tag of tags) {
-    var pages = Math.ceil(tag.postCount / pageSize);
-    for (var x = 0; x < pages; x++) {
+    let pages = Math.ceil(tag.postCount / pageSize);
+    for (let x = 0; x < pages; x++) {
       routes.push(
         `/tag/${tag.tag.toLowerCase().replace(" ", "-")}/page/${x + 1}`
       );

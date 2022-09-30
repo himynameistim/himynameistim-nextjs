@@ -14,7 +14,6 @@ import {
   IGetCategories,
   IGetCategory,
   IGetCategoryPosts,
-  IGetLatestPosts,
   IGetTags,
 } from "../../../blogProviders/blog/queries";
 import { getPostCount } from "../../../utils/queries";
@@ -70,8 +69,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     context.params?.page ? context.params.page.toString() : "1"
   );
 
-  var categoryId: string;
-  var categoryName: any;
+  let categoryId: string;
+  let categoryName: any;
   if (cat == "blog") {
     categoryId = "";
     categoryName = "Blog";
@@ -105,16 +104,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const categoryQuery = container.resolve<IGetCategories>("IGetCategories");
   const categories = await categoryQuery.getAllCategories();
 
-  var routes = [];
+  let routes = [];
   // add pages for category
   for (let category of categories) {
-    var pages = Math.ceil(category.postCount / pageSize);
+    let pages = Math.ceil(category.postCount / pageSize);
     for (let p = 0; p < pages; p++) {
       routes.push(`/${category.uid}/page/${p + 1}`);
     }
   }
 
-  var blogPages = Math.ceil((await getPostCount()) / pageSize);
+  let blogPages = Math.ceil((await getPostCount()) / pageSize);
   for (var bp = 0; bp < blogPages; bp++) {
     routes.push(`/blog/page/${bp + 1}`);
   }

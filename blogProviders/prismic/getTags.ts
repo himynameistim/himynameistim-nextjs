@@ -1,6 +1,5 @@
 import { inject, injectable } from "tsyringe";
 import { TagModel } from "../../Models/Tags";
-import { getPostCount } from "../../utils/queries";
 import { IGetTags } from "../blog/getTags";
 import { PrismicClient } from "./prismicClient";
 

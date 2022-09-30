@@ -4,8 +4,6 @@ import { IGetCategories } from "../blog/getCategories";
 import { CategoryModel } from "../../Models/Categories";
 
 export class GetCategories implements IGetCategories {
-  constructor() {}
-
   public getAllCategories = async (): Promise<CategoryModel[]> => {
     return [
       {

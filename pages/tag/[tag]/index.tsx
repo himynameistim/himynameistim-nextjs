@@ -79,7 +79,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const getTagsQuery = container.resolve<IGetTags>("IGetTags");
   const tags = await getTagsQuery.getTags(false);
 
-  var routes = tags.map(
+  let routes = tags.map(
     (tag) => `/tag/${tag.tag.toLowerCase().replace(" ", "-")}`
   );
 

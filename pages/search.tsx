@@ -56,7 +56,7 @@ export type AlgoliaHit = {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  var content: AlgoliaHits;
+  let content: AlgoliaHits;
   if (
     process.env.algoliaAppId &&
     process.env.algoliaApiKey &&

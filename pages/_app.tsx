@@ -8,7 +8,6 @@ import * as gtag from "../utils/gtag";
 import { container } from "tsyringe";
 import ApolloClient from "apollo-client";
 import { PrismicLink } from "apollo-link-prismic";
-import { graphApiEndpoint } from "../prismic-configuration";
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
