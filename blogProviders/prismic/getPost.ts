@@ -22,7 +22,7 @@ export class GetPost implements IGetPost {
   ): Promise<PostModel | null> => {
     return prismicPostToPost(
       await this.prismicClient.client.getByUID<PrismicDocumentBlogPost>(
-        "postTEST",
+        "post",
         uid
       )
     );
