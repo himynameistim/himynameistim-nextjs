@@ -22,7 +22,7 @@ export class GetTags implements iGetTags {
 
     for (const tag of prismicTags) {
       tags.push({
-        tag: tag,
+        tag,
         postCount: await this.getPostCount(tag),
       });
     }

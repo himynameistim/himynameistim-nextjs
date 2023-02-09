@@ -27,8 +27,8 @@ export class GetCategoryPosts implements iGetCategoryPosts {
         "post",
         {
           predicates: [prismic.predicate.at("my.post.category", categoryId)],
-          pageSize: pageSize,
-          page: page,
+          pageSize,
+          page,
           orderings: {
             field: "my.post.post_date",
             direction: "desc",
