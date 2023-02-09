@@ -1,9 +1,9 @@
-export { getAllPosts } from "./getAllPosts";
-export { getCategories } from "./getCategories";
-export { getCategory } from "./getCategory";
-export { getCategoryPosts } from "./getCategoryPosts";
-export { getLatestPosts } from "./getLatestPosts";
-export { getPost } from "./getPost";
-export { getTags } from "./getTags";
-export { getTagPosts } from "./getTagPosts";
+export { GetAllPosts } from "./getAllPosts";
+export { GetCategories } from "./getCategories";
+export { GetCategory } from "./getCategory";
+export { GetCategoryPosts } from "./getCategoryPosts";
+export { GetLatestPosts } from "./getLatestPosts";
+export { GetPost } from "./getPost";
+export { GetTags } from "./getTags";
+export { GetTagPosts } from "./getTagPosts";
 //export { queryRepeatableDocuments } from "./queryRepeatableDocuments"

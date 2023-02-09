@@ -1,8 +1,8 @@
-import { iGetCategory } from "../../blog/queries";
-import { getCategory } from "../getCategory";
+import { IGetCategory } from "../../blog/queries";
+import { GetCategory } from "../getCategory";
 
 test("getCategory returns category with the id given", async () => {
-  const gc: iGetCategory = new getCategory();
+  const gc: IGetCategory = new GetCategory();
 
   expect((await gc.getCategory("sitecore")).uid).toBe("sitecore");
 });

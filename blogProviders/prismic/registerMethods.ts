@@ -15,12 +15,12 @@ export function registerMethods(container: DependencyContainer) {
     "prismicClient",
     new PrismicClient("himynameistim")
   );
-  container.register("iGetLatestPosts", GetLatestPosts);
-  container.register("iGetTags", GetTags);
-  //container.register("iGetTagPosts", getTagPosts);
-  container.register("iGetCategories", GetCategories);
-  container.register("iGetCategory", GetCategory);
-  container.register("iGetCategoryPosts", GetCategoryPosts);
-  container.register("iGetPost", GetPost);
-  container.register("iGetAllPosts", GetAllPosts);
+  container.register("IGetLatestPosts", GetLatestPosts);
+  container.register("IGetTags", GetTags);
+  //container.register("IGetTagPosts", getTagPosts);
+  container.register("IGetCategories", GetCategories);
+  container.register("IGetCategory", GetCategory);
+  container.register("IGetCategoryPosts", GetCategoryPosts);
+  container.register("IGetPost", GetPost);
+  container.register("IGetAllPosts", GetAllPosts);
 }

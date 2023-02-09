@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
 import { TagModel } from "../../Models/Tags";
 import { getPostCount } from "../../utils/queries";
-import { iGetTags } from "../blog/getTags";
+import { IGetTags } from "../blog/getTags";
 import { PrismicClient } from "./prismicClient";
 
 @injectable()
-export class GetTags implements iGetTags {
+export class GetTags implements IGetTags {
   prismicClient: PrismicClient;
 
   constructor(

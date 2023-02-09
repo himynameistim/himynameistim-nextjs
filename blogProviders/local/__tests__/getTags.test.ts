@@ -1,8 +1,8 @@
-import { iGetTags } from "../../blog/queries";
-import { getTags } from "../queries";
+import { IGetTags } from "../../blog/queries";
+import { GetTags } from "../queries";
 
 test("getTags returns more than 0 tags", async () => {
-  const gt: iGetTags = new getTags();
+  const gt: IGetTags = new GetTags();
 
   expect((await gt.getTags(true)).length).toBeGreaterThan(0);
 });

@@ -1,8 +1,8 @@
 // Models
 import { CategoryModel } from "../../Models/Categories";
-import { iGetCategory } from "../blog/getCategory";
+import { IGetCategory } from "../blog/getCategory";
 
-export class getCategory implements iGetCategory {
+export class GetCategory implements IGetCategory {
   public getCategory = async (uid: string): Promise<CategoryModel> => {
     return {
       uid: "sitecore",

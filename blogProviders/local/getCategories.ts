@@ -1,9 +1,9 @@
-import { iGetCategories } from "../blog/getCategories";
+import { IGetCategories } from "../blog/getCategories";
 
 // Models
 import { CategoryModel } from "../../Models/Categories";
 
-export class getCategories implements iGetCategories {
+export class GetCategories implements IGetCategories {
   constructor() {}
 
   public getAllCategories = async (): Promise<CategoryModel[]> => {

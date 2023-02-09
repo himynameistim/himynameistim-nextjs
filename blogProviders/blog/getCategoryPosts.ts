@@ -1,7 +1,7 @@
 // Models
 import { CategoryPosts } from "../../Models/CategoryPosts";
 
-export interface iGetCategoryPosts {
+export interface IGetCategoryPosts {
   getCategoryPosts(
     categoryId: string,
     page: number,

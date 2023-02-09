@@ -1,22 +1,22 @@
 import {
-  getTags,
-  getLatestPosts,
-  getTagPosts,
-  getCategories,
-  getCategory,
-  getCategoryPosts,
-  getPost,
-  getAllPosts,
+  GetTags,
+  GetLatestPosts,
+  GetTagPosts,
+  GetCategories,
+  GetCategory,
+  GetCategoryPosts,
+  GetPost,
+  GetAllPosts,
 } from "./queries";
 import { DependencyContainer } from "tsyringe";
 
 export function registerMethods(container: DependencyContainer) {
-  container.register("iGetLatestPosts", getLatestPosts);
-  container.register("iGetTags", getTags);
-  container.register("iGetTagPosts", getTagPosts);
-  container.register("iGetCategories", getCategories);
-  container.register("iGetCategory", getCategory);
-  container.register("iGetCategoryPosts", getCategoryPosts);
-  container.register("iGetPost", getPost);
-  container.register("iGetAllPosts", getAllPosts);
+  container.register("IGetLatestPosts", GetLatestPosts);
+  container.register("IGetTags", GetTags);
+  container.register("IGetTagPosts", GetTagPosts);
+  container.register("IGetCategories", GetCategories);
+  container.register("IGetCategory", GetCategory);
+  container.register("IGetCategoryPosts", GetCategoryPosts);
+  container.register("IGetPost", GetPost);
+  container.register("IGetAllPosts", GetAllPosts);
 }

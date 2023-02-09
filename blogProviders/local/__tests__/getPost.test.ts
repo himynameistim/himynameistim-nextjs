@@ -1,8 +1,8 @@
-import { iGetPost } from "../../blog/queries";
-import { getPost } from "../getPost";
+import { IGetPost } from "../../blog/queries";
+import { GetPost } from "../getPost";
 
 test("getPost returns post with the uid given", async () => {
-  const gp: iGetPost = new getPost();
+  const gp: IGetPost = new GetPost();
 
   expect((await gp.getPost("1", false))?.uid).toBe("1");
 });

@@ -1,6 +1,6 @@
 // Models
 import { CategoryModel } from "../../Models/Categories";
 
-export interface iGetCategory {
+export interface IGetCategory {
   getCategory(uid: string): Promise<CategoryModel>;
 }

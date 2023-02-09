@@ -1,8 +1,8 @@
-import { iGetAllPosts } from "../../blog/queries";
-import { getAllPosts } from "../getAllPosts";
+import { IGetAllPosts } from "../../blog/queries";
+import { GetAllPosts } from "../getAllPosts";
 
 test("getAllPosts returns more than 0 posts", async () => {
-  const gap: iGetAllPosts = new getAllPosts();
+  const gap: IGetAllPosts = new GetAllPosts();
 
   expect((await gap.getAllPosts()).length).toBeGreaterThan(0);
 });

@@ -11,9 +11,9 @@ import markdownToHtml from "../../utils/prism";
 // Project functions & styles
 import layoutStyles from "../../styles/layout-styles.module.scss";
 import postStyles from "../../styles/post.module.scss";
-import { iGetPost } from "../../blogProviders/blog/queries";
+import { IGetPost } from "../../blogProviders/blog/queries";
 import { container } from "tsyringe";
-import { iGetAllPosts } from "../../blogProviders/blog/getAllPosts";
+import { IGetAllPosts } from "../../blogProviders/blog/getAllPosts";
 
 /**
  * Post page component
@@ -59,7 +59,7 @@ const Post = ({ post }: { post: PostModel }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const uid: string = context.params?.uid ? context.params.uid.toString() : "";
-  const postQuery = container.resolve<iGetPost>("iGetPost");
+  const postQuery = container.resolve<IGetPost>("IGetPost");
   const post = await postQuery.getPost(uid, context.previewData);
 
   if (post) {
@@ -85,7 +85,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const getAllPostsQuery = container.resolve<iGetAllPosts>("iGetAllPosts");
+  const getAllPostsQuery = container.resolve<IGetAllPosts>("IGetAllPosts");
   const documents = await getAllPostsQuery.getAllPosts(
   );
   return {

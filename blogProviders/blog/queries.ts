@@ -1,9 +1,9 @@
-export type { iGetAllPosts } from "./getAllPosts";
-export type { iGetCategories } from "./getCategories";
-export type { iGetCategory } from "./getCategory";
-export type { iGetCategoryPosts } from "./getCategoryPosts";
-export type { iGetLatestPosts } from "./getLatestPosts";
-export type { iGetPost } from "./getPost";
-export type { iGetTags } from "./getTags";
-export type { iGetTagPosts } from "./getTagPosts";
+export type { IGetAllPosts } from "./getAllPosts";
+export type { IGetCategories } from "./getCategories";
+export type { IGetCategory } from "./getCategory";
+export type { IGetCategoryPosts } from "./getCategoryPosts";
+export type { IGetLatestPosts } from "./getLatestPosts";
+export type { IGetPost } from "./getPost";
+export type { IGetTags } from "./getTags";
+export type { IGetTagPosts } from "./getTagPosts";
 //export { queryRepeatableDocuments } from "./queryRepeatableDocuments"

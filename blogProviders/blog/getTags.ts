@@ -1,5 +1,5 @@
 import { TagModel } from "../../Models/Tags";
 
-export interface iGetTags {
+export interface IGetTags {
   getTags(includeCount: boolean): Promise<TagModel[]>;
 }

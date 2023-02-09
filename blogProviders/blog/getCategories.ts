@@ -1,6 +1,6 @@
 // Models
 import { CategoryModel } from "../../Models/Categories";
 
-export interface iGetCategories {
+export interface IGetCategories {
   getAllCategories(): Promise<CategoryModel[]>;
 }

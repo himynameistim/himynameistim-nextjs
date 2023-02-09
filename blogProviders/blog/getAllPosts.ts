@@ -1,6 +1,6 @@
 // Models
 import { PostModel } from "../../Models/Post";
 
-export interface iGetAllPosts {
+export interface IGetAllPosts {
   getAllPosts(): Promise<PostModel[]>;
 }

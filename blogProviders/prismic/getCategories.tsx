@@ -3,11 +3,12 @@ import * as prismic from "@prismicio/client";
 
 // Models
 import { CategoryModel } from "../../Models/Categories";
-import { iGetCategories } from "../blog/queries";
+import { IGetCategories } from "../blog/queries";
 import { PrismicClient } from "./prismicClient";
+import { PrismicDocumentCategory } from "./Models/prismicCategory";
 
 @injectable()
-export class GetCategories implements iGetCategories {
+export class GetCategories implements IGetCategories {
   prismicClient: PrismicClient;
 
   constructor(
@@ -18,7 +19,7 @@ export class GetCategories implements iGetCategories {
 
   public getAllCategories = async (): Promise<CategoryModel[]> => {
     const categoriesResults =
-      this.prismicClient.client.getAllByType("categories");
+      this.prismicClient.client.getAllByType<PrismicDocumentCategory>("categories");
     let categories: Array<CategoryModel> = [];
 
     for (let cat of await categoriesResults) {
@@ -26,7 +27,7 @@ export class GetCategories implements iGetCategories {
 
       categories.push({
         uid: cat.uid!,
-        name: cat.data.name,
+        name: cat.data.name as string,
         postCount: count,
       });
     }
