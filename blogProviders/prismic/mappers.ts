@@ -49,6 +49,14 @@ export function prismicPostToPost(
         };
         post.data.body.push(imageSlice);
         break;
+      case "code_block":
+        let codeSlice: CodeBlock = {
+          code: "",
+          language: "",
+          html: "",
+        };
+        post.data.body.push(codeSlice);
+        break;
     }
   }
 
@@ -76,7 +84,7 @@ export function prismicCategoryToCategory(
 ): CategoryModel {
   return {
     name: prismicCategory.data.name as string,
-    uid: prismicCategory.uid as string,
+    id: prismicCategory.id as string,
     postCount: postCount,
   };
 }

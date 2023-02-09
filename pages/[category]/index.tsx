@@ -73,7 +73,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   } else {
     const categoryQuery = container.resolve<IGetCategory>("IGetCategory");
     const category: CategoryModel = await categoryQuery.getCategory(cat);
-    categoryId = category.uid;
+    categoryId = category.id!;
     categoryName = category.name;
   }
 

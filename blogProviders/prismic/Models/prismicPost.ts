@@ -21,16 +21,26 @@ export type PrismicSliceBlogPostBodyQuote = prismicT.Slice<
   }
 >;
 
-export type PrismicDocumentBlogPost = prismicT.PrismicDocument<{
-  title: prismicT.TitleField;
-  post_date: prismicT.DateField;
-  image: prismicT.ImageField;
-  foo: prismicT.SliceZone<PrismicSliceBlogPostBodyText>;
-  body: prismicT.SliceZone<
-    | PrismicSliceBlogPostBodyText
-    | PrismicSliceBlogPostBodyImageGallery
-    | PrismicSliceBlogPostBodyQuote
-  >;
-} /*,
+export type PrismicSliceCodeBlock = prismicT.Slice<
+  "code_block",
+  {
+    language: prismicT.CustomTypeModelSelectField;
+  }
+>;
+
+export type PrismicDocumentBlogPost = prismicT.PrismicDocument<
+  {
+    title: prismicT.TitleField;
+    post_date: prismicT.DateField;
+    image: prismicT.ImageField;
+    foo: prismicT.SliceZone<PrismicSliceBlogPostBodyText>;
+    body: prismicT.SliceZone<
+      | PrismicSliceBlogPostBodyText
+      | PrismicSliceBlogPostBodyImageGallery
+      | PrismicSliceBlogPostBodyQuote
+      | PrismicSliceCodeBlock
+    >;
+  },
   "page",
-  "en-us" | "fr-fr"*/>;
+  "en-us" | "fr-fr"
+>;
