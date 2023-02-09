@@ -1,7 +1,8 @@
 export interface CategoryModel {
-  uid: string,
-  name: string,
-  postCount: number
+  uid?: string;
+  id?: string;
+  name: string;
+  postCount: number;
 }
 
 export interface CategoriesModel {

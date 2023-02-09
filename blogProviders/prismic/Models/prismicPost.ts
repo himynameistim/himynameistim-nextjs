@@ -21,6 +21,13 @@ export type PrismicSliceBlogPostBodyQuote = prismicT.Slice<
   }
 >;
 
+export type PrismicSliceCodeBlock = prismicT.Slice<
+  "code_block",
+  {
+    language: prismicT.CustomTypeModelSelectField;
+  }
+>;
+
 export type PrismicDocumentBlogPost = prismicT.PrismicDocument<
   {
     title: prismicT.TitleField;
@@ -31,6 +38,7 @@ export type PrismicDocumentBlogPost = prismicT.PrismicDocument<
       | PrismicSliceBlogPostBodyText
       | PrismicSliceBlogPostBodyImageGallery
       | PrismicSliceBlogPostBodyQuote
+      | PrismicSliceCodeBlock
     >;
   },
   "page",
