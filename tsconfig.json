@@ -20,7 +20,11 @@
     "downlevelIteration": true,
     "incremental": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "@Models/*": ["Models/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

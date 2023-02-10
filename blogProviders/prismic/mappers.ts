@@ -1,9 +1,9 @@
-import { ImageBlock, PostModel, TextBlock } from "../../Models/Post";
+import { CodeBlock, ImageBlock, PostModel, TextBlock } from "../../Models/Post";
 import { PrismicDocumentBlogPost } from "./Models/prismicPost";
 import * as prismicH from "@prismicio/helpers";
-import { CategoryModel } from "../../Models/Categories";
+import { CategoryModel } from "@Models/Categories";
 import { PrismicDocumentCategory } from "./Models/prismicCategory";
-import { FeaturedPost } from "../../Models/FeaturedPost";
+import { FeaturedPost } from "@Models/FeaturedPost";
 
 export function prismicPostToPost(
   prismicPost: PrismicDocumentBlogPost
@@ -51,6 +51,7 @@ export function prismicPostToPost(
         break;
       case "code_block":
         let codeSlice: CodeBlock = {
+          sliceType: slice.slice_type,
           code: "",
           language: "",
           html: "",

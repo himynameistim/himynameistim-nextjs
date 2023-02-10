@@ -8,7 +8,7 @@ test("getCategory returns category with the uid given", async () => {
   const pc = new PrismicClient("himynameistim");
   const gc: IGetCategory = new GetCategory(pc);
 
-  const cat = await gc.getCategory("sitecore");
+  const cat = await gc.getCategory("general");
 
-  expect(cat?.uid).toBe("sitecore");
+  expect(cat?.uid).toBe("general");
 });
