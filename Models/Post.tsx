@@ -4,7 +4,7 @@ export interface PostModel {
   uid: string;
   type: string;
   data: {
-    heading?: string
+    heading?: string;
     title?: RichTextBlock[];
     postDate: string;
     image: {
@@ -21,7 +21,7 @@ export interface PostModel {
 }
 
 export interface Slices {
-  sliceType: string
+  sliceType: string;
 }
 
 export interface TextBlock extends Slices {
@@ -29,8 +29,8 @@ export interface TextBlock extends Slices {
 }
 
 export interface CodeBlock extends Slices {
-  code: string;
-  language: string;
+  code?: string;
+  language: string | undefined | null;
   html: string;
 }
 
@@ -43,10 +43,10 @@ export interface ImageBlock extends Slices {
 }
 
 export interface Image {
-url: string;
-alt: string;
-dimensions: {
-  height: string;
-  width: string;
-}
+  url: string;
+  alt: string;
+  dimensions: {
+    height: string;
+    width: string;
+  };
 }

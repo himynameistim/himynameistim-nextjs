@@ -52,9 +52,8 @@ export function prismicPostToPost(
       case "code_block":
         let codeSlice: CodeBlock = {
           sliceType: slice.slice_type,
-          code: "",
-          language: "",
-          html: "",
+          language: slice.primary.language,
+          html: prismicH.asHTML(slice.primary.code),
         };
         post.data.body.push(codeSlice);
         break;

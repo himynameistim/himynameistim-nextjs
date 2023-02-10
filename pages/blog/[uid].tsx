@@ -20,7 +20,8 @@ import { IGetAllPosts } from "../../blogProviders/blog/getAllPosts";
  */
 const Post = ({ post }: { post: PostModel }) => {
   if (post && post.data) {
-    const title = post.data.heading?.length !== 0 ? post.data.heading : "Untitled";
+    const title =
+      post.data.heading?.length !== 0 ? post.data.heading : "Untitled";
 
     return (
       <Layout>
@@ -62,7 +63,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const postQuery = container.resolve<IGetPost>("IGetPost");
   const post = await postQuery.getPost(uid, context.previewData);
 
-  if (post) {
+  /*if (post) {
   for (let bodyPart of post.data.body) {
     if (
       bodyPart.sliceType == "code_block" ||
@@ -74,7 +75,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       );
     }
   }
-  }
+  }*/
 
   return {
     props: {
@@ -86,8 +87,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const getAllPostsQuery = container.resolve<IGetAllPosts>("IGetAllPosts");
-  const documents = await getAllPostsQuery.getAllPosts(
-  );
+  const documents = await getAllPostsQuery.getAllPosts();
   return {
     paths: documents.map((doc) => `/blog/${doc.uid}`),
     fallback: false,

@@ -1,17 +1,17 @@
-import React from 'react'
-import { CodeBlock } from '../../../Models/Post'
+import React from "react";
+import { CodeBlock } from "../../../Models/Post";
 
 /**
  * Code slice component
  */
-const CodeSlice = ({ slice }: {slice: CodeBlock}) => {
- 
-return (
-   <>
-     <pre>
-     <code dangerouslySetInnerHTML={{__html: slice.code}}></code>
-     </pre>
-</>
-)}
+const CodeSlice = ({ slice }: { slice: CodeBlock }) => {
+  return (
+    <>
+      <pre>
+        <code dangerouslySetInnerHTML={{ __html: slice.html }}></code>
+      </pre>
+    </>
+  );
+};
 
-export default CodeSlice
+export default CodeSlice;
