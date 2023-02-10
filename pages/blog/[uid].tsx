@@ -5,8 +5,7 @@ import Head from "next/head";
 // Project components
 import Layout from "../../layouts/layout";
 import { Article, DisplayMode } from "../../components/article";
-import { CodeBlock, PostModel } from "../../Models/Post";
-import markdownToHtml from "../../utils/prism";
+import { PostModel } from "../../Models/Post";
 
 // Project functions & styles
 import layoutStyles from "../../styles/layout-styles.module.scss";
@@ -62,20 +61,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const uid: string = context.params?.uid ? context.params.uid.toString() : "";
   const postQuery = container.resolve<IGetPost>("IGetPost");
   const post = await postQuery.getPost(uid, context.previewData);
-
-  /*if (post) {
-  for (let bodyPart of post.data.body) {
-    if (
-      bodyPart.sliceType == "code_block" ||
-      bodyPart.sliceType == "PostBodyCode_block"
-    ) {
-      (bodyPart as CodeBlock).html = await markdownToHtml(
-        (bodyPart as CodeBlock).code,
-        (bodyPart as CodeBlock).language,
-      );
-    }
-  }
-  }*/
 
   return {
     props: {

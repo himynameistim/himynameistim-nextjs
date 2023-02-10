@@ -1,3 +1,4 @@
+import { Language } from "prism-react-renderer";
 import { RichTextBlock } from "prismic-reactjs";
 
 export interface PostModel {
@@ -30,7 +31,7 @@ export interface TextBlock extends Slices {
 
 export interface CodeBlock extends Slices {
   code?: string;
-  language: string | undefined | null;
+  language: Language;
   html: string;
 }
 

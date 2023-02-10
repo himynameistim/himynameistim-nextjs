@@ -1,3 +1,4 @@
+import Highlight, { defaultProps } from "prism-react-renderer";
 import React from "react";
 import { CodeBlock } from "../../../Models/Post";
 
@@ -7,9 +8,19 @@ import { CodeBlock } from "../../../Models/Post";
 const CodeSlice = ({ slice }: { slice: CodeBlock }) => {
   return (
     <>
-      <pre>
-        <code dangerouslySetInnerHTML={{ __html: slice.html }}></code>
-      </pre>
+      <Highlight {...defaultProps} code={slice.html} language={slice.language}>
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <div {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
     </>
   );
 };

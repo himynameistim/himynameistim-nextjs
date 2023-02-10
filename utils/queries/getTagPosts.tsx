@@ -1,6 +1,5 @@
 import Prismic from "@prismicio/client";
 import { Client } from "../prismicHelpers";
-import markdownToHtml from "../prism";
 
 // Models
 import { PostModel } from "../../Models/Post";
@@ -52,20 +51,6 @@ export const getTagPosts = async (
       },
     });
   });
-
-  for (let post of result.posts) {
-    for (let bodyPart of post.data.body) {
-      if (
-        bodyPart.slice_type == "code_block" ||
-        bodyPart.slice_type == "PostBodyCode_block"
-      ) {
-        bodyPart.primary.html = await markdownToHtml(
-          bodyPart.primary.code,
-          bodyPart.primary.language
-        );
-      }
-    }
-  }
 
   return result;
 };
