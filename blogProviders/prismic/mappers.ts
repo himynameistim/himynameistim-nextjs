@@ -51,57 +51,55 @@ export function prismicPostToPost(
         post.data.body.push(imageSlice);
         break;
       case "code_block":
-        if (slice.primary.language) {
-          let language: Language;
-          switch (slice.primary.language) {
-            case "HTML / XHTML / XML":
-              language = "markup";
-              break;
-            case "CSS / SCSS":
-              language = "css";
-              break;
-            case "C#":
-              language = "clike";
-              break;
-            case "Git":
-              language = "git";
-              break;
-            case "JavaScript":
-              language = "javascript";
-              break;
-            case "PowerShell":
-              language = "bash";
-              //language = "powershell";
-              break;
-            case "React JSX":
-              language = "jsx";
-              break;
-            case "React TSX":
-              language = "tsx";
-              break;
-            case "Regex":
-              language = "javascript";
-              //language = "regex";
-              break;
-            case "SQL":
-              language = "sql";
-              break;
-            case "TypeScript":
-              language = "typescript";
-              break;
-            default:
-              language = "javascript";
-              break;
-          }
-
-          let html = prismicH.asText(slice.primary.code);
-          let codeSlice: CodeBlock = {
-            sliceType: slice.slice_type,
-            language: language, //"javascript", //slice.primary.language,
-            html,
-          };
-          post.data.body.push(codeSlice);
+        let language: Language;
+        switch (slice.primary.language) {
+          case "HTML / XHTML / XML":
+            language = "markup";
+            break;
+          case "CSS / SCSS":
+            language = "css";
+            break;
+          case "C#":
+            language = "clike";
+            break;
+          case "Git":
+            language = "git";
+            break;
+          case "JavaScript":
+            language = "javascript";
+            break;
+          case "PowerShell":
+            language = "bash";
+            //language = "powershell";
+            break;
+          case "React JSX":
+            language = "jsx";
+            break;
+          case "React TSX":
+            language = "tsx";
+            break;
+          case "Regex":
+            language = "javascript";
+            //language = "regex";
+            break;
+          case "SQL":
+            language = "sql";
+            break;
+          case "TypeScript":
+            language = "typescript";
+            break;
+          default:
+            language = "javascript";
+            break;
         }
+
+        let html = prismicH.asText(slice.primary.code);
+        let codeSlice: CodeBlock = {
+          sliceType: slice.slice_type,
+          language: language, //"javascript", //slice.primary.language,
+          html,
+        };
+        post.data.body.push(codeSlice);
         break;
     }
   }
