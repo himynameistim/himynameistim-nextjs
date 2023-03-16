@@ -8,7 +8,8 @@ import CategoryHeading from "../../../../components/category-heading";
 import { CategoryPagination } from "../../../../components/categoryPagination";
 import { Article, DisplayMode } from "../../../../components/article";
 import { PostModel } from "../../../../Models/Post";
-import { getTagPosts, getTags } from "../../../../utils/queries";
+import { IGetTags, IGetTagPosts } from "../../../../blogProviders/blog/queries";
+import { container } from "tsyringe";
 
 const pageSize = 3;
 
@@ -56,11 +57,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const pageNo: number = parseInt(
     context.params?.page ? context.params.page.toString() : "1"
   );
-  const allTags = await getTags(false);
+  const getTagsQuery = container.resolve<IGetTags>("IGetTags");
+  const allTags = await getTagsQuery.getTags(false);
   const tagName: string =
     allTags.find((x) => x.tag.toLowerCase().replace(" ", "-") == tag)?.tag ||
     "";
-  const posts = await getTagPosts(tagName, pageNo, pageSize);
+
+  const getTagPostsQuery = container.resolve<IGetTagPosts>("IGetTagPosts");
+  const posts = await getTagPostsQuery.getTagPosts(tagName, pageNo, pageSize);
 
   return {
     props: {
@@ -74,11 +78,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const tags = await getTags(true);
+  const getTagsQuery = container.resolve<IGetTags>("IGetTags");
+  const allTags = await getTagsQuery.getTags(false);
 
   let routes = [];
   // add pages for category
-  for (let tag of tags) {
+  for (let tag of allTags) {
     let pages = Math.ceil(tag.postCount / pageSize);
     for (let x = 0; x < pages; x++) {
       routes.push(

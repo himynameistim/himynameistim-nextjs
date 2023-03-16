@@ -11,12 +11,12 @@ import { Article, DisplayMode } from "../../../components/article";
 import { PostModel } from "../../../Models/Post";
 import { CategoryModel } from "../../../Models/Categories";
 import {
+  IGetAllPosts,
   IGetCategories,
   IGetCategory,
   IGetCategoryPosts,
   IGetTags,
 } from "../../../blogProviders/blog/queries";
-import { getPostCount } from "../../../utils/queries";
 
 const pageSize = 3;
 
@@ -102,18 +102,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const categoryQuery = container.resolve<IGetCategories>("IGetCategories");
-  const categories = await categoryQuery.getAllCategories();
+  const categories = categoryQuery.getAllCategories();
+  const allPostsQuery = container.resolve<IGetAllPosts>("IGetAllPosts");
+  const allPosts = allPostsQuery.getAllPosts();
 
   let routes = [];
   // add pages for category
-  for (let category of categories) {
+  for (let category of await categories) {
     let pages = Math.ceil(category.postCount / pageSize);
     for (let p = 0; p < pages; p++) {
       routes.push(`/${category.uid}/page/${p + 1}`);
     }
   }
 
-  let blogPages = Math.ceil((await getPostCount()) / pageSize);
+  let blogPages = Math.ceil((await allPosts).length / pageSize);
   for (var bp = 0; bp < blogPages; bp++) {
     routes.push(`/blog/page/${bp + 1}`);
   }

@@ -19,6 +19,7 @@ export interface PostModel {
       tags: string[];
     };
   };
+  dateModified: string;
 }
 
 export interface Slices {

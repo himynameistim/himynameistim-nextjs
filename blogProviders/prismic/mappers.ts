@@ -21,6 +21,7 @@ export function prismicPostToPost(
       },
       body: [],
     },
+    dateModified: new Date(prismicPost.last_publication_date).toISOString(),
   };
 
   for (const slice of prismicPost.data.body) {
@@ -127,6 +128,7 @@ export function prismicCategoryToCategory(
   postCount: number
 ): CategoryModel {
   return {
+    uid: prismicCategory.uid,
     name: prismicCategory.data.name as string,
     id: prismicCategory.id as string,
     postCount: postCount,
