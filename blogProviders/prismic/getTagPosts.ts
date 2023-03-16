@@ -23,7 +23,14 @@ export class GetTagPosts implements IGetTagPosts {
     pageSize: number
   ): Promise<TagPostsModel> => {
     const posts =
-      await this.prismicClient.client.getByTag<PrismicDocumentBlogPost>(tag);
+      await this.prismicClient.client.getByTag<PrismicDocumentBlogPost>(tag, {
+        pageSize,
+        page,
+        orderings: {
+          field: "my.post.post_date",
+          direction: "desc",
+        },
+      });
 
     return {
       posts: posts.results.map((post) => {
