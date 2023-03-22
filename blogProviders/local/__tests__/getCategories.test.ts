@@ -1,8 +1,5 @@
-import { IGetCategories } from "../../blog/queries";
-import { GetCategories } from "../queries";
+import { GetAllCategories } from "..";
 
 test("getAllCategories returns more than 0 category", async () => {
-  const gc: IGetCategories = new GetCategories();
-
-  expect((await gc.getAllCategories()).length).toBeGreaterThan(0);
+  expect((await GetAllCategories()).length).toBeGreaterThan(0);
 });

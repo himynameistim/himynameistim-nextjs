@@ -1,12 +1,10 @@
 import { PostModel } from "../../Models/Post";
-import { IGetPost } from "../blog/getPost";
 import { posts } from "./data/posts";
+import { PreviewData } from "next";
 
-export class GetPost implements IGetPost {
-  public getPost = async (
-    uid: string,
-    previewData: any
-  ): Promise<PostModel | null> => {
-    return posts[0];
-  };
-}
+export const getPost = async (
+  uid: string,
+  previewData: PreviewData
+): Promise<PostModel | null> => {
+  return posts[0];
+};

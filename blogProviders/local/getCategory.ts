@@ -1,13 +1,14 @@
 // Models
 import { CategoryModel } from "../../Models/Categories";
-import { IGetCategory } from "../blog/getCategory";
+import { PreviewData } from "next";
 
-export class GetCategory implements IGetCategory {
-  public getCategory = async (uid: string): Promise<CategoryModel> => {
-    return {
-      uid: "sitecore",
-      name: "Sitecore",
-      postCount: 1,
-    };
+export const getCategory = async (
+  uid: string,
+  previewData?: PreviewData
+): Promise<CategoryModel> => {
+  return {
+    uid: "sitecore",
+    name: "Sitecore",
+    postCount: 1,
   };
-}
+};

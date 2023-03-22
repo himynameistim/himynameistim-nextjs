@@ -1,17 +1,17 @@
 import {
   GetAllPosts,
-  GetCategories,
+  GetAllCategories,
   GetCategory,
   GetCategoryPosts,
   GetLatestPosts,
   GetPost,
   GetTags,
   GetTagPosts,
-} from "../queries";
+} from "..";
 
 test("queries are all defined", async () => {
   expect(GetAllPosts).toBeDefined();
-  expect(GetCategories).toBeDefined();
+  expect(GetAllCategories).toBeDefined();
   expect(GetCategory).toBeDefined();
   expect(GetCategoryPosts).toBeDefined();
   expect(GetLatestPosts).toBeDefined();

@@ -1,12 +1,10 @@
 import { Language } from "prism-react-renderer";
-import { RichTextBlock } from "prismic-reactjs";
 
 export interface PostModel {
   uid: string;
   type: string;
   data: {
     heading?: string;
-    title?: RichTextBlock[];
     postDate: string;
     image: {
       url: string | null;

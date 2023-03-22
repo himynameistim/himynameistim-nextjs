@@ -1,16 +1,15 @@
 import { CategoryPosts } from "../../Models/CategoryPosts";
-import { IGetCategoryPosts } from "../blog/getCategoryPosts";
 import { posts } from "./data/posts";
+import { PreviewData } from "next";
 
-export class GetCategoryPosts implements IGetCategoryPosts {
-  public getCategoryPosts = async (
-    categoryId: string,
-    page: number,
-    pageSize: number
-  ): Promise<CategoryPosts> => {
-    return {
-      totalPages: 1,
-      posts,
-    };
+export const getCategoryPosts = async (
+  categoryId: string,
+  page: number,
+  pageSize: number,
+  previewData?: PreviewData
+): Promise<CategoryPosts> => {
+  return {
+    totalPages: 1,
+    posts,
   };
-}
+};

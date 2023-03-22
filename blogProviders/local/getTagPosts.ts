@@ -1,16 +1,15 @@
 import { TagPostsModel } from "../../Models/TagPosts";
-import { IGetTagPosts } from "../blog/getTagPosts";
 import { posts } from "./data/posts";
+import { PreviewData } from "next";
 
-export class GetTagPosts implements IGetTagPosts {
-  public getTagPosts = async (
-    tag: string,
-    page: number,
-    pageSize: number
-  ): Promise<TagPostsModel> => {
-    return {
-      totalPages: 1,
-      posts,
-    };
+export const getTagPosts = async (
+  tag: string,
+  page: number,
+  pageSize: number,
+  previewData?: PreviewData
+): Promise<TagPostsModel> => {
+  return {
+    totalPages: 1,
+    posts,
   };
-}
+};
