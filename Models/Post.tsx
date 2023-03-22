@@ -9,7 +9,7 @@ export interface PostModel {
     title?: RichTextBlock[];
     postDate: string;
     image: {
-      url: string;
+      url: string | null;
     };
     body: Slices[];
     category?: {

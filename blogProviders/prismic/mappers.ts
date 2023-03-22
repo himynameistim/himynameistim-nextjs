@@ -14,7 +14,9 @@ export function prismicPostToPost(
     type: prismicPost.type,
     data: {
       heading: prismicH.asText(prismicPost.data.title),
-      image: { url: prismicPost.data.image.url as string },
+      image: {
+        url: prismicPost.data.image.url ? prismicPost.data.image.url : null,
+      },
       postDate: prismicPost.data.post_date as string,
       _meta: {
         tags: prismicPost.tags,

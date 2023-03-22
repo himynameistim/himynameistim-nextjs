@@ -35,7 +35,9 @@ const Post = ({ post }: { post: PostModel }) => {
             property="og:url"
             content={"https://himynameistim.com/blog/" + post.uid}
           />
-          <meta property="og:image" content={post.data.image.url} />
+          {post.data.image.url && (
+            <meta property="og:image" content={post.data.image.url} />
+          )}
           <link
             rel="canonical"
             href={"https://himynameistim.com/blog/" + post.uid}

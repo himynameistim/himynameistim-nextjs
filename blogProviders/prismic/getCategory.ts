@@ -12,7 +12,6 @@ export const getCategory = async (
 ): Promise<CategoryModel> => {
   const client = createClient({ previewData });
   const cat = await client.getByUID<PrismicDocumentCategory>("categories", uid);
-  console.log(cat.id);
 
   return prismicCategoryToCategory(
     cat,

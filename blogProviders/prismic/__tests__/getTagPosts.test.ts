@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import { GetTagPosts } from "..";
 
 test("getTagPosts returns more than 0 posts", async () => {
