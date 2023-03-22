@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { IGetAllPosts } from "blogProviders/blog/getAllPosts";
-import { container } from "tsyringe";
 import { PostModel } from "@Models/Post";
+import { GetAllPosts } from "@CMS/index";
 
 const createSitemap = (
   posts: PostModel[]
@@ -21,8 +20,7 @@ const createSitemap = (
 `;
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const getAllPostsQuery = container.resolve<IGetAllPosts>("IGetAllPosts");
-  const posts = await getAllPostsQuery.getAllPosts();
+  const posts = await GetAllPosts();
 
   res.status(200).json(createSitemap(posts));
 };

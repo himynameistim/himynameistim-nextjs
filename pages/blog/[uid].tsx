@@ -10,9 +10,7 @@ import { PostModel } from "../../Models/Post";
 // Project functions & styles
 import layoutStyles from "../../styles/layout-styles.module.scss";
 import postStyles from "../../styles/post.module.scss";
-import { IGetPost } from "../../blogProviders/blog/queries";
-import { container } from "tsyringe";
-import { IGetAllPosts } from "../../blogProviders/blog/getAllPosts";
+import { GetAllPosts, GetPost } from "@CMS/index";
 
 /**
  * Post page component
@@ -59,8 +57,7 @@ const Post = ({ post }: { post: PostModel }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const uid: string = context.params?.uid ? context.params.uid.toString() : "";
-  const postQuery = container.resolve<IGetPost>("IGetPost");
-  const post = await postQuery.getPost(uid, context.previewData);
+  const post = await GetPost(uid, context.previewData);
 
   return {
     props: {
@@ -71,8 +68,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const getAllPostsQuery = container.resolve<IGetAllPosts>("IGetAllPosts");
-  const documents = await getAllPostsQuery.getAllPosts();
+  const documents = await GetAllPosts();
   return {
     paths: documents.map((doc) => `/blog/${doc.uid}`),
     fallback: false,

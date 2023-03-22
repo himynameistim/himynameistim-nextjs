@@ -2,7 +2,6 @@ import Head from "next/head";
 import styles from "../../../styles/listing.module.scss";
 
 import React from "react";
-import { container } from "tsyringe";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Layout from "../../../layouts/layout";
 import CategoryHeading from "../../../components/category-heading";
@@ -10,13 +9,13 @@ import { CategoryPagination } from "../../../components/categoryPagination";
 import { Article, DisplayMode } from "../../../components/article";
 import { PostModel } from "../../../Models/Post";
 import { CategoryModel } from "../../../Models/Categories";
+
 import {
-  IGetAllPosts,
-  IGetCategories,
-  IGetCategory,
-  IGetCategoryPosts,
-  IGetTags,
-} from "../../../blogProviders/blog/queries";
+  GetAllCategories,
+  GetAllPosts,
+  GetCategory,
+  GetCategoryPosts,
+} from "@CMS/index";
 
 const pageSize = 3;
 
@@ -75,19 +74,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
     categoryId = "";
     categoryName = "Blog";
   } else {
-    const categoryQuery = container.resolve<IGetCategory>("IGetCategory");
-    const category: CategoryModel = await categoryQuery.getCategory(cat);
+    const category: CategoryModel = await GetCategory(cat);
     categoryId = category.uid;
     categoryName = category.name;
   }
 
-  const categoryPostsQuery =
-    container.resolve<IGetCategoryPosts>("IGetCategoryPosts");
-  const posts = await categoryPostsQuery.getCategoryPosts(
-    categoryId,
-    pageNo,
-    pageSize
-  );
+  const posts = await GetCategoryPosts(categoryId, pageNo, pageSize);
 
   return {
     props: {
@@ -101,10 +93,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categoryQuery = container.resolve<IGetCategories>("IGetCategories");
-  const categories = categoryQuery.getAllCategories();
-  const allPostsQuery = container.resolve<IGetAllPosts>("IGetAllPosts");
-  const allPosts = allPostsQuery.getAllPosts();
+  const categories = GetAllCategories();
+  const allPosts = GetAllPosts();
 
   let routes = [];
   // add pages for category

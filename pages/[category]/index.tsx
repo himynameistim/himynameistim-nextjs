@@ -2,7 +2,6 @@ import Head from "next/head";
 import styles from "../../styles/listing.module.scss";
 
 import React from "react";
-import { container } from "tsyringe";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Layout from "../../layouts/layout";
 import CategoryHeading from "../../components/category-heading";
@@ -10,12 +9,8 @@ import { CategoryPagination } from "../../components/categoryPagination";
 import { Article, DisplayMode } from "../../components/article";
 import { PostModel } from "../../Models/Post";
 import { CategoryModel } from "../../Models/Categories";
-import {
-  IGetCategories,
-  IGetCategory,
-  IGetCategoryPosts,
-  IGetTags,
-} from "../../blogProviders/blog/queries";
+
+import { GetAllCategories, GetCategory, GetCategoryPosts } from "@CMS/index";
 
 const pageSize = 3;
 
@@ -71,19 +66,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
     categoryId = "";
     categoryName = "Blog";
   } else {
-    const categoryQuery = container.resolve<IGetCategory>("IGetCategory");
-    const category: CategoryModel = await categoryQuery.getCategory(cat);
+    const category: CategoryModel = await GetCategory(cat);
     categoryId = category.id!;
     categoryName = category.name;
   }
 
-  const categoryPostsQuery =
-    container.resolve<IGetCategoryPosts>("IGetCategoryPosts");
-  const posts = await categoryPostsQuery.getCategoryPosts(
-    categoryId,
-    1,
-    pageSize
-  );
+  const posts = await GetCategoryPosts(categoryId, 1, pageSize);
 
   return {
     props: {
@@ -97,8 +85,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categoryQuery = container.resolve<IGetCategories>("IGetCategories");
-  const categories = await categoryQuery.getAllCategories();
+  const categories = await GetAllCategories();
 
   let routes = categories.map((doc) => `/${doc.uid}`);
   routes.push(`/blog`);

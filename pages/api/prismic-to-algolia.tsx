@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import algoliasearch from "algoliasearch";
-import { container } from "tsyringe";
-import { IGetAllPosts } from "blogProviders/blog/queries";
+import { GetAllPosts } from "@CMS/index";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (process.env.algoliaAppId && process.env.algoliaApiKey) {
@@ -10,8 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       process.env.algoliaAppId,
       process.env.algoliaApiKey
     );
-    const getAllPostsQuery = container.resolve<IGetAllPosts>("IGetAllPosts");
-    const posts = await getAllPostsQuery.getAllPosts();
+    const posts = await GetAllPosts();
 
     const algoliaIndex = algoliaClient.initIndex("Posts");
     const algoliaObjectids = await algoliaIndex
