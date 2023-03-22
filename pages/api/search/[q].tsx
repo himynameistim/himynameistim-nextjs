@@ -12,10 +12,11 @@ export type AlgoliaHit = {
   objectID: string;
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const {
-    query: { q },
-  } = req;
+export default async function (req: NextApiRequest, res: NextApiResponse) {
+  if (!req.query.q) {
+    res.status(400).json({ message: "No query value supplied" });
+    return;
+  }
 
   if (process.env.algoliaAppId && process.env.algoliaApiKey) {
     const algoliaClient = algoliasearch(
@@ -28,4 +29,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     );
     res.status(200).json(content.hits);
   }
-};
+}
