@@ -60,10 +60,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
     ? context.params.category.toString()
     : "";
 
-  let categoryId: string;
+  let categoryId: string | null;
   let categoryName: any;
   if (cat == "blog") {
-    categoryId = "";
+    categoryId = null;
     categoryName = "Blog";
   } else {
     const category: CategoryModel = await GetCategory(cat);
