@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     categoryName = "Blog";
   } else {
     const category: CategoryModel = await GetCategory(cat);
-    categoryId = category.uid;
+    categoryId = category.id!;
     categoryName = category.name;
   }
 
