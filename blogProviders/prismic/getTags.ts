@@ -1,36 +1,32 @@
-import { inject, injectable } from "tsyringe";
 import { TagModel } from "../../Models/Tags";
-import { IGetTags } from "../blog/getTags";
-import { PrismicClient } from "./prismicClient";
+import { PreviewData } from "next";
+import { createClient } from "./prismicClient";
 
-@injectable()
-export class GetTags implements IGetTags {
-  prismicClient: PrismicClient;
+async function getPostCount(
+  tag: string,
+  previewData?: PreviewData
+): Promise<number> {
+  const client = createClient({ previewData });
+  const posts = await client.getByTag(tag);
+  return posts.total_results_size;
+}
 
-  constructor(
-    @inject("prismicClient") private prismicClientParam: PrismicClient
-  ) {
-    this.prismicClient = prismicClientParam;
+export const getTags = async (
+  includeCount: boolean,
+  previewData?: PreviewData
+): Promise<TagModel[]> => {
+  const client = createClient({ previewData });
+  const prismicTags = await client.getTags();
+
+  let tags: TagModel[];
+  tags = [];
+
+  for (const tag of prismicTags) {
+    tags.push({
+      tag,
+      postCount: await getPostCount(tag, previewData),
+    });
   }
 
-  public getTags = async (includeCount: boolean): Promise<TagModel[]> => {
-    const prismicTags = await this.prismicClient.client.getTags();
-
-    let tags: TagModel[];
-    tags = [];
-
-    for (const tag of prismicTags) {
-      tags.push({
-        tag,
-        postCount: await this.getPostCount(tag),
-      });
-    }
-
-    return tags;
-  };
-
-  private getPostCount = async (tag: string): Promise<number> => {
-    const posts = await this.prismicClient.client.getByTag(tag);
-    return posts.total_results_size;
-  };
-}
+  return tags;
+};

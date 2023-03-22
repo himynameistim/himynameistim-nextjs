@@ -1,12 +1,11 @@
 import Head from "next/head";
 
 import React from "react";
-import { container } from "tsyringe";
 import { GetStaticProps } from "next";
 import Layout from "../layouts/layout";
 import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1";
 import SectionHeading from "../components/section-heading";
-import { IGetLatestPosts } from "../blogProviders/blog/getLatestPosts";
+import * as CMS from "@CMS/index";
 
 export default function Home({
   latestPosts,
@@ -40,12 +39,10 @@ export default function Home({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const instance = container.resolve<IGetLatestPosts>("IGetLatestPosts");
-
-  const latestPosts = await instance.getLatestPosts();
-  const webDevelopmentPosts = await instance.getLatestPosts("X8kFhxIAACcAn9oY");
-  const devOpsPosts = await instance.getLatestPosts("X8kFlRIAACkAn9pa");
-  const sitecorePosts = await instance.getLatestPosts("X8kFeBIAACkAn9nV");
+  const latestPosts = await CMS.GetLatestPosts();
+  const webDevelopmentPosts = await CMS.GetLatestPosts("X8kFhxIAACcAn9oY");
+  const devOpsPosts = await CMS.GetLatestPosts("X8kFlRIAACkAn9pa");
+  const sitecorePosts = await CMS.GetLatestPosts("X8kFeBIAACkAn9nV");
 
   return {
     props: {

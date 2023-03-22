@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { container } from "tsyringe";
 import { PrismicClient } from "../prismicClient";
 import { IGetTagPosts } from "../../blog/queries";
-import { GetTagPosts } from "../queries";
+import { GetTagPosts } from "..";
 
 test("getTagPosts returns more than 0 posts", async () => {
   const pc = new PrismicClient("himynameistim");

@@ -11,6 +11,7 @@
   "dependencies": {
     "@prismicio/client": "^6.4.2",
     "@prismicio/helpers": "^2.3.5",
+    "@prismicio/next": "^1.0.3",
     "@types/gtag.js": "0.0.4",
     "@types/node-fetch": "^2.6.1",
     "@types/prismjs": "^1.16.2",
@@ -34,8 +35,7 @@
     "react-dom": "^17.0.2",
     "react-markdown": "^5.0.3",
     "reflect-metadata": "^0.1.13",
-    "sass": "^1.29.0",
-    "tsyringe": "^4.6.0"
+    "sass": "^1.29.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

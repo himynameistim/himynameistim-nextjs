@@ -1,37 +1,32 @@
-import { inject, injectable } from "tsyringe";
+import { PreviewData } from "next";
+import { createClient } from "./prismicClient";
 import * as prismic from "@prismicio/client";
 // Models
 import { CategoryModel } from "../../Models/Categories";
-import { IGetCategory } from "../blog/getCategory";
-import { PrismicClient } from "./prismicClient";
 import { PrismicDocumentCategory } from "./Models/prismicCategory";
 import { prismicCategoryToCategory } from "./mappers";
 
-@injectable()
-export class GetCategory implements IGetCategory {
-  prismicClient: PrismicClient;
+export const getCategory = async (
+  uid: string,
+  previewData?: PreviewData
+): Promise<CategoryModel> => {
+  const client = createClient({ previewData });
+  const cat = await client.getByUID<PrismicDocumentCategory>("categories", uid);
+  console.log(cat.id);
 
-  constructor(
-    @inject("prismicClient") private prismicClientParam: PrismicClient
-  ) {
-    this.prismicClient = prismicClientParam;
-  }
+  return prismicCategoryToCategory(
+    cat,
+    await getPostCount(cat.id, previewData)
+  );
+};
 
-  public getCategory = async (uid: string): Promise<CategoryModel> => {
-    const cat =
-      await this.prismicClient.client.getByUID<PrismicDocumentCategory>(
-        "categories",
-        uid
-      );
-    console.log(cat.id);
-
-    return prismicCategoryToCategory(cat, await this.getPostCount(cat.id));
-  };
-
-  private getPostCount = async (categoryId: string): Promise<number> => {
-    const posts = this.prismicClient.client.getAllByType("post", {
-      predicates: [prismic.predicate.at("my.post.category", categoryId)],
-    });
-    return (await posts).length;
-  };
+async function getPostCount(
+  categoryId: string,
+  previewData?: PreviewData
+): Promise<number> {
+  const client = createClient({ previewData });
+  const posts = client.getAllByType("post", {
+    predicates: [prismic.predicate.at("my.post.category", categoryId)],
+  });
+  return (await posts).length;
 }

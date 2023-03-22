@@ -1,60 +1,43 @@
-import { inject, injectable } from "tsyringe";
 import * as prismic from "@prismicio/client";
+import { PreviewData } from "next";
 // Models
-import { PrismicClient } from "./prismicClient";
+import { createClient } from "./prismicClient";
 import { prismicPostToFeaturedPost } from "./mappers";
-import { IGetLatestPosts } from "../blog/getLatestPosts";
 import { FeaturedPost } from "../../Models/FeaturedPost";
 import { PrismicDocumentBlogPost } from "./Models/prismicPost";
 
-@injectable()
-export class GetLatestPosts implements IGetLatestPosts {
-  prismicClient: PrismicClient;
+export const getLatestPosts = async (
+  categoryUid?: string,
+  previewData?: PreviewData
+): Promise<FeaturedPost[]> => {
+  const client = createClient({ previewData });
 
-  constructor(
-    @inject("prismicClient") private prismicClientParam: PrismicClient
-  ) {
-    this.prismicClient = prismicClientParam;
+  if (categoryUid) {
+    const posts = await client.getByType<PrismicDocumentBlogPost>("post", {
+      predicates: [prismic.predicate.at("my.post.category", categoryUid)],
+      pageSize: 4,
+      page: 1,
+      orderings: {
+        field: "my.post.post_date",
+        direction: "desc",
+      },
+    });
+
+    return posts.results.map((post) => {
+      return prismicPostToFeaturedPost(post);
+    });
+  } else {
+    const posts = await client.getByType<PrismicDocumentBlogPost>("post", {
+      pageSize: 4,
+      page: 1,
+      orderings: {
+        field: "my.post.post_date",
+        direction: "desc",
+      },
+    });
+
+    return posts.results.map((post) => {
+      return prismicPostToFeaturedPost(post);
+    });
   }
-
-  public getLatestPosts = async (
-    categoryUid?: string
-  ): Promise<FeaturedPost[]> => {
-    if (categoryUid) {
-      const posts =
-        await this.prismicClient.client.getByType<PrismicDocumentBlogPost>(
-          "post",
-          {
-            predicates: [prismic.predicate.at("my.post.category", categoryUid)],
-            pageSize: 4,
-            page: 1,
-            orderings: {
-              field: "my.post.post_date",
-              direction: "desc",
-            },
-          }
-        );
-
-      return posts.results.map((post) => {
-        return prismicPostToFeaturedPost(post);
-      });
-    } else {
-      const posts =
-        await this.prismicClient.client.getByType<PrismicDocumentBlogPost>(
-          "post",
-          {
-            pageSize: 4,
-            page: 1,
-            orderings: {
-              field: "my.post.post_date",
-              direction: "desc",
-            },
-          }
-        );
-
-      return posts.results.map((post) => {
-        return prismicPostToFeaturedPost(post);
-      });
-    }
-  };
-}
+};
