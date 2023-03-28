@@ -37,8 +37,8 @@ export function Article({
             src={image}
             height="400"
             width="1093"
-            layout="responsive"
             priority={true}
+            alt={title as string}
           />
         )}
         {displayMode == DisplayMode.Listing && (
