@@ -108,6 +108,6 @@ export type PrismicDocumentBlogPost = prismicT.PrismicDocument<
       | CodeBlockSlice
     >;
   },
-  "page",
+  "post",
   "en-us" | "fr-fr"
 >;
