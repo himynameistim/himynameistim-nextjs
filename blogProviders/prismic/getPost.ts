@@ -10,8 +10,7 @@ export const getPost = async (
 ): Promise<PostModel | null> => {
   const client = createClient({ previewData });
 
-  const documentType: string = "post";
   return prismicPostToPost(
-    await client.getByUID<PrismicDocumentBlogPost>(documentType, uid)
+    await client.getByUID<PrismicDocumentBlogPost>("post", uid)
   );
 };
