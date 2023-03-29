@@ -1,30 +1,52 @@
-import { RichTextBlock } from "prismic-reactjs";
-
-/*export interface SliceModel {
-  slice_type: string,
-  primary: {
-    code?: string,
-    language?: string,
-    html?: string
-  }
-}*/
-
+import { Language } from "prism-react-renderer";
 
 export interface PostModel {
-  uid: string,
-  type: string,
+  uid: string;
+  type: string;
   data: {
-    title: RichTextBlock[],
-    post_date: Date,
+    heading?: string;
+    postDate: string;
     image: {
-      url: string
-    },
-    body: any,
-    category? : {
-      name: string
-    }
+      url: string | null;
+    };
+    body: Slices[];
+    category?: {
+      name: string;
+    };
     _meta: {
-      tags: string[]
-    }
-  }
+      tags: string[];
+    };
+  };
+  dateModified: string;
+}
+
+export interface Slices {
+  sliceType: string;
+}
+
+export interface TextBlock extends Slices {
+  text: string;
+}
+
+export interface CodeBlock extends Slices {
+  code?: string;
+  language: Language;
+  html: string;
+}
+
+export interface QuoteBlock extends Slices {
+  quote: string;
+}
+
+export interface ImageBlock extends Slices {
+  image: Image;
+}
+
+export interface Image {
+  url: string;
+  alt: string;
+  dimensions: {
+    height: string;
+    width: string;
+  };
 }

@@ -1,10 +1,10 @@
 export interface FeaturedPost {
-  uid: string,
-  type: string,
-  title: string,
-  postDate?: Date,
-  category?: string,
+  uid: string;
+  type: string;
+  title: string;
+  postDate?: Date | string;
+  category?: string;
   image: {
-    url: string
-  }
+    url: string;
+  };
 }

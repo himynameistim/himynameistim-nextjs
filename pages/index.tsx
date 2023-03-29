@@ -1,16 +1,11 @@
 import Head from "next/head";
 
-import React, { useState } from "react";
+import React from "react";
 import { GetStaticProps } from "next";
 import Layout from "../layouts/layout";
 import { FeaturedRow1, FeaturedRow1Model } from "../components/featured-row-1";
 import SectionHeading from "../components/section-heading";
-import {
-  getLatestPosts,
-  getCategories,
-  getCategoryPosts,
-  getTags,
-} from "../utils/queries";
+import * as CMS from "@CMS/index";
 
 export default function Home({
   latestPosts,
@@ -28,34 +23,26 @@ export default function Home({
       <Head>
         <title>Hi My Name Is Tim</title>
       </Head>
-      <main>
-        <SectionHeading heading="Latest Posts" link="blog"></SectionHeading>
-        <FeaturedRow1 posts={latestPosts}></FeaturedRow1>
-        <SectionHeading
-          heading="Web Development"
-          link="web-development"
-        ></SectionHeading>
-        <FeaturedRow1 posts={webDevelopmentPosts}></FeaturedRow1>
-        <SectionHeading heading="Sitecore" link="sitecore"></SectionHeading>
-        <FeaturedRow1 posts={sitecorePosts}></FeaturedRow1>
-        <SectionHeading heading="Devops" link="devops"></SectionHeading>
-        <FeaturedRow1 posts={devOpsPosts}></FeaturedRow1>
-      </main>
+      <SectionHeading heading="Latest Posts" link="blog"></SectionHeading>
+      <FeaturedRow1 posts={latestPosts}></FeaturedRow1>
+      <SectionHeading
+        heading="Web Development"
+        link="web-development"
+      ></SectionHeading>
+      <FeaturedRow1 posts={webDevelopmentPosts}></FeaturedRow1>
+      <SectionHeading heading="Sitecore" link="sitecore"></SectionHeading>
+      <FeaturedRow1 posts={sitecorePosts}></FeaturedRow1>
+      <SectionHeading heading="Devops" link="devops"></SectionHeading>
+      <FeaturedRow1 posts={devOpsPosts}></FeaturedRow1>
     </Layout>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const latestPosts = await getLatestPosts();
-  const devOpsPosts = await getLatestPosts("X8kFlRIAACkAn9pa");
-  const sitecorePosts = await getLatestPosts("X8kFeBIAACkAn9nV");
-  const webDevelopmentPosts = await getLatestPosts("X8kFhxIAACcAn9oY");
-  //const posts = await getCategoryPosts("Sitecore")
-  //const categories = await getCategories();
-
-  //const tags = await getTags();
-
-  //var routes = tags.map(tag => `/tag/${tag.tag.toLowerCase()}`)
+  const latestPosts = await CMS.GetLatestPosts();
+  const webDevelopmentPosts = await CMS.GetLatestPosts("X8kFhxIAACcAn9oY");
+  const devOpsPosts = await CMS.GetLatestPosts("X8kFlRIAACkAn9pa");
+  const sitecorePosts = await CMS.GetLatestPosts("X8kFeBIAACkAn9nV");
 
   return {
     props: {

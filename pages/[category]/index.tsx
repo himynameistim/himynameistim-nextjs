@@ -1,21 +1,16 @@
 import Head from "next/head";
 import styles from "../../styles/listing.module.scss";
 
-import React, { useState } from "react";
+import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
-import Link from "next/link";
 import Layout from "../../layouts/layout";
 import CategoryHeading from "../../components/category-heading";
 import { CategoryPagination } from "../../components/categoryPagination";
 import { Article, DisplayMode } from "../../components/article";
 import { PostModel } from "../../Models/Post";
-import { CategoryModel } from "../../Models/Category";
-import { Client } from "../../utils/prismicHelpers";
-import {
-  getCategories,
-  getCategoryIdByUid,
-  getCategoryPosts,
-} from "../../utils/queries";
+import { CategoryModel } from "../../Models/Categories";
+
+import { GetAllCategories, GetCategory, GetCategoryPosts } from "@CMS/index";
 
 const pageSize = 3;
 
@@ -65,18 +60,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
     ? context.params.category.toString()
     : "";
 
-  var categoryId: string;
-  var categoryName: any;
+  let categoryId: string | null;
+  let categoryName: any;
   if (cat == "blog") {
-    categoryId = "";
+    categoryId = null;
     categoryName = "Blog";
   } else {
-    const category: CategoryModel = await getCategoryIdByUid(cat);
-    categoryId = category.id;
+    const category: CategoryModel = await GetCategory(cat);
+    categoryId = category.id!;
     categoryName = category.name;
   }
 
-  const posts = await getCategoryPosts(categoryId, 1, pageSize);
+  const posts = await GetCategoryPosts(categoryId, 1, pageSize);
 
   return {
     props: {
@@ -90,9 +85,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categories = await getCategories();
+  const categories = await GetAllCategories();
 
-  var routes = categories.map((doc) => `/${doc.uid}`);
+  let routes = categories.map((doc) => `/${doc.uid}`);
   routes.push(`/blog`);
 
   return {

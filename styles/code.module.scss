@@ -1,0 +1,26 @@
+@import "./variables.scss";
+
+.codeStyles {
+  pre {
+    padding: 1em;
+    font-size: 1em;
+    line-height: 1.5;
+    overflow: auto;
+    font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+  }
+}
+.Line {
+  display: table-row;
+}
+
+.LineNo {
+  display: table-cell;
+  text-align: right;
+  padding-right: 1em;
+  user-select: none;
+  opacity: 0.5;
+}
+
+.LineContent {
+  display: table-cell;
+}

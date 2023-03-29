@@ -1,21 +1,21 @@
 import Head from "next/head";
 import styles from "../../../styles/listing.module.scss";
 
-import React, { useState } from "react";
+import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Layout from "../../../layouts/layout";
 import CategoryHeading from "../../../components/category-heading";
 import { CategoryPagination } from "../../../components/categoryPagination";
 import { Article, DisplayMode } from "../../../components/article";
 import { PostModel } from "../../../Models/Post";
-import { Client } from "../../../utils/prismicHelpers";
-import { CategoryModel } from "../../../Models/Category";
+import { CategoryModel } from "../../../Models/Categories";
+
 import {
-  getCategories,
-  getCategoryIdByUid,
-  getCategoryPosts,
-  getPostCount,
-} from "../../../utils/queries";
+  GetAllCategories,
+  GetAllPosts,
+  GetCategory,
+  GetCategoryPosts,
+} from "@CMS/index";
 
 const pageSize = 3;
 
@@ -68,20 +68,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
     context.params?.page ? context.params.page.toString() : "1"
   );
 
-  var categoryId: string;
-  var categoryName: any;
+  let categoryId: string;
+  let categoryName: any;
   if (cat == "blog") {
     categoryId = "";
     categoryName = "Blog";
   } else {
-    const category: CategoryModel = await getCategoryIdByUid(cat);
-    categoryId = category.id;
+    const category: CategoryModel = await GetCategory(cat);
+    categoryId = category.id!;
     categoryName = category.name;
   }
 
-  const posts = await getCategoryPosts(categoryId, pageNo, pageSize);
-
-  const categories = await getCategories();
+  const posts = await GetCategoryPosts(categoryId, pageNo, pageSize);
 
   return {
     props: {
@@ -95,20 +93,21 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categories = await getCategories();
+  const categories = GetAllCategories();
+  const allPosts = GetAllPosts();
 
-  var routes = [];
+  let routes = [];
   // add pages for category
-  for (var i = 0; i < categories.length; i++) {
-    var pages = Math.ceil(categories[i].postCount / pageSize);
-    for (var x = 0; x < pages; x++) {
-      routes.push(`/${categories[i].uid}/page/${x + 1}`);
+  for (let category of await categories) {
+    let pages = Math.ceil(category.postCount / pageSize);
+    for (let p = 0; p < pages; p++) {
+      routes.push(`/${category.uid}/page/${p + 1}`);
     }
   }
 
-  var blogPages = Math.ceil((await getPostCount()) / pageSize);
-  for (var x = 0; x < blogPages; x++) {
-    routes.push(`/blog/page/${x + 1}`);
+  let blogPages = Math.ceil((await allPosts).length / pageSize);
+  for (var bp = 0; bp < blogPages; bp++) {
+    routes.push(`/blog/page/${bp + 1}`);
   }
 
   return {
