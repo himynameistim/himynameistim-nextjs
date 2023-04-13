@@ -12,11 +12,7 @@ export default function SectionHeading({
   return (
     <div className={linkStyles.sectionHeading}>
       <h2>
-        {link && (
-          <Link href={link}>
-            <a>{heading}</a>
-          </Link>
-        )}
+        {link && <Link href={link}>{heading}</Link>}
         {link == null && heading}
       </h2>
     </div>

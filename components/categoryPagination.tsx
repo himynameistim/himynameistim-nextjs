@@ -13,18 +13,18 @@ export function CategoryPagination({
   return (
     <nav className="container">
       {page < totalPages && (
-        <Link href={`/${path}/page/${page + 1}`}>
-          <a title="Older Posts">&lt; Older Posts</a>
+        <Link href={`/${path}/page/${page + 1}`} title="Older Posts">
+          &lt; Older Posts
         </Link>
       )}
       {page > 2 && (
-        <Link href={`/${path}/page/${page - 1}`}>
-          <a title="Newer Posts">Newer Posts &gt;</a>
+        <Link href={`/${path}/page/${page - 1}`} title="Newer Posts">
+          Newer Posts &gt;
         </Link>
       )}
       {page == 2 && (
-        <Link href={`/${path}`}>
-          <a title="Newer Posts">Newer Posts &gt;</a>
+        <Link href={`/${path}`} title="Newer Posts">
+          Newer Posts &gt;
         </Link>
       )}
     </nav>

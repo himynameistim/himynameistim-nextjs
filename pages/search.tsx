@@ -21,13 +21,11 @@ export default function Search({ data }: { data: AlgoliaHits }) {
         {data.hits.map((hit) => (
           <>
             <Link href={linkResolver({ uid: hit.objectID, type: "post" })}>
-              <a>
-                <h2>{hit.title}</h2>
-              </a>
+              <h2>{hit.title}</h2>
             </Link>
             <p>
               <Link href={`/` + hit.category.toLowerCase()}>
-                <a>{hit.category}</a>
+                {hit.category}
               </Link>{" "}
               -{" "}
               <time dateTime={hit.postDate?.toString()}>

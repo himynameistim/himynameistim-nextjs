@@ -15,7 +15,7 @@ export const customLink = (
     href={hrefResolver(element.data)}
     as={linkResolver(element.data)}
   >
-    <a>{content}</a>
+    {content}
   </Link>
 );
 

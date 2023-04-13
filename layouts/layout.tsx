@@ -90,9 +90,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </button>
             </div>
             <Link href="/">
-              <a>
-                hi my name is&nbsp;<span>Tim</span>
-              </a>
+              hi my name is&nbsp;<span>Tim</span>
             </Link>
 
             <svg
@@ -130,24 +128,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <nav>
             <div>
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-              <Link href="/sitecore">
-                <a>Sitecore</a>
-              </Link>
-              <Link href="/devops">
-                <a>Devops</a>
-              </Link>
-              <Link href="/web-development">
-                <a>Web Development</a>
-              </Link>
-              <Link href="/blog">
-                <a>Blog</a>
-              </Link>
-              <Link href="/about">
-                <a>About</a>
-              </Link>
+              <Link href="/">Home</Link>
+              <Link href="/sitecore">Sitecore</Link>
+              <Link href="/devops">Devops</Link>
+              <Link href="/web-development">Web Development</Link>
+              <Link href="/blog">Blog</Link>
+              <Link href="/about">About</Link>
             </div>
             {/*
             Mobile menu, toggle classes based on menu state.
@@ -155,24 +141,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             Menu open: "block", Menu closed: "hidden"
             */}
             <div className={`${isMenuOpen ? "block" : "hidden"}`}>
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-              <Link href="/sitecore">
-                <a>Sitecore</a>
-              </Link>
-              <Link href="/devops">
-                <a>Devops</a>
-              </Link>
-              <Link href="/web-development">
-                <a>Web Development</a>
-              </Link>
-              <Link href="/blog">
-                <a>Blog</a>
-              </Link>
-              <Link href="/about">
-                <a>About</a>
-              </Link>
+              <Link href="/">Home</Link>
+              <Link href="/sitecore">Sitecore</Link>
+              <Link href="/devops">Devops</Link>
+              <Link href="/web-development">Web Development</Link>
+              <Link href="/blog">Blog</Link>
+              <Link href="/about">About</Link>
             </div>
           </nav>
         </header>

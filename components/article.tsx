@@ -43,9 +43,7 @@ export function Article({
         )}
         {displayMode == DisplayMode.Listing && (
           <Link href={linkResolver(article)}>
-            <a>
-              <h1>{title}</h1>
-            </a>
+            <h1>{title}</h1>
           </Link>
         )}
         {displayMode == DisplayMode.Article && <h1>{title}</h1>}
@@ -63,7 +61,7 @@ export function Article({
             key={tag.toLowerCase().replace(" ", "-")}
             href={"/tag/" + tag.toLowerCase().replace(" ", "-")}
           >
-            <a>{tag}</a>
+            {tag}
           </Link>
         ))}
       </footer>
