@@ -22,11 +22,13 @@ export const getTags = async (
   tags = [];
 
   for (const tag of prismicTags) {
-    tags.push({
-      tag,
-      postCount: await getPostCount(tag, previewData),
-    });
+    const postCount = await getPostCount(tag, previewData);
+    if (postCount > 0) {
+      tags.push({
+        tag,
+        postCount,
+      });
+    }
   }
-
   return tags;
 };
