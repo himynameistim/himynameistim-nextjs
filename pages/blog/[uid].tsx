@@ -11,11 +11,12 @@ import { PostModel } from "../../Models/Post";
 import layoutStyles from "../../styles/layout-styles.module.scss";
 import postStyles from "../../styles/post.module.scss";
 import { GetAllPosts, GetPost } from "@CMS/index";
+import { InferGetStaticPropsType } from "next";
 
 /**
  * Post page component
  */
-const Post = ({ post }: { post: PostModel }) => {
+function Post({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
   if (post && post.data) {
     const title =
       post.data.heading?.length !== 0 ? post.data.heading : "Untitled";
@@ -55,15 +56,22 @@ const Post = ({ post }: { post: PostModel }) => {
   }
 
   return null;
-};
+}
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps<{ post: PostModel }> = async (
+  context
+) => {
   const uid: string = context.params?.uid ? context.params.uid.toString() : "";
   const post = await GetPost(uid, context.previewData);
 
+  if (!post) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
-      //preview,
       post,
     },
   };
