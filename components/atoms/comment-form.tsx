@@ -1,8 +1,19 @@
+import { useState } from "react";
+
 interface CommentFormsProps {
   authenticated: boolean;
+  handleSubmit: (commentText: string) => void;
 }
 
 export default function CommentForm(props: CommentFormsProps) {
+  const [comment, setComment] = useState<string>("");
+
+  const formSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    props.handleSubmit(comment);
+    setComment("");
+  };
+
   return (
     <>
       {!props.authenticated && (
@@ -12,9 +23,14 @@ export default function CommentForm(props: CommentFormsProps) {
         </form>
       )}
       {props.authenticated && (
-        <form>
-          <textarea></textarea>
-          <button>Post</button>
+        <form onSubmit={formSubmit}>
+          <textarea
+            onChange={(e) => {
+              setComment(e.target.value);
+            }}
+            value={comment}
+          ></textarea>
+          <button>Add Comment</button>
         </form>
       )}
     </>

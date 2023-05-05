@@ -5,6 +5,7 @@ import { SliceZone } from "../components/post/SliceZone";
 import { linkResolver } from "../prismic-configuration";
 import { PostModel } from "../Models/Post";
 import { format } from "date-fns";
+import Comments from "./molecules/comments";
 
 export enum DisplayMode {
   Article,
@@ -65,6 +66,8 @@ export function Article({
           </Link>
         ))}
       </footer>
+
+      <Comments />
     </article>
   );
 }

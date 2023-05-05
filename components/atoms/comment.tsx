@@ -5,8 +5,8 @@ export default function Comment({ comment }: { comment: CommentModel }) {
   return (
     <div>
       <b>{comment.name} </b>
-      <time dateTime={comment.postDate.toString()}>
-        {format(comment.postDate, "d LLLL yyyy")}
+      <time dateTime={comment.created_at.toString()}>
+        {format(comment.created_at, "d LLLL yyyy")}
       </time>
       <div>{comment.text}</div>
     </div>

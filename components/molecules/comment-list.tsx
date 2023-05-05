@@ -8,9 +8,10 @@ export default function CommentList({
 }) {
   return (
     <>
-      {comments.map((c) => {
-        return <Comment comment={c}></Comment>;
-      })}
+      {comments.length > 0 &&
+        comments.map((c) => {
+          return <Comment comment={c}></Comment>;
+        })}
     </>
   );
 }
