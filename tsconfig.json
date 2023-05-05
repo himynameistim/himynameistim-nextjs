@@ -19,6 +19,8 @@
     "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {
+      "@Lib/*": ["lib/*"],
+      "@Components/*": ["Components/*"],
       "@Models/*": ["Models/*"],
       "@CMS/*": ["blogProviders/prismic/*"]
     }
