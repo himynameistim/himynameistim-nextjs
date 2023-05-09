@@ -1,4 +1,7 @@
 import { useState } from "react";
+import LoginButton from "./login-button";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import LogoutButton from "./logout-button";
 
 interface CommentFormsProps {
   authenticated: boolean;
@@ -14,16 +17,20 @@ export default function CommentForm(props: CommentFormsProps) {
     setComment("");
   };
 
+  const { user } = useUser();
+
   return (
     <>
-      {!props.authenticated && (
+      {!user && (
         <form>
           <textarea disabled></textarea>
-          <button>Login</button>
+          <LoginButton />
         </form>
       )}
-      {props.authenticated && (
+      {user && (
         <form onSubmit={formSubmit}>
+          {user.name}
+          {user.picture && <img src={user.picture} />}
           <textarea
             onChange={(e) => {
               setComment(e.target.value);
@@ -31,6 +38,7 @@ export default function CommentForm(props: CommentFormsProps) {
             value={comment}
           ></textarea>
           <button>Add Comment</button>
+          <LogoutButton />
         </form>
       )}
     </>
