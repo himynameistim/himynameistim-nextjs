@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
-import "../styles/globals.scss";
+import React from "react";
+import "@src/styles/globals.scss";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const preview: Preview = {
   parameters: {
@@ -11,6 +13,13 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <UserProvider>
+        <Story />
+      </UserProvider>
+    ),
+  ],
 };
 
 export default preview;

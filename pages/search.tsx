@@ -8,7 +8,7 @@ import algoliasearch from "algoliasearch";
 import { GetServerSideProps } from "next";
 import { linkResolver } from "../prismic-configuration";
 import { parseISO, format } from "date-fns";
-import styles from "../styles/search-results.module.scss";
+import styles from "@src/styles/search-results.module.scss";
 
 export default function Search({ data }: { data: AlgoliaHits }) {
   return (

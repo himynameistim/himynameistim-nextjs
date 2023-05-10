@@ -67,7 +67,7 @@ export function Article({
         ))}
       </footer>
 
-      <Comments />
+      {displayMode === DisplayMode.Article && <Comments />}
     </article>
   );
 }

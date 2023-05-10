@@ -2,6 +2,7 @@ import { useState } from "react";
 import LoginButton from "./login-button";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import LogoutButton from "./logout-button";
+import Button from "./button";
 
 interface CommentFormProps {
   handleSubmit: (commentText: string) => void;
@@ -47,7 +48,7 @@ export function CommentForm(props: CommentFormWithUserProps) {
             }}
             value={comment}
           ></textarea>
-          <button>Add Comment</button>
+          <Button>Add Comment</Button>
           <LogoutButton />
         </form>
       )}

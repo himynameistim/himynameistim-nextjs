@@ -8,13 +8,16 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
+a,
+button {
+  color: $site-color;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
   &:hover {
-    color: $site-color;
+    color: $main-text-color;
   }
 }
 
@@ -60,6 +63,7 @@ p {
   margin-bottom: 20px;
   color: $main-text-color;
   line-height: 1.625;
+  font-size: medium;
 }
 ol,
 ul {

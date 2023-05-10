@@ -1,0 +1,12 @@
+@import "./variables.scss";
+
+.btn {
+  align-items: flex-start;
+  appearance: auto;
+  background-color: $site-color;
+  color: $text-on-site-color;
+  padding: 10px 15px;
+  display: inline-block;
+  border: none;
+  font-size: medium;
+}

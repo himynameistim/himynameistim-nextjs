@@ -1,5 +1,5 @@
 import React from "react";
-import categoryStyles from "../styles/category-heading.module.scss";
+import categoryStyles from "@src/styles/category-heading.module.scss";
 
 export default function Category({ name }: { name: string }) {
   return (

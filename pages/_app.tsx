@@ -1,4 +1,4 @@
-import "../styles/globals.scss";
+import "@src/styles/globals.scss";
 //import "prismjs/themes/prism-tomorrow.css";
 import { AppProps } from "next/app";
 import { useEffect } from "react";

@@ -2,7 +2,7 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import React from "react";
 import { CodeBlock } from "../../../Models/Post";
 import vsDark from "prism-react-renderer/themes/vsDark";
-import codeStyles from "../../../styles/code.module.scss";
+import codeStyles from "@src/styles/code.module.scss";
 
 /**
  * Code slice component

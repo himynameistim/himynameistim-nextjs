@@ -15,7 +15,7 @@ type Story = StoryObj<typeof Article>;
 
 const textSlice: TextBlock = {
   sliceType: "text_block",
-  text: "<p>Hello this is paragraph 1</p><p>This is paragraph 2</p>",
+  text: "<p>Hello this is paragraph 1</p><p>This is paragraph 2 that contain <a href='https://www.himynameistim.com/' target='_blank'>A Link</a></p>",
 };
 
 const codeSlice: CodeBlock = {

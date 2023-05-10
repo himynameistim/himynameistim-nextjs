@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import linkStyles from "../styles/featured-row-1.module.scss";
+import linkStyles from "@src/styles/featured-row-1.module.scss";
 import { linkResolver } from "../prismic-configuration";
 import { parseISO, format } from "date-fns";
 

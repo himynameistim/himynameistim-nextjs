@@ -6,7 +6,7 @@ import { GetStaticProps } from "next";
 import Layout from "../layouts/layout";
 import CategoryHeading from "../components/category-heading";
 
-import styles from "../styles/about.module.scss";
+import styles from "@src/styles/about.module.scss";
 
 export default function Home() {
   return (

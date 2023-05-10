@@ -8,8 +8,8 @@ import { Article, DisplayMode } from "../../components/article";
 import { PostModel } from "../../Models/Post";
 
 // Project functions & styles
-import layoutStyles from "../../styles/layout-styles.module.scss";
-import postStyles from "../../styles/post.module.scss";
+import layoutStyles from "@src/styles/layout-styles.module.scss";
+import postStyles from "@src/styles/post.module.scss";
 import { GetAllPosts, GetPost } from "@CMS/index";
 import { InferGetStaticPropsType } from "next";
 

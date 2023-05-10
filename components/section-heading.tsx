@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import linkStyles from "../styles/section-heading.module.scss";
+import linkStyles from "@src/styles/section-heading.module.scss";
 
 export default function SectionHeading({
   heading,

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "../../../styles/listing.module.scss";
+import styles from "@src/styles/listing.module.scss";
 
 import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
