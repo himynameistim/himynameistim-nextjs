@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const allTags = await GetTags(false);
   const tagName: string =
-    allTags.find((x) => x.tag.toLowerCase().replace(" ", "-") == tag)?.tag ||
+    allTags.find((x) => x.tag.toLowerCase().replaceAll(" ", "-").replaceAll("/", "") == tag)?.tag ||
     "";
 
   const posts = await GetTagPosts(tagName, 1, pageSize);
@@ -76,7 +76,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const tags = await GetTags(false);
 
   let routes = tags.map(
-    (tag) => `/tag/${tag.tag.toLowerCase().replace(" ", "-")}`
+    (tag) => `/tag/${tag.tag.toLowerCase().replaceAll(" ", "-").replaceAll("/", "")}`
   );
 
   return {
