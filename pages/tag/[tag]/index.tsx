@@ -10,7 +10,7 @@ import { Article, DisplayMode } from "../../../components/article";
 import { PostModel } from "../../../Models/Post";
 import { GetTagPosts, GetTags } from "@CMS/index";
 
-const pageSize = 3;
+const pageSize = 10;
 
 const Tag = ({
   page,

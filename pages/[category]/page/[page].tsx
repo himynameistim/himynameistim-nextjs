@@ -17,7 +17,7 @@ import {
   GetCategoryPosts,
 } from "@CMS/index";
 
-const pageSize = 3;
+const pageSize = 4;
 
 const Category = ({
   page,
