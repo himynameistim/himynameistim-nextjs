@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allTags = await GetTags(false);
+  /*const allTags = await GetTags(false);
 
   let routes = [];
   // add pages for category
@@ -87,10 +87,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
       );
     }
   }
-
+*/
   return {
-    paths: routes,
-    fallback: false,
+    paths: [],
+    fallback: 'blocking',
   };
 };
 

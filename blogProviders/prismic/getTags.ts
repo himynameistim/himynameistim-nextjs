@@ -23,8 +23,8 @@ export const getTags = async (
 
   for (const tag of prismicTags) {
     tags.push({
-      tag,
-      postCount: await getPostCount(tag, previewData),
+      tag
+    //  postCount: await getPostCount(tag, previewData),
     });
   }
 
