@@ -73,15 +73,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const tags = await GetTags(false);
+  /*const tags = await GetTags(false);
 
   let routes = tags.map(
     (tag) => `/tag/${tag.tag.toLowerCase().replaceAll(" ", "-").replaceAll("/", "")}`
   );
-
+*/
   return {
-    paths: routes,
-    fallback: false,
+    paths: [] ,
+    fallback: 'blocking',
   };
 };
 
