@@ -8,10 +8,10 @@ const routes = [
 ];
 
 export const createClient = (config: any = {}) => {
-  // Astro loads environment variables from .env files automatically
-  // During SSG build, use process.env which is available on the server
-  const apiEndpoint = process.env.PUBLIC_PRISMIC_API_ENDPOINT;
-  const accessToken = process.env.accessToken;
+  // In Astro, environment variables are accessed via import.meta.env
+  // PUBLIC_ prefixed vars are exposed to client, but also available on server
+  const apiEndpoint = import.meta.env.PUBLIC_PRISMIC_API_ENDPOINT;
+  const accessToken = import.meta.env.accessToken;
 
   if (!apiEndpoint) {
     throw new Error(
