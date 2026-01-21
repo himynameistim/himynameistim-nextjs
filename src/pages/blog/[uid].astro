@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Article, DisplayMode } from '../../../components/article';
+import { GetAllPosts, GetPost } from '@CMS/index';
+
+export async function getStaticPaths() {
+  const documents = await GetAllPosts();
+  return documents.map((doc) => ({
+    params: { uid: doc.uid },
+  }));
+}
+
+const { uid } = Astro.params;
+const post = await GetPost(uid as string);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+const title = post.data.heading?.length !== 0 ? post.data.heading : "Untitled";
+const canonical = `https://himynameistim.com/blog/${post.uid}`;
+---
+
+<Layout title={title} image={post.data.image.url} canonical={canonical}>
+  <Fragment slot="head">
+    <script
+      async
+      defer
+      src="https://static.cdn.prismic.io/prismic.js?new=true&repo=himynameistim"
+    ></script>
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={canonical} />
+  </Fragment>
+
+  <hr class="horizonalLine" />
+  <div class="post">
+    <main>
+      <Article article={post} displayMode={DisplayMode.Article} client:only="react" />
+    </main>
+  </div>
+</Layout>
+
+<style lang="scss">
+  @import "../../../styles/layout-styles.module.scss";
+  @import "../../../styles/post.module.scss";
+</style>

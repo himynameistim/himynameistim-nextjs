@@ -1,0 +1,50 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CategoryHeading from '../../../../components/category-heading';
+import { CategoryPagination } from '../../../../components/categoryPagination';
+import { Article, DisplayMode } from '../../../../components/article';
+import { GetTagPosts, GetTags } from '@CMS/index';
+import type { PostModel } from '../../../../Models/Post';
+
+const pageSize = 10;
+
+export async function getStaticPaths() {
+  // Return empty for now, using server-side rendering for tags
+  return [];
+}
+
+export const prerender = false;
+
+const { tag } = Astro.params;
+
+const allTags = await GetTags(false);
+const tagName = allTags.find((x) => x.tag.toLowerCase().replaceAll(' ', '-').replaceAll('/', '') === tag)?.tag || '';
+
+const posts = await GetTagPosts(tagName, 1, pageSize);
+---
+
+<Layout title={`Tag: ${tagName}`}>
+  <CategoryHeading name={`Tag: ${tagName}`} client:only="react" />
+
+  <div class="listing">
+    {posts?.posts.map((post: PostModel) => (
+      <Article
+        key={post.uid}
+        article={post}
+        displayMode={DisplayMode.Listing}
+        client:only="react"
+      />
+    ))}
+
+    <CategoryPagination
+      page={1}
+      totalPages={posts?.totalPages}
+      path={`tag/${tag}`}
+      client:only="react"
+    />
+  </div>
+</Layout>
+
+<style lang="scss">
+  @import "../../../../styles/listing.module.scss";
+</style>

@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CategoryHeading from '../../components/category-heading';
+import { linkResolver } from '../../prismic-configuration';
+import { parseISO, format } from 'date-fns';
+import algoliasearch from 'algoliasearch';
+
+type AlgoliaHit = {
+  identifier: string;
+  title: string;
+  objectID: string;
+  postDate: Date;
+  category: string;
+  tags: string[];
+};
+
+type AlgoliaHits = {
+  hits: AlgoliaHit[];
+};
+
+let data: AlgoliaHits = { hits: [] };
+
+const searchQuery = Astro.url.searchParams.get('s');
+
+if (
+  import.meta.env.algoliaAppId &&
+  import.meta.env.algoliaApiKey &&
+  searchQuery
+) {
+  const algoliaClient = algoliasearch(
+    import.meta.env.algoliaAppId,
+    import.meta.env.algoliaApiKey
+  );
+  const algoliaIndex = algoliaClient.initIndex('Posts');
+  data = await algoliaIndex.search(searchQuery);
+}
+---
+
+<Layout title="Search - Hi My Name Is Tim">
+  <CategoryHeading name="Search" client:only="react" />
+  <div class="searchResults container">
+    {data.hits.map((hit) => (
+      <>
+        <a href={linkResolver({ uid: hit.objectID, type: 'post' })}>
+          <h2>{hit.title}</h2>
+        </a>
+        <p>
+          <a href={`/${hit.category.toLowerCase()}`}>
+            {hit.category}
+          </a>{' '}
+          -{' '}
+          <time datetime={hit.postDate?.toString()}>
+            {format(parseISO(hit.postDate.toString()), 'd LLLL yyyy')}
+          </time>{' '}
+          - {hit.tags.join(', ')}
+        </p>
+      </>
+    ))}
+  </div>
+</Layout>
+
+<style lang="scss">
+  @import "../../styles/search-results.module.scss";
+</style>
