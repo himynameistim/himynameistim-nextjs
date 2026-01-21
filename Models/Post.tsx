@@ -1,4 +1,4 @@
-import { Language } from "prism-react-renderer";
+import type { Language } from "prism-react-renderer";
 
 export interface PostModel {
   uid: string;

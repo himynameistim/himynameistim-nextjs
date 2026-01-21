@@ -1,14 +1,13 @@
-import { PreviewData } from "next";
 import { createClient } from "./prismicClient";
 import * as prismic from "@prismicio/client";
 // Models
-import { CategoryModel } from "../../Models/Categories";
-import { PrismicDocumentCategory } from "./Models/prismicCategory";
+import type { CategoryModel } from "../../Models/Categories";
+import type { PrismicDocumentCategory } from "./Models/prismicCategory";
 import { prismicCategoryToCategory } from "./mappers";
 
 export const getCategory = async (
   uid: string,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<CategoryModel> => {
   const client = createClient({ previewData });
   const cat = await client.getByUID<PrismicDocumentCategory>("categories", uid);
@@ -21,7 +20,7 @@ export const getCategory = async (
 
 async function getPostCount(
   categoryId: string,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<number> {
   const client = createClient({ previewData });
   const posts = client.getAllByType("post", {

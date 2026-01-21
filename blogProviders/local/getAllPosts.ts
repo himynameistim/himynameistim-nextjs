@@ -1,10 +1,10 @@
 // Models
-import { PreviewData } from "next";
-import { PostModel } from "../../Models/Post";
+
+import type { PostModel } from "../../Models/Post";
 import { posts } from "./data/posts";
 
 export const getAllPosts = async (
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<PostModel[]> => {
   return posts;
 };

@@ -1,8 +1,7 @@
 import * as prismic from "@prismicio/client";
-import Link from "next/link";
 import { repoName, linkResolver, hrefResolver } from "../prismic-configuration";
 
-// Helper function to convert Prismic Rich Text links to Next/Link components
+// Helper function to convert Prismic Rich Text links to anchor components
 export const customLink = (
   type: string,
   element: any,
@@ -10,13 +9,12 @@ export const customLink = (
   children: React.ReactNode,
   index: number
 ) => (
-  <Link
+  <a
     key={index}
-    href={hrefResolver(element.data)}
-    as={linkResolver(element.data)}
+    href={linkResolver(element.data)}
   >
     {content}
-  </Link>
+  </a>
 );
 
 // Client method to query documents from the Prismic repo

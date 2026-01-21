@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FeaturedRow1 } from '../../components/featured-row-1';
+import SectionHeading from '../../components/section-heading';
+import * as CMS from '@CMS/index';
+
+const latestPosts = await CMS.GetLatestPosts();
+const webDevelopmentPosts = await CMS.GetLatestPosts("X8kFhxIAACcAn9oY");
+const devOpsPosts = await CMS.GetLatestPosts("X8kFlRIAACkAn9pa");
+const sitecorePosts = await CMS.GetLatestPosts("X8kFeBIAACkAn9nV");
+---
+
+<Layout title="Hi My Name Is Tim">
+  <SectionHeading heading="Latest Posts" link="blog" client:only="react" />
+  <FeaturedRow1 posts={latestPosts} client:only="react" />
+  <SectionHeading heading="Web Development" link="web-development" client:only="react" />
+  <FeaturedRow1 posts={webDevelopmentPosts} client:only="react" />
+  <SectionHeading heading="Sitecore" link="sitecore" client:only="react" />
+  <FeaturedRow1 posts={sitecorePosts} client:only="react" />
+  <SectionHeading heading="Devops" link="devops" client:only="react" />
+  <FeaturedRow1 posts={devOpsPosts} client:only="react" />
+</Layout>

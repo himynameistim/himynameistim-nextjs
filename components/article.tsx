@@ -1,9 +1,7 @@
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { SliceZone } from "../components/post/SliceZone";
 import { linkResolver } from "../prismic-configuration";
-import { PostModel } from "../Models/Post";
+import type { PostModel } from "../Models/Post";
 import { format } from "date-fns";
 
 export enum DisplayMode {
@@ -31,20 +29,18 @@ export function Article({
     <article className="container">
       <header>
         {hasImage && (
-          <Image
-            placeholder="blur"
-            blurDataURL={lowResImage}
+          <img
             src={image}
             height="400"
             width="1093"
-            priority={true}
             alt={title as string}
+            loading="eager"
           />
         )}
         {displayMode == DisplayMode.Listing && (
-          <Link href={linkResolver(article)}>
+          <a href={linkResolver(article)}>
             <h1>{title}</h1>
-          </Link>
+          </a>
         )}
         {displayMode == DisplayMode.Article && <h1>{title}</h1>}
         <p>
@@ -57,12 +53,12 @@ export function Article({
       <footer>
         Tagged:&nbsp;
         {article.data._meta.tags.map((tag) => (
-          <Link
+          <a
             key={tag.toLowerCase().replace(" ", "-")}
             href={"/tag/" + tag.toLowerCase().replace(" ", "-")}
           >
             {tag}
-          </Link>
+          </a>
         ))}
       </footer>
     </article>

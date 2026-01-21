@@ -1,17 +1,16 @@
-import { PreviewData } from "next";
 import { createClient } from "./prismicClient";
 import * as prismic from "@prismicio/client";
 import * as prismicT from "@prismicio/types";
 
-import { CategoryPosts } from "../../Models/CategoryPosts";
-import { PrismicDocumentBlogPost } from "./Models/prismicPost";
+import type { CategoryPosts } from "../../Models/CategoryPosts";
+import type { PrismicDocumentBlogPost } from "./Models/prismicPost";
 import { prismicPostToPost } from "./mappers";
 
 export const getCategoryPosts = async (
   categoryId: string | null,
   page: number,
   pageSize: number,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<CategoryPosts> => {
   const client = createClient({ previewData });
   let posts: prismicT.Query<PrismicDocumentBlogPost>;

@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CategoryHeading from '../../../components/category-heading';
+import { CategoryPagination } from '../../../components/categoryPagination';
+import { Article, DisplayMode } from '../../../components/article';
+import { GetAllCategories, GetCategory, GetCategoryPosts } from '@CMS/index';
+import type { PostModel } from '../../../Models/Post';
+import type { CategoryModel } from '../../../Models/Categories';
+
+const pageSize = 4;
+
+export async function getStaticPaths() {
+  const categories = await GetAllCategories();
+  
+  const paths = [];
+  
+  // Add category routes
+  for (const category of categories) {
+    paths.push({
+      params: { category: category.uid },
+    });
+  }
+  
+  // Add blog route
+  paths.push({
+    params: { category: 'blog' },
+  });
+  
+  return paths;
+}
+
+const { category } = Astro.params;
+
+let categoryId: string | null;
+let categoryName: string;
+
+if (category === 'blog') {
+  categoryId = null;
+  categoryName = 'Blog';
+} else {
+  const cat: CategoryModel = await GetCategory(category as string);
+  categoryId = cat.id!;
+  categoryName = cat.name;
+}
+
+const posts = await GetCategoryPosts(categoryId, 1, pageSize);
+---
+
+<Layout title={categoryName}>
+  <main>
+    <CategoryHeading name={categoryName} client:only="react" />
+
+    <div class="listing">
+      {posts?.posts.map((post: PostModel) => (
+        <Article
+          key={post.uid}
+          article={post}
+          displayMode={DisplayMode.Listing}
+          client:only="react"
+        />
+      ))}
+
+      <CategoryPagination
+        page={1}
+        totalPages={posts?.totalPages}
+        path={category}
+        client:only="react"
+      />
+    </div>
+  </main>
+</Layout>
+
+<style lang="scss">
+  @import "../../../styles/listing.module.scss";
+</style>

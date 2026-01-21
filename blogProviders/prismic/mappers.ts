@@ -1,10 +1,10 @@
-import { CodeBlock, ImageBlock, PostModel, TextBlock } from "../../Models/Post";
-import { PrismicDocumentBlogPost } from "./Models/prismicPost";
+import type { CodeBlock, ImageBlock, PostModel, TextBlock } from "../../Models/Post";
+import type { PrismicDocumentBlogPost } from "./Models/prismicPost";
 import * as prismicH from "@prismicio/helpers";
-import { CategoryModel } from "@Models/Categories";
-import { PrismicDocumentCategory } from "./Models/prismicCategory";
-import { FeaturedPost } from "@Models/FeaturedPost";
-import { Language } from "prism-react-renderer";
+import type { CategoryModel } from "@Models/Categories";
+import type { PrismicDocumentCategory } from "./Models/prismicCategory";
+import type { FeaturedPost } from "@Models/FeaturedPost";
+import type { Language } from "prism-react-renderer";
 
 export function prismicPostToPost(
   prismicPost: PrismicDocumentBlogPost

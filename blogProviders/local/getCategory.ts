@@ -1,10 +1,10 @@
 // Models
-import { CategoryModel } from "../../Models/Categories";
-import { PreviewData } from "next";
+import type { CategoryModel } from "../../Models/Categories";
+
 
 export const getCategory = async (
   uid: string,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<CategoryModel> => {
   return {
     uid: "sitecore",

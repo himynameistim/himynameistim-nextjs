@@ -1,5 +1,5 @@
 import React from "react";
-import { TextBlock } from "../../../Models/Post";
+import type { TextBlock } from "../../../Models/Post";
 
 /**
  * Text slice component

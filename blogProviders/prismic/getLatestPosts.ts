@@ -1,14 +1,13 @@
 import * as prismic from "@prismicio/client";
-import { PreviewData } from "next";
 // Models
 import { createClient } from "./prismicClient";
 import { prismicPostToFeaturedPost } from "./mappers";
-import { FeaturedPost } from "../../Models/FeaturedPost";
-import { PrismicDocumentBlogPost } from "./Models/prismicPost";
+import type { FeaturedPost } from "../../Models/FeaturedPost";
+import type { PrismicDocumentBlogPost } from "./Models/prismicPost";
 
 export const getLatestPosts = async (
   categoryUid?: string,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<FeaturedPost[]> => {
   const client = createClient({ previewData });
 

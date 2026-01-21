@@ -1,10 +1,9 @@
-import { TagModel } from "../../Models/Tags";
-import { PreviewData } from "next";
+import type { TagModel } from "../../Models/Tags";
 import { createClient } from "./prismicClient";
 
 async function getPostCount(
   tag: string,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<number> {
   const client = createClient({ previewData });
   const posts = await client.getByTag(tag);
@@ -13,7 +12,7 @@ async function getPostCount(
 
 export const getTags = async (
   includeCount: boolean,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<TagModel[]> => {
   const client = createClient({ previewData });
   const prismicTags = await client.getTags();

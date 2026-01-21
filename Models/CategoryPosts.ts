@@ -1,4 +1,4 @@
-import { PostModel } from "./Post";
+import type { PostModel } from "./Post";
 
 export interface CategoryPosts {
   totalPages: number;

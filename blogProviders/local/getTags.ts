@@ -1,9 +1,9 @@
-import { TagModel } from "../../Models/Tags";
-import { PreviewData } from "next";
+import type { TagModel } from "../../Models/Tags";
+
 
 export const getTags = async (
   includeCount: boolean,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<TagModel[]> => {
   return [
     {
