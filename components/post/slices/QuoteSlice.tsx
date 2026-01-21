@@ -1,5 +1,5 @@
 import React from 'react'
-import { QuoteBlock } from '../../../Models/Post'
+import type { QuoteBlock } from '../../../Models/Post'
 
 /**
  * Quote slice component

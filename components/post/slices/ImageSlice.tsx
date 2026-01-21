@@ -1,6 +1,5 @@
 import React from "react";
-import Image from "next/image";
-import { ImageBlock } from "../../../Models/Post";
+import type { ImageBlock } from "../../../Models/Post";
 
 /**
  * Default image component
@@ -16,9 +15,7 @@ const ImageSlice = ({ slice }: { slice: ImageBlock }) => {
   return (
     <div className="post-part single container">
       <div className="block-img">
-        <Image
-          placeholder="blur"
-          blurDataURL={lowResImage}
+        <img
           src={imageUrl}
           alt={imageAlt}
           height={imageHeight}

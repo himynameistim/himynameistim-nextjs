@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://himynameistim.com',
+  output: 'static',
   integrations: [react(), sitemap()],
   redirects: {
     '/category/[slug]': '/[slug]',

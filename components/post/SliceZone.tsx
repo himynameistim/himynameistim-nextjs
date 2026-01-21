@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextSlice, QuoteSlice, CodeSlice, ImageSlice } from './slices'
-import { CodeBlock, ImageBlock, QuoteBlock, Slices, TextBlock } from '../../Models/Post'
+import type { CodeBlock, ImageBlock, QuoteBlock, Slices, TextBlock } from '../../Models/Post'
 
 /**
  * Post slice zone component

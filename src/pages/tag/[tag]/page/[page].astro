@@ -9,11 +9,23 @@ import type { PostModel } from '../../../../../Models/Post';
 const pageSize = 10;
 
 export async function getStaticPaths() {
-  // Return empty for now, using server-side rendering for tags
-  return [];
+  const allTags = await GetTags(false);
+  
+  const routes = [];
+  for (const tagData of allTags) {
+    const pages = Math.ceil((tagData.postCount || 0) / pageSize);
+    for (let p = 0; p < pages; p++) {
+      routes.push({
+        params: {
+          tag: tagData.tag.toLowerCase().replaceAll(' ', '-').replaceAll('/', ''),
+          page: (p + 1).toString(),
+        },
+      });
+    }
+  }
+  
+  return routes;
 }
-
-export const prerender = false;
 
 const { tag, page } = Astro.params;
 const pageNo = parseInt(page || '1');

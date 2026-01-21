@@ -9,11 +9,12 @@ import type { PostModel } from '../../../../Models/Post';
 const pageSize = 10;
 
 export async function getStaticPaths() {
-  // Return empty for now, using server-side rendering for tags
-  return [];
+  const allTags = await GetTags(false);
+  
+  return allTags.map((t) => ({
+    params: { tag: t.tag.toLowerCase().replaceAll(' ', '-').replaceAll('/', '') },
+  }));
 }
-
-export const prerender = false;
 
 const { tag } = Astro.params;
 

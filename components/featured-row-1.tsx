@@ -4,7 +4,7 @@ import linkStyles from "../styles/featured-row-1.module.scss";
 import { linkResolver } from "../prismic-configuration";
 import { parseISO, format } from "date-fns";
 
-import { FeaturedPost } from "../Models/FeaturedPost";
+import type { FeaturedPost } from "../Models/FeaturedPost";
 
 export interface FeaturedRow1Model {
   [index: number]: FeaturedPost;
@@ -14,7 +14,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
   return (
     <div className={[linkStyles.featuredRow, "container"].join(" ")}>
       <div className={linkStyles.row}>
-        <Link
+        <a
           href={linkResolver(posts[0])}
           className={linkStyles.mainBlock}
           style={{
@@ -33,7 +33,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
           </div>
         </a>
         {posts[1] && posts[1].image && (
-          <Link
+          <a
             href={linkResolver(posts[1])}
             className={linkStyles.secondBlock}
             style={{
@@ -56,7 +56,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
           </a>
         )}
         {posts[2] && (
-          <Link
+          <a
             href={linkResolver(posts[2])}
             className={linkStyles.finalBlocks}
             style={{
@@ -71,7 +71,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
           </a>
         )}
         {posts[3] && (
-          <Link
+          <a
             href={linkResolver(posts[3])}
             className={linkStyles.finalBlocks}
             style={{

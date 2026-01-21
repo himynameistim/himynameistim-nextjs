@@ -28,5 +28,5 @@
     "**/*.tsx",
     "utils/queries/queryRepeatableDocuments.js"
   ],
-  "exclude": ["node_modules", "dist", "pages", ".next"]
+  "exclude": ["node_modules", "dist", "pages", ".next", "layouts"]
 }
