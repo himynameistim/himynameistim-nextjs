@@ -1,12 +1,12 @@
-import { CategoryPosts } from "../../Models/CategoryPosts";
+import type { CategoryPosts } from "../../Models/CategoryPosts";
 import { posts } from "./data/posts";
-import { PreviewData } from "next";
+
 
 export const getCategoryPosts = async (
   categoryId: string,
   page: number,
   pageSize: number,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<CategoryPosts> => {
   return {
     totalPages: 1,

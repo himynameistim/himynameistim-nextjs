@@ -1,10 +1,10 @@
 // Models
-import { FeaturedPost } from "../../Models/FeaturedPost";
-import { PreviewData } from "next";
+import type { FeaturedPost } from "../../Models/FeaturedPost";
+
 
 export const getLatestPosts = async (
   categoryUid?: string,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<FeaturedPost[]> => {
   return [
     {

@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+
 
 export function CategoryPagination({
   page,
@@ -13,19 +13,19 @@ export function CategoryPagination({
   return (
     <nav className="container">
       {page < totalPages && (
-        <Link href={`/${path}/page/${page + 1}`} title="Older Posts">
+        <a href={`/${path}/page/${page + 1}`} title="Older Posts">
           &lt; Older Posts
-        </Link>
+        </a>
       )}
       {page > 2 && (
-        <Link href={`/${path}/page/${page - 1}`} title="Newer Posts">
+        <a href={`/${path}/page/${page - 1}`} title="Newer Posts">
           Newer Posts &gt;
-        </Link>
+        </a>
       )}
       {page == 2 && (
-        <Link href={`/${path}`} title="Newer Posts">
+        <a href={`/${path}`} title="Newer Posts">
           Newer Posts &gt;
-        </Link>
+        </a>
       )}
     </nav>
   );

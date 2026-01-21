@@ -1,10 +1,10 @@
-import { PreviewData } from "next";
+
 
 // Models
-import { CategoryModel } from "../../Models/Categories";
+import type { CategoryModel } from "../../Models/Categories";
 
 export const getAllCategories = async (
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<CategoryModel[]> => {
   return [
     {

@@ -1,5 +1,4 @@
 import * as prismic from "@prismicio/client";
-import * as prismicNext from "@prismicio/next";
 
 const routes = [
   {
@@ -8,22 +7,18 @@ const routes = [
   },
 ];
 
-export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
-  if (!process.env.NEXT_PUBLIC_PRISMIC_API_ENDPOINT) {
+export const createClient = (config: any = {}) => {
+  const apiEndpoint = import.meta.env.NEXT_PUBLIC_PRISMIC_API_ENDPOINT || process.env.NEXT_PUBLIC_PRISMIC_API_ENDPOINT;
+  if (!apiEndpoint) {
     throw new Error("NEXT_PUBLIC_PRISMIC_API_ENDPOINT not defined");
   }
   const client = prismic.createClient(
-    process.env.NEXT_PUBLIC_PRISMIC_API_ENDPOINT,
+    apiEndpoint,
     {
       routes,
       ...config,
     }
   );
-  prismicNext.enableAutoPreviews({
-    client,
-    previewData: config.previewData,
-    req: config.req,
-  });
 
   return client;
 };

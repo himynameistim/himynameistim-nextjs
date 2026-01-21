@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+
 import linkStyles from "../styles/featured-row-1.module.scss";
 import { linkResolver } from "../prismic-configuration";
 import { parseISO, format } from "date-fns";
@@ -31,7 +31,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
               </div>
             )}
           </div>
-        </Link>
+        </a>
         {posts[1] && posts[1].image && (
           <Link
             href={linkResolver(posts[1])}
@@ -53,7 +53,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
                 </div>
               )}
             </div>
-          </Link>
+          </a>
         )}
         {posts[2] && (
           <Link
@@ -68,7 +68,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
               <div>{posts[2].category}</div>
               <div>{posts[2].title}</div>
             </div>
-          </Link>
+          </a>
         )}
         {posts[3] && (
           <Link
@@ -83,7 +83,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
               <div>{posts[3].category}</div>
               <div>{posts[3].title}</div>
             </div>
-          </Link>
+          </a>
         )}
       </div>
     </div>

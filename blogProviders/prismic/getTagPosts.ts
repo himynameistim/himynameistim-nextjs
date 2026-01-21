@@ -1,15 +1,14 @@
-import { PreviewData } from "next";
 import { createClient } from "./prismicClient";
 
-import { TagPostsModel } from "../../Models/TagPosts";
+import type { TagPostsModel } from "../../Models/TagPosts";
 import { prismicPostToPost } from "./mappers";
-import { PrismicDocumentBlogPost } from "./Models/prismicPost";
+import type { PrismicDocumentBlogPost } from "./Models/prismicPost";
 
 export const getTagPosts = async (
   tag: string,
   page: number,
   pageSize: number,
-  previewData?: PreviewData
+  previewData?: any
 ): Promise<TagPostsModel> => {
   const client = createClient({ previewData });
   const posts = await client.getByTag<PrismicDocumentBlogPost>(tag, {

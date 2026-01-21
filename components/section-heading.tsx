@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+
 import linkStyles from "../styles/section-heading.module.scss";
 
 export default function SectionHeading({
@@ -12,7 +12,7 @@ export default function SectionHeading({
   return (
     <div className={linkStyles.sectionHeading}>
       <h2>
-        {link && <Link href={link}>{heading}</Link>}
+        {link && <a href={link}>{heading}</a>}
         {link == null && heading}
       </h2>
     </div>
