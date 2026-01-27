@@ -21,7 +21,7 @@ export default function Home() {
               alt="Photo of Tim"
               height="200"
               width="200"
-              className="w-[200px] rounded-full"
+              className="w-50 rounded-full"
             />
             <h2>Tim Griffiths</h2>
             <p>
@@ -61,49 +61,49 @@ export default function Home() {
               height="300"
               width="300"
               alt="Sitecore MVP Award 2022"
-              className="inline-block my-5 mr-10 w-[300px]"
+              className="inline-block my-5 mr-10 w-75"
             />
             <img
               src="/Sitecore_MVP_Technology_2021.jpg"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2021"
-              className="inline-block my-5 mr-10 w-[300px]"
+              className="inline-block my-5 mr-10 w-75"
             />
             <img
               src="/Sitecore_MVP_Technology_2021.jpg"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2021"
-              className="inline-block my-5 mr-10 w-[300px]"
+              className="inline-block my-5 mr-10 w-75"
             />
             <img
               src="/Sitecore_MVP_Technology_2020.jpg"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2020"
-              className="inline-block my-5 mr-10 w-[300px]"
+              className="inline-block my-5 mr-10 w-75"
             />
             <img
               src="/sitecore_mvp_technology_2019.jpg"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2019"
-              className="inline-block my-5 mr-10 w-[300px]"
+              className="inline-block my-5 mr-10 w-75"
             />
             <img
               src="/sitecore_mvp_logo_technology_2018.jpg"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2018"
-              className="inline-block my-5 mr-10 w-[300px]"
+              className="inline-block my-5 mr-10 w-75"
             />
             <img
               src="/sitecore_mvp_logo_technology_2017.png"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2017"
-              className="inline-block my-5 mr-10 w-[300px]"
+              className="inline-block my-5 mr-10 w-75"
             />
           </div>
         </div>

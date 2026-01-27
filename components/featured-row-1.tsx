@@ -12,10 +12,10 @@ export interface FeaturedRow1Model {
 export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
   return (
     <div className="mb-element container">
-      <div className="min-h-[400px] gap-4 grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-flow-col md:grid-cols-12 md:grid-rows-2">
+      <div className="min-h-100 gap-4 grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-flow-col md:grid-cols-12 md:grid-rows-2">
         <Link
           href={linkResolver(posts[0])}
-          className="max-[639px]:min-h-[400px] max-[768px]:min-h-[300px] grid justify-center items-center place-content-end place-items-end bg-cover md:row-span-2 md:col-span-5"
+          className="max-[639px]:min-h-100 max-[768px]:min-h-75 grid justify-center items-center place-content-end place-items-end bg-cover md:row-span-2 md:col-span-5"
           style={{
             backgroundImage:
               "url(" + posts[0].image.url + "&fit=crop&max-w=630&max-h=400)",
@@ -34,7 +34,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
         {posts[1] && posts[1].image && (
           <Link
             href={linkResolver(posts[1])}
-            className="max-[639px]:min-h-[400px] max-[768px]:min-h-[300px] p-8 flex justify-center items-center bg-cover md:row-span-2 md:col-span-4"
+            className="max-[639px]:min-h-100 max-[768px]:min-h-75 p-8 flex justify-center items-center bg-cover md:row-span-2 md:col-span-4"
             style={{
               backgroundImage:
                 "url(" + posts[1].image.url + "&fit=crop&max-w=500&max-h=400)",
@@ -57,7 +57,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
         {posts[2] && (
           <Link
             href={linkResolver(posts[2])}
-            className="max-[639px]:min-h-[300px] max-[768px]:min-h-[200px] pt-8 grid place-content-end justify-center items-center bg-cover md:row-span-1 md:col-span-3"
+            className="max-[639px]:min-h-75 max-[768px]:min-h-50 pt-8 grid place-content-end justify-center items-center bg-cover md:row-span-1 md:col-span-3"
             style={{
               backgroundImage:
                 "url(" + posts[2].image.url + "&fit=crop&max-w=372&max-h=192)",
@@ -72,7 +72,7 @@ export function FeaturedRow1({ posts }: { posts: FeaturedRow1Model }) {
         {posts[3] && (
           <Link
             href={linkResolver(posts[3])}
-            className="max-[639px]:min-h-[300px] max-[768px]:min-h-[200px] pt-8 grid place-content-end justify-center items-center bg-cover md:row-span-1 md:col-span-3"
+            className="max-[639px]:min-h-75 max-[768px]:min-h-50 pt-8 grid place-content-end justify-center items-center bg-cover md:row-span-1 md:col-span-3"
             style={{
               backgroundImage:
                 "url(" + posts[3].image.url + "&fit=crop&max-w=372&max-h=192)",

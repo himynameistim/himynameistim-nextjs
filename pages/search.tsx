@@ -20,7 +20,7 @@ export default function Search({ data }: { data: AlgoliaHits }) {
         {data.hits.map((hit) => (
           <>
             <Link href={linkResolver({ uid: hit.objectID, type: "post" })}>
-              <h2 className="mb-[5px]">{hit.title}</h2>
+              <h2 className="mb-1.25">{hit.title}</h2>
             </Link>
             <p className="m-0 italic">
               <Link href={`/` + hit.category.toLowerCase()}>
