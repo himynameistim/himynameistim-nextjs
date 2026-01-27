@@ -66,12 +66,8 @@
     @apply w-full mx-auto sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px];
   }
 
-  .hidden {
-    @apply hidden;
-  }
-
   .logo {
-    @apply p-5 flex justify-left items-left sm:justify-center sm:items-center font-bold text-xl sm:text-2xl border-b border-border;
+    @apply p-5 flex justify-start items-start sm:justify-center sm:items-center font-bold text-xl sm:text-2xl border-b border-border;
   }
 
   .logo span {
