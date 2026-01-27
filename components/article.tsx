@@ -27,6 +27,11 @@ export function Article({
   const lowResImage = hasImage ? image + lowResString : "";
   const date = new Date(article.data.postDate);
 
+  const h1ClassName = "px-8 sm:px-[30px] lg:px-20 lg:pt-[25px] mb-0";
+  const contentClassName = displayMode === DisplayMode.Listing 
+    ? "px-8 sm:px-[30px] lg:px-20 pb-10" 
+    : "px-8 sm:px-[30px] lg:px-20 pb-5";
+
   return (
     <article className="container mx-auto mb-element break-words sm:shadow-[0px_10px_20px_0px_rgba(221,221,221,0.3)]">
       <header>
@@ -44,15 +49,15 @@ export function Article({
         )}
         {displayMode == DisplayMode.Listing && (
           <Link href={linkResolver(article)}>
-            <h1 className="px-8 sm:px-[30px] lg:px-20 lg:pt-[25px] mb-0">{title}</h1>
+            <h1 className={h1ClassName}>{title}</h1>
           </Link>
         )}
-        {displayMode == DisplayMode.Article && <h1 className="px-8 sm:px-[30px] lg:px-20 lg:pt-[25px] mb-0">{title}</h1>}
+        {displayMode == DisplayMode.Article && <h1 className={h1ClassName}>{title}</h1>}
         <p className="italic text-sm m-0 px-8 sm:px-[30px] lg:px-20">
           <time dateTime={date.toString()}>{format(date, "d LLLL yyyy")}</time>
         </p>
       </header>
-      <div className={displayMode === DisplayMode.Listing ? "px-8 sm:px-[30px] lg:px-20 pb-10" : "px-8 sm:px-[30px] lg:px-20 pb-5"}>
+      <div className={contentClassName}>
         <SliceZone slices={article.data.body} />
       </div>
       <footer className="text-main-text-color py-[15px] pb-[30px] mx-8 sm:mx-[30px] lg:mx-20 mb-element">
