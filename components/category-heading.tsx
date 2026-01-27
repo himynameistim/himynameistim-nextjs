@@ -1,9 +1,8 @@
 import React from "react";
-import categoryStyles from "../styles/category-heading.module.scss";
 
 export default function Category({ name }: { name: string }) {
   return (
-    <div className={categoryStyles.banner}>
+    <div className="bg-heading-color min-h-[110px] text-white text-[26px] px-8 mb-element flex items-center">
       <div className="container">{name}</div>
     </div>
   );

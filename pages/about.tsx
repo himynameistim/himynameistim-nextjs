@@ -6,8 +6,6 @@ import { GetStaticProps } from "next";
 import Layout from "../layouts/layout";
 import CategoryHeading from "../components/category-heading";
 
-import styles from "../styles/about.module.scss";
-
 export default function Home() {
   return (
     <Layout>
@@ -16,14 +14,14 @@ export default function Home() {
       </Head>
       <main>
         <CategoryHeading name="About"></CategoryHeading>
-        <div className={styles.content}>
+        <div className="px-8">
           <div className="container">
             <Image
               src="/Tim Photo.jpg"
               alt="Photo of Tim"
               height="200"
               width="200"
-              className={styles.bioPhoto}
+              className="w-[200px] rounded-full"
             />
             <h2>Tim Griffiths</h2>
             <p>
@@ -63,49 +61,49 @@ export default function Home() {
               height="300"
               width="300"
               alt="Sitecore MVP Award 2022"
-              className={styles.award}
+              className="inline-block my-5 mr-10 w-[300px]"
             />
             <img
               src="/Sitecore_MVP_Technology_2021.jpg"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2021"
-              className={styles.award}
+              className="inline-block my-5 mr-10 w-[300px]"
             />
             <img
               src="/Sitecore_MVP_Technology_2021.jpg"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2021"
-              className={styles.award}
+              className="inline-block my-5 mr-10 w-[300px]"
             />
             <img
               src="/Sitecore_MVP_Technology_2020.jpg"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2020"
-              className={styles.award}
+              className="inline-block my-5 mr-10 w-[300px]"
             />
             <img
               src="/sitecore_mvp_technology_2019.jpg"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2019"
-              className={styles.award}
+              className="inline-block my-5 mr-10 w-[300px]"
             />
             <img
               src="/sitecore_mvp_logo_technology_2018.jpg"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2018"
-              className={styles.award}
+              className="inline-block my-5 mr-10 w-[300px]"
             />
             <img
               src="/sitecore_mvp_logo_technology_2017.png"
               height="300"
               width="300"
               alt="Sitecore MVP Award 2017"
-              className={styles.award}
+              className="inline-block my-5 mr-10 w-[300px]"
             />
           </div>
         </div>

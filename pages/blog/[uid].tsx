@@ -8,8 +8,6 @@ import { Article, DisplayMode } from "../../components/article";
 import { PostModel } from "../../Models/Post";
 
 // Project functions & styles
-import layoutStyles from "../../styles/layout-styles.module.scss";
-import postStyles from "../../styles/post.module.scss";
 import { GetAllPosts, GetPost } from "@CMS/index";
 import { InferGetStaticPropsType } from "next";
 
@@ -45,8 +43,8 @@ function Post({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
           />
         </Head>
 
-        <hr className={layoutStyles.horizonalLine} />
-        <div className={postStyles.post}>
+        <hr className="bg-heading-color h-[10px] border-0 mb-element" />
+        <div className="p-0 sm:px-8">
           <main>
             <Article article={post} displayMode={DisplayMode.Article}></Article>
           </main>
