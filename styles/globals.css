@@ -27,7 +27,7 @@
   }
 
   h2 {
-    @apply text-base sm:text-xl font-semibold tracking-wide leading-snug-plus mb-5;
+    @apply text-base sm:text-xl font-semibold tracking-wide leading-snug-plus mt-4 mb-5;
   }
 
   img,
@@ -42,7 +42,7 @@
   }
 
   p {
-    @apply mb-5 text-main-text-color leading-snug-plus;
+    @apply mt-4 mb-5 text-main-text-color leading-snug-plus;
   }
 
   ol,
