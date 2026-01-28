@@ -8,7 +8,6 @@ import algoliasearch from "algoliasearch";
 import { GetServerSideProps } from "next";
 import { linkResolver } from "../prismic-configuration";
 import { parseISO, format } from "date-fns";
-import styles from "../styles/search-results.module.scss";
 
 export default function Search({ data }: { data: AlgoliaHits }) {
   return (
@@ -17,13 +16,13 @@ export default function Search({ data }: { data: AlgoliaHits }) {
         <title>Hi My Name Is Tim</title>
       </Head>
       <CategoryHeading name="Search"></CategoryHeading>
-      <div className={[styles.searchResults, "container"].join(" ")}>
+      <div className="mb-element container">
         {data.hits.map((hit) => (
           <>
             <Link href={linkResolver({ uid: hit.objectID, type: "post" })}>
-              <h2>{hit.title}</h2>
+              <h2 className="mb-1.25">{hit.title}</h2>
             </Link>
-            <p>
+            <p className="m-0 italic">
               <Link href={`/` + hit.category.toLowerCase()}>
                 {hit.category}
               </Link>{" "}

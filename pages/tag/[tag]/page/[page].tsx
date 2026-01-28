@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../../../../styles/listing.module.scss";
 
 import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
@@ -32,7 +31,7 @@ const Tag = ({
       </Head>
       <CategoryHeading name={tagName}></CategoryHeading>
 
-      <div className={styles.listing}>
+      <div className="p-0 sm:px-8">
         {posts.map((post) => (
           <Article
             key={post.uid}
